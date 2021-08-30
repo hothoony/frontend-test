@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bootstrap - container</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <style>
+* {
+    font-size: 11pt;
+}
+
+.row {
+    border: 2px solid lightseagreen;
+    padding: 8px;
+    margin: 8px;
+}
+
+.col-sm-1,  .col-md-1,  .col-1,
+.col-sm-2,  .col-md-2,  .col-2,
+.col-sm-3,  .col-md-3,  .col-3,
+.col-sm-4,  .col-md-4,  .col-4,
+.col-sm-5,  .col-md-5,  .col-5,
+.col-sm-6,  .col-md-6,  .col-6,
+.col-sm-7,  .col-md-7,  .col-7,
+.col-sm-8,  .col-md-8,  .col-8,
+.col-sm-9,  .col-md-9,  .col-9,
+.col-sm-10, .col-md-10, .col-10,
+.col-sm-11, .col-md-11, .col-11,
+.col-sm-12, .col-md-12, .col-12,
+.col, .col-sm, .col-md {
+    border: 2px solid lightpink;
+    padding: 8px;
+    /* margin: 1px; */
+}
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <br>
+    <h5>TEST: col</h5>
+    <div class="row">
+        <div class="col">item</div>
+        <div class="col">item</div>
+        <div class="col">item</div>
+        <div class="col">item</div>
+    </div>
+
+    <br>
+    <h5>TEST: col-3</h5>
+    <div class="row">
+        <div class="col-3">item</div>
+        <div class="col-3">item</div>
+        <div class="col-3">item</div>
+        <div class="col-3">item</div>
+    </div>
+
+    <br>
+    <h5>TEST: col-sm-3</h5>
+    <div class="row">
+        <div class="col-sm-3">item</div>
+        <div class="col-sm-3">item</div>
+        <div class="col-sm-3">item</div>
+        <div class="col-sm-3">item</div>
+    </div>
+</div>
+    
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>responsive</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #wrap {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            width: 90%;
+            height: 500px;
+            margin: 0 auto;
+            background-color: lightseagreen;
+            border: 4px solid black;
+        }
+        #wrap div {
+            width: 100%;
+        }
+        #wrap div:first-child {
+            background-color: lightcoral;
+        }
+        #wrap div:nth-child(2) {
+            background-color: lightgreen;
+        }
+        #wrap div:nth-child(3) {
+            background-color: lightskyblue;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div id="wrap">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+</body>
+</html>
+
+<!--
+    ## 가변 그리드
+        width: 90%;
+    ## 미디어 쿼리
+        - syntax
+            [only 또는 not] @media [미디어 유형] [and 또는 ,] (조건문) {실행문}
+        - example
+            @media screen and (min-width: 400px) {}
+        - min, max 사용시 순서가 중요
+            min 사용시 > 크기가 작은 순서대로
+            max 사용시 > 크기가 큰 순서대로
+
+    ## Viewport
+        <meta name="viewport" content="width=device-width, initial-scale=1.0
+            , minimum-scale=1, maximum-scale=1, user-scalable=no">
+        width   뷰포트 너비
+        height  뷰포트 높이
+        initial-scale   뷰포트 초기 배율, 기본값 1
+        user-scalable   yes,no  뷰포트 확대/축소 여부를 지정, 기본값 yes
+        뷰포트 영역 확인 방법
+            - 크롬 브라우저 개발자 도구에서 확인
+                Elements > html 태그 선택 > 화면에서 사이즈 확인
+            - 뷰포트 영역 확인 사이트 이용
+    가변 패딩
+    가변 마진
+    가변 폰트
+        rem
+        vw, vh, vmin, vmax
+    가변 이미지
+        width: 100%;
+        max-width: 100%;
+    ## flexible box
+        자식 아이템 -> flex item
+        주축, 교차축(주축에 교차하는 축)
+        display
+            flex (block)
+            inline-flex (inline)
+        flex-direction
+        flex-wrap
+        flex-flow: flex-direction flex-wrap
+        flex-flow: row wrap;
+        justify-content
+        align-items
+        align-self
+        order
+        flex: flex-grow flex-shrink flex-basis
+
+    
+    <link rel="stylesheet" href="mediaquery.css">
+    브라우저 접두사
+-->

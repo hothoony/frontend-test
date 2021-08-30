@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select</title>
+</head>
+<body>
+
+    <style>
+        .output {
+            border: 1px solid lightgray;
+            height: 20px;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(e) {
+            var btn2 = document.querySelectorAll('.btn2')[0];
+            var btn3 = document.querySelectorAll('.btn3')[0];
+            btn2.addEventListener('click', function(e) {
+                document.querySelectorAll('select')[0].selectedIndex = -1;
+            });
+            btn3.addEventListener('click', function(e) {
+                document.querySelectorAll('.output')[0].innerHTML = document.querySelectorAll('select')[0].value;
+            });
+        });
+    </script>
+
+    <select>
+        <option value="">--select--</option>
+        <option value="red">red</option>
+        <option value="green">green</option>
+        <option value="blue">blue</option>
+    </select>
+
+    <button class="btn2">reset selected</button>
+    <button class="btn3">selected values</button>
+
+    <div class="output"></div>
+    
+</body>
+</html>

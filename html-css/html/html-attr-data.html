@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML attribute data</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+li:hover::after {
+    content: 'Data my-id: ' attr(data-my-id);
+    background-color: black;
+    color: white;
+}
+    </style>
+
+    <script>
+$(document).ready(function() {
+    var list = document.querySelectorAll('li');
+    console.log(list[0].dataset.myId); // 11
+    console.log(list[1].dataset.myId); // 22
+    console.log(list[2].dataset.myId); // 33
+});
+    </script>
+
+</head>
+<body>
+
+<ul>
+    <li data-my-id="11">item1</li>
+    <li data-my-id="22">item2</li>
+    <li data-my-id="33">item3</li>
+</ul>
+    
+</body>
+</html>

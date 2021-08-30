@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bootstrap - container</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <style>
+* {
+    font-size: 11pt;
+}
+
+.row {
+    border: 2px solid lightseagreen;
+    padding: 8px;
+    margin: 8px;
+}
+
+.col-sm-1,  .col-md-1,
+.col-sm-2,  .col-md-2,
+.col-sm-3,  .col-md-3,
+.col-sm-4,  .col-md-4,
+.col-sm-5,  .col-md-5,
+.col-sm-6,  .col-md-6,
+.col-sm-7,  .col-md-7,
+.col-sm-8,  .col-md-8,
+.col-sm-9,  .col-md-9,
+.col-sm-10, .col-md-10,
+.col-sm-11, .col-md-11,
+.col-sm-12, .col-md-12,
+.col, .col-sm, .col-md {
+    border: 2px solid lightpink;
+    padding: 8px;
+    /* margin: 1px; */
+}
+    </style>
+
+</head>
+<body>
+
+    <h5>가로폭 변화에 따라 다르게 동작함</h5>
+    <div class="border container-fluid">container-fluid</div>
+    <div class="border container">container</div>
+    <div class="border container-sm">container-sm</div>
+    <div class="border container-md">container-md</div>
+    <div class="border container-lg">container-lg</div>
+    <div class="border container-xl">container-xl</div>
+
+    <br>TEST<br>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4>title1</h4>
+                <!-- <div class="col-sm-12"><h4>title1</h4></div> -->
+                <div class="row">
+                    <div class="col-sm">item1</div>
+                    <div class="col-sm">item2</div>
+                    <div class="col-sm">item3</div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <h4>title2</h4>
+                <!-- <div class="col-sm-12"><h4>title2</h4></div> -->
+                <div class="row">
+                    <div class="col-sm">item4</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>TEST1<br>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4>title1</h4>
+                <div class="row">
+                    <div class="col-sm">item1</div>
+                    <div class="col-sm">item2</div>
+                    <div class="col-sm">item3</div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <h4>title2</h4>
+                <div class="row">
+                    <div class="col-sm">item4</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>TEST2<br>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4>title1</h4>
+                <div class="row">
+                    <div class="col-sm">item1</div>
+                    <div class="col-sm">item2</div>
+                    <div class="col-sm">item3</div>
+                    <div class="col-sm">item4</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

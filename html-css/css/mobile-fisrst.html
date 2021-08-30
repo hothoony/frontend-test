@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile First vs Desktop First</title>
+
+    <style>
+        div {
+            height: 100px;
+            padding: 10px;
+        }
+
+/* mobile first */
+.container {
+    background-color: lightskyblue;
+}
+@media (min-width: 500px) {
+    .container {
+        background-color: lightcoral;
+    }
+}
+
+/* desktop first */
+/* .container {
+    background-color: lightskyblue;
+}
+@media (max-width: 500px) {
+    .container {
+        background-color: lightcoral;
+    }
+} */
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+        container
+    </div>
+
+</body>
+</html>

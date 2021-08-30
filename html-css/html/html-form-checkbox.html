@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>checkbox</title>
+</head>
+<body>
+
+    <style>
+        .output {
+            border: 1px solid lightgray;
+            height: 20px;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(e) {
+            var btn1 = document.querySelectorAll('.btn1')[0];
+            var btn2 = document.querySelectorAll('.btn2')[0];
+            var btn3 = document.querySelectorAll('.btn3')[0];
+            btn1.addEventListener('click', function(e) {
+                document.querySelectorAll('input[name=color]').forEach(function(e) {
+                    e.checked = true;
+                });
+            });
+            btn2.addEventListener('click', function(e) {
+                document.querySelectorAll('input[name=color]').forEach(function(e) {
+                    e.checked = false;
+                });
+            });
+            btn3.addEventListener('click', function(e) {
+                document.querySelectorAll('.output')[0].innerHTML = '';
+                document.querySelectorAll('input[name=color]').forEach(function(e) {
+                    if (e.checked) {
+                        document.querySelectorAll('.output')[0].innerHTML += e.value + ' ';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <input type="checkbox" id="chk1" name="color" value="red">
+    <label for="chk1">red</label><br>
+    <input type="checkbox" id="chk2" name="color" value="green">
+    <label for="chk2">green</label><br>
+    <input type="checkbox" id="chk3" name="color" value="blue">
+    <label for="chk3">blue</label><br>
+
+    <button class="btn1">check all</button>
+    <button class="btn2">uncheck all</button>
+    <button class="btn3">checked values</button>
+
+    <div class="output"></div>
+    
+</body>
+</html>

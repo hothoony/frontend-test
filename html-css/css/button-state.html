@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html css test</title>
+
+    <style>
+        .btn {
+            background-color: dodgerblue;
+            color: white;
+            border: none;
+            width: 100px;
+            height: 40px;
+            font-size: 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .btn.active {
+            background-color: green;
+        }
+
+        .btn:hover, .btn:active {
+            background-color: lightsalmon;
+        }
+        .btn:active {
+            background-color: green;
+        }
+        .btn .inactive {
+            cursor: not-allowed;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var btns = document.querySelectorAll('.btn');
+            btns.forEach(function(btn) {
+                btn.addEventListener                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ('click', function(value) {
+                    document.querySelectorAll('.btn').forEach(function(btn2) {
+                        btn2.classList.remove('active');
+                    });
+                    value.target.classList.add('active');
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    
+    <button class="btn">btn1</button>
+    <button class="btn">btn2</button>
+    <button class="btn inactive">btn3</button>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>link test</title>
+
+    <script>
+        function removeDoubleSlash(link) {
+            var protocol = "http://";
+            var uri = link.slice(protocol.length);
+            return protocol + uri.replaceAll("//", "/");
+        }
+
+        var link = "http://localhost//main.do";
+        var link2 = removeDoubleSlash(link);
+
+        function onLoad() {
+            console.log('onLoad');
+            console.log(link);
+            console.log(link2);
+            document.getElementById("boardLink").innerHTML = link;
+            document.getElementById("boardLink").setAttribute("href", link);
+        }
+        function change() {
+            var elem = document.getElementById("boardLink");
+            elem.innerHTML = link2;
+            elem.setAttribute("href", link2);
+        }
+    </script>
+
+</head>
+<body onload="onLoad()">
+    
+    <a id="boardLink" href="LINK">LINK</a><br>
+    <button onclick="change()">change</button>
+
+</body>
+</html>

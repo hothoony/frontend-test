@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+
+    <style>
+      .content {
+        border: 1px solid lightgray;
+        /* position: relative; */
+        /* width: 100%; */
+        /* height: auto; */
+      }
+
+      .container {
+        display: block;
+        /* float: left; */
+      }
+
+      @media screen and (min-width: 400x) {
+        .container {
+          width: 100%;
+          position: relative;
+          height: auto;
+        }
+        .container .ccontent {
+          float: left;
+        }
+      }
+    </style>
+
+</head>
+<body>
+    
+    <div class="container">
+      <div class="content">content1</div>
+      <div class="content">content2</div>
+      <div class="content">content3</div>
+    </div>
+
+</body>
+</html>

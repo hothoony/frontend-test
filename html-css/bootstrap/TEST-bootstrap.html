@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bootstrap - grid</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <style>
+        .row, .col {
+            border: 1px solid lightgray;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+
+        <h4>row</h4>
+        <div class="row">
+            <div>item</div>
+            <div>item</div>
+            <div>item</div>
+        </div>
+
+        <h4>row > row</h4>
+        <div class="row">
+            <div class="row">item</div>
+            <div class="row">item</div>
+            <div class="row">item</div>
+        </div>
+
+        <h4>row > col</h4>
+        <div class="row">
+            <div class="col">item</div>
+            <div class="col">item</div>
+            <div class="col">item</div>
+        </div>
+
+        <h4>col</h4>
+        <div class="col">
+            <div>item</div>
+            <div>item</div>
+            <div>item</div>
+        </div>
+
+        <h4>col > row</h4>
+        <div class="col">
+            <div class="row">item</div>
+            <div class="row">item</div>
+            <div class="row">item</div>
+        </div>
+
+        <h4>col > col</h4>
+        <div class="col">
+            <div class="col">item</div>
+            <div class="col">item</div>
+            <div class="col">item</div>
+        </div>
+
+        <h4>row > col > col</h4>
+        <div class="row">
+            <div class="col">
+                <h5>title</h5>
+                <div class="row">
+                    <div class="col">item</div>
+                    <div class="col">item</div>
+                    <div class="col">item</div>
+                </div>
+            </div>
+            <div class="col">
+                <h5>title</h5>
+                <div class="col">item</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- <div class="container">
+
+        <div class="row">
+            <div class="col">
+
+                <h1>주간 <span class="font-poppins">BEST 공감</h1>
+
+                <div class="col-12 col-lg-3 card-wrap">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-items">
+                                <div class="item">LIKE_CNT</div>
+                                <div class="item">CMT_CNT</div>
+                                <div class="item">POINT</div>
+                            </div>
+                            <div class="card-text-wrap">
+                                <p class="card-text">BOARD_TITLE</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 card-wrap">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-items">
+                                <div class="item">LIKE_CNT</div>
+                                <div class="item">CMT_CNT</div>
+                                <div class="item">POINT</div>
+                            </div>
+                            <div class="card-text-wrap">
+                                <p class="card-text">BOARD_TITLE</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 card-wrap">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-items">
+                                <div class="item">LIKE_CNT</div>
+                                <div class="item">CMT_CNT</div>
+                                <div class="item">POINT</div>
+                            </div>
+                            <div class="card-text-wrap">
+                                <p class="card-text">BOARD_TITLE</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col">
+
+            <h1>명예의 전당</h1>
+                
+            <div class="col-12 col-lg-3 card-wrap">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-items">
+                        </div>
+                        <div class="card-text-wrap">
+                            칭찬받은 횟수가 60회 이상이 되었습니다!<br>
+                            아이콘 이름 부서<br>
+                            아이콘 이름 부서<br>
+                            아이콘 이름 부서<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div> -->
+    
+</body>
+</html>

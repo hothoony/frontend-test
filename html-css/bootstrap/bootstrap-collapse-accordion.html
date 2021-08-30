@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bootstrap - collapse accordion</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <style>
+    </style>
+
+</head>
+<body>
+
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header">
+                <a class="card-link" data-toggle="collapse" href="#content1">
+                    title1
+                </a>
+            </div>
+            <div id="content1" class="collapse" data-parent="#accordion">
+                <div class="card-body">
+                    content1
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <a class="card-link" data-toggle="collapse" href="#content2">
+                    title2
+                </a>
+            </div>
+            <div id="content2" class="collapse" data-parent="#accordion">
+                <div class="card-body">
+                    content2
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <a class="card-link" data-toggle="collapse" href="#content3">
+                    title3
+                </a>
+            </div>
+            <div id="content3" class="collapse" data-parent="#accordion">
+                <div class="card-body">
+                    content3
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+        <div id="accordion">
+        <div class="card">
+          <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#content1">
+              title1
+            </a>
+          </div>
+          <div id="content1" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+                content1
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <a class="collapsed card-link" data-toggle="collapse" href="#content2">
+                title2
+          </a>
+          </div>
+          <div id="content2" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                content2
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <a class="collapsed card-link" data-toggle="collapse" href="#content3">
+                title3
+            </a>
+          </div>
+          <div id="content3" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                content3
+            </div>
+          </div>
+        </div>
+      </div> 
+    -->
+    
+</body>
+</html>

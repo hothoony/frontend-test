@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tinymce-normal</title>
+    
+<!--    <style>-->
+<!--        /* For other boilerplate styles, see: /docs/general-configuration-guide/boilerplate-content-css/ */-->
+<!--        /*-->
+<!--        * For rendering images inserted using the image plugin.-->
+<!--        * Includes image captions using the HTML5 figure element.-->
+<!--        */-->
+
+<!--        figure.image {-->
+<!--            display: inline-block;-->
+<!--            border: 1px solid gray;-->
+<!--            margin: 0 2px 0 1px;-->
+<!--            background: #f5f2f0;-->
+<!--        }-->
+
+<!--        figure.align-left {-->
+<!--            float: left;-->
+<!--        }-->
+
+<!--        figure.align-right {-->
+<!--            float: right;-->
+<!--        }-->
+
+<!--        figure.image img {-->
+<!--            margin: 8px 8px 0 8px;-->
+<!--        }-->
+
+<!--        figure.image figcaption {-->
+<!--            margin: 6px 8px 6px 8px;-->
+<!--            text-align: center;-->
+<!--        }-->
+
+
+<!--        /*-->
+<!--         Alignment using classes rather than inline styles-->
+<!--         check out the "formats" option-->
+<!--        */-->
+
+<!--        img.align-left {-->
+<!--            float: left;-->
+<!--        }-->
+
+<!--        img.align-right {-->
+<!--            float: right;-->
+<!--        }-->
+
+<!--        /* Basic styles for Table of Contents plugin (toc) */-->
+<!--        .mce-toc {-->
+<!--            border: 1px solid gray;-->
+<!--        }-->
+
+<!--        .mce-toc h2 {-->
+<!--            margin: 4px;-->
+<!--        }-->
+
+<!--        .mce-toc li {-->
+<!--            list-style-type: none;-->
+<!--        }-->
+<!--    </style>-->
+
+<!--    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>-->
+    <script src="/js/tinymce/tinymce.min.js"></script>
+
+    <script>
+        var useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        // useDarkMode = true;
+
+        tinymce.init({
+            selector: '#mytextarea',
+            height: 400,
+            // language: 'ko_KR',
+            plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons lineheight',
+            menubar: false,
+            toolbar: 'blockquote formatselect | fontselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor removeformat | lineheight | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | code preview fullscreen | insertfile table image media link anchor codesample',
+            toolbar_mode: 'sliding',
+            toolbar_sticky: true,
+            // imagetools_cors_hosts: ['picsum.photos'],
+            // autosave_ask_before_unload: true,
+            // autosave_interval: '30s',
+            // autosave_prefix: '{path}{query}-{id}-',
+            // autosave_restore_when_empty: false,
+            // autosave_retention: '2m',
+            image_advtab: true,
+            // link_list: [
+            //     { title: 'My page 1', value: 'https://www.tiny.cloud' },
+            //     { title: 'My page 2', value: 'http://www.moxiecode.com' }
+            // ],
+            // image_list: [
+            //     { title: 'My page 1', value: 'https://www.tiny.cloud' },
+            //     { title: 'My page 2', value: 'http://www.moxiecode.com' }
+            // ],
+            // image_class_list: [
+            //     { title: 'None', value: '' },
+            //     { title: 'Some class', value: 'class-name' }
+            // ],
+            importcss_append: true,
+            file_picker_callback: function (callback, value, meta) {
+                /* Provide file and text for the link dialog */
+                if (meta.filetype === 'file') {
+                    callback('https://www.google.com/logos/google.jpg', { text: 'My text' });
+                }
+
+                /* Provide image and alt text for the image dialog */
+                if (meta.filetype === 'image') {
+                    callback('https://www.google.com/logos/google.jpg', { alt: 'My alt text' });
+                }
+
+                /* Provide alternative source and posted for the media dialog */
+                if (meta.filetype === 'media') {
+                    callback('movie.mp4', { source2: 'alt.ogg', poster: 'https://www.google.com/logos/google.jpg' });
+                }
+            },
+            // templates: [
+            //     { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
+            //     { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
+            //     { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
+            // ],
+            // template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
+            // template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
+            image_caption: true,
+            quickbars_selection_toolbar: false,
+            noneditable_noneditable_class: 'mceNonEditable',
+            contextmenu: 'link image imagetools table',
+            contextmenu_never_use_native: true,
+            skin: useDarkMode ? 'oxide-dark' : 'oxide',
+            // font_formats: 'Andale Mono=andale mono,times; Arial=arial,helvetica,sans-serif; Arial Black=arial black,avant garde; Book Antiqua=book antiqua,palatino; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago; Symbol=symbol; Tahoma=tahoma,arial,helvetica,sans-serif; Terminal=terminal,monaco; Times New Roman=times new roman,times; Trebuchet MS=trebuchet ms,geneva; Verdana=verdana,geneva;',
+            font_formats: 'D2Coding; Arial=arial,helvetica,sans-serif; Helvetica=helvetica; Tahoma=tahoma,arial,helvetica,sans-serif; Terminal=terminal,monaco; Times New Roman=times new roman; Trebuchet MS=trebuchet ms,geneva; Verdana=verdana,geneva;',
+            fontsize_formats: '8pt 9pt 10pt 11pt 12pt 13pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 28pt 30pt 36pt 48pt',
+            content_css: useDarkMode ? 'dark' : 'default',
+            content_style: 'body { font-family: Terminal; font-size: 12pt; line-height: 1.5; }'
+        });
+    </script>
+
+</head>
+<body>
+
+<h1>TinyMCE Normal</h1>
+<form method="post">
+    <textarea id="mytextarea">
+        <p>Hello, World!<br /><span style="font-family: D2Coding;">Hello, World!</span><br /><span style="font-family: terminal, monaco;">Hello, World!</span><br />Hello, World!<br />Hello, World!</p>
+    </textarea>
+</form>
+
+</body>
+</html>

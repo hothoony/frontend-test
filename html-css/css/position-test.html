@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position-test</title>
+
+    <style>
+        .container {
+            border: 1px solid gray;
+            padding: 10px;
+            height: 2000px;
+            display: block;
+        }
+
+        .box {
+            border: 1px solid lightcoral;
+            width: 100px;
+            height: 80px;
+        }
+
+        .box1 {
+            /* position: static; */
+            top: 20px;
+            left: 20px;
+        }
+        .box2 {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+        .box3 {
+            /* parent 가 'position: relative;' 이어야 함 */
+            position: absolute;
+            top: 140px;
+            right: 140px;
+        }
+        .box4 {
+            position: relative;
+            top: 140px;
+            left: 20px;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div class="container">
+        <div class="box box1">box1</div>
+        <div class="box box2">box2</div>
+        <div class="box box3">box3</div>
+        <div class="box box4">box4</div>
+    </div>
+
+</body>
+</html>

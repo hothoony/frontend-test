@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>radio</title>
+</head>
+<body>
+
+    <style>
+        .output {
+            border: 1px solid lightgray;
+            height: 20px;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(e) {
+            var btn11 = document.querySelectorAll('.btn11')[0];
+            var btn12 = document.querySelectorAll('.btn12')[0];
+            var btn13 = document.querySelectorAll('.btn13')[0];
+            var btn2 = document.querySelectorAll('.btn2')[0];
+            var btn3 = document.querySelectorAll('.btn3')[0];
+            btn11.addEventListener('click', function(e) {
+                document.querySelectorAll('input[name=color]')[0].checked = true;
+            });
+            btn12.addEventListener('click', function(e) {
+                document.querySelectorAll('input[name=color]')[1].checked = true;
+            });
+            btn13.addEventListener('click', function(e) {
+                document.querySelectorAll('input[name=color]')[2].checked = true;
+            });
+            btn2.addEventListener('click', function(e) {
+                document.querySelectorAll('input[name=color]').forEach(function(e) {
+                    e.checked = false;
+                });
+            });
+            btn3.addEventListener('click', function(e) {
+                document.querySelectorAll('.output')[0].innerHTML = '';
+                document.querySelectorAll('input[name=color]').forEach(function(e) {
+                    if (e.checked) {
+                        document.querySelectorAll('.output')[0].innerHTML += e.value + ' ';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <input type="radio" id="chk1" name="color" value="red">
+    <label for="chk1">red</label><br>
+    <input type="radio" id="chk2" name="color" value="green">
+    <label for="chk2">green</label><br>
+    <input type="radio" id="chk3" name="color" value="blue">
+    <label for="chk3">blue</label><br>
+
+    <button class="btn11">check radio1</button>
+    <button class="btn12">check radio2</button>
+    <button class="btn13">check radio3</button>
+    <br>
+    <button class="btn2">uncheck all</button>
+    <button class="btn3">checked values</button>
+
+    <div class="output"></div>
+    
+</body>
+</html>

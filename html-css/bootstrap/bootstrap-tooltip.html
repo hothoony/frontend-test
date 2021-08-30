@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bootstrap - tooltip</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <style>
+        div {
+            margin-bottom: 10px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+    
+        <a href="#" data-toggle="tooltip" title="hello">toolip</a>
+
+        <br><br><br>
+        <button class="btn btn-warning place-top">top</button>
+        <button class="btn btn-success place-bottom">bottom</button>
+        <button class="btn btn-danger place-left">left</button>
+        <button class="btn btn-primary place-right">right</button>
+
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        $(document).ready(function(){
+            $('.place-top').tooltip({title: 'hello top', placement: 'top'});
+            $('.place-bottom').tooltip({title: 'hello bottom', placement: 'bottom'});
+            $('.place-left').tooltip({title: 'hello left', placement: 'left'});
+            $('.place-right').tooltip({title: 'hello right', placement: 'right'});
+        });
+    </script>
+    
+</body>
+</html>
