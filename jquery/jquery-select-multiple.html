@@ -13,6 +13,50 @@
 
     <script>
         $(document).ready(function() {
+
+            $.toggleSelect = function(className) {
+                let name = className.split(" ")[0];
+                let value = className.split(" ")[1];
+                let option = $("select[name=" + name + "] > option[value=" + value + "]");
+                let isSelected = $(option).is(":selected");
+                $(option).prop("selected", !isSelected);
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+
+            $("button[type=button].language.all").click(function() {
+                let allChecked = true;
+                $("select[name=language] > option").each(function(index, elem) {
+                    let isSelected = $(elem).is(":selected");
+                    if (isSelected == false) {
+                        allChecked = false;
+                    }
+                });
+                $("select[name=language] > option").each(function(index, elem) {
+                    $(elem).prop("selected", !allChecked);
+                });
+            });
+
+            $("button[type=button].language").each(function(index, elem) {
+                $(elem).click(function() {
+                    $.toggleSelect(this.className);
+                });
+            });
+
+            $("button[type=button].language.selected-value").click(function() {
+                let ary = [];
+                $("select[name=language] > option:selected").each(function(index, select) {
+                    ary.push($(select).val());
+                });
+                console.log(ary);
+            });
+
+            $("button[type=button].language.all-clear").click(function() {
+                $("select[name=language] option").prop("selected", false);
+            });
             
         });
     </script>
@@ -24,6 +68,7 @@
 
         <select name="language" multiple>
             <option value="java">java</option>
+            <option value="python">python</option>
             <option value="html">html</option>
             <option value="css">css</option>
             <option value="javascript">javascript</option>
@@ -32,10 +77,24 @@
         <br>
         <div>
             <div>선택/해제</div>
-            <button type="button" value="java">java</button>
-            <button type="button" value="html">html</button>
-            <button type="button" value="css">css</button>
-            <button type="button" value="javascript">javascript</button>
+            <button type="button" class="language all">전체</button>
+            <button type="button" class="language java">java</button>
+            <button type="button" class="language python">python</button>
+            <button type="button" class="language html">html</button>
+            <button type="button" class="language css">css</button>
+            <button type="button" class="language javascript">javascript</button>`
+        </div>
+
+        <br>
+        <div>
+            <div>선택된 값</div>
+            <button type="button" class="language selected-value">선택된 값</button>
+        </div>
+
+        <br>
+        <div>
+            <div>전체 해제</div>
+            <button type="button" class="language all-clear">전체 해제</button>
         </div>
 
         <br>
