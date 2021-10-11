@@ -13,9 +13,41 @@
 
     <script>
         $(document).ready(function() {
+            $.toggleRadio = function(className) {
+                let name = className.split(" ")[0];
+                let value = className.split(" ")[1];
+                let radio = $("input:radio[name=" + name + "][value=" + value + "]");
+                let isChecked = $(radio).is(":checked");
+                $(radio).prop("checked", !isChecked);
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+
+            $("button[type=button].gender.male").click(function() {
+                $.toggleRadio(this.className);
+            });
+            $("button[type=button].gender.female").click(function() {
+                $.toggleRadio(this.className);
+            });
             
         });
     </script>
+
+<script>
+    $(document).ready(function() {
+
+        $("button[type=button].calendar.solar").click(function() {
+            $.toggleRadio(this.className);
+        });
+        $("button[type=button].calendar.lunar").click(function() {
+            $.toggleRadio(this.className);
+        });
+        
+    });
+</script>
 
 </head>
 <body>
@@ -30,10 +62,25 @@
 
         <fieldset>
             <legend>생년월일</legend>
-            <input type="radio" name="calendarType" value="양력" id="rd21"><label for="rd21">양력</label>
-            <input type="radio" name="calendarType" value="음력" id="rd22"><label for="rd22">음력</label><br>
+            <input type="radio" name="calendar" value="solar" id="rd21"><label for="rd21">양력</label>
+            <input type="radio" name="calendar" value="lunar" id="rd22"><label for="rd22">음력</label><br>
         </fieldset>
 
+        <br>
+        <div>
+            <div>성별 선택/해제</div>
+            <button type="button" class="gender male">male</button>
+            <button type="button" class="gender female">female</button>
+        </div>
+
+        <br>
+        <div>
+            <div>생년월일 선택/해제</div>
+            <button type="button" class="calendar solar">solar</button>
+            <button type="button" class="calendar lunar">lunar</button>
+        </div>
+
+        <br>
         <input type="submit" value="submit">
         <input type="reset" value="reset">
 
