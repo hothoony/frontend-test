@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery-select-single</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+    <script>
+        $(document).ready(function() {
+
+            $.setSelect = function(className) {
+                let name = className.split(" ")[0];
+                let value = className.split(" ")[1];
+                let option = $("select[name=" + name + "] > option[value=" + value + "]");
+                let isSelected = $(option).is(":selected");
+                $(option).prop("selected", !isSelected);
+            }
+
+            $.clearSelect = function() {
+                $("select[name=ostype] option").prop("selected", false);
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            
+            $("button[type=button].ostype.mac").click(function() {
+                $.setSelect(this.className);
+            });
+
+            $("button[type=button].ostype.linux").click(function() {
+                $.setSelect(this.className);
+            });
+
+            $("button[type=button].ostype.windows").click(function() {
+                $.setSelect(this.className);
+            });
+
+            $("button[type=button].ostype.selected-value").click(function() {
+                console.log('selected val  :', $("select[name=ostype] > option:selected").val());
+                console.log('selected text :', $("select[name=ostype] > option:selected").text());
+                console.log('selected val  :', $("select[name=ostype] option:selected").val());
+                console.log('selected text :', $("select[name=ostype] option:selected").text());
+            });
+
+            $("button[type=button].ostype.clear").click(function() {
+                $("select[name=ostype] option").prop("selected", false);
+            });
+        });
+    </script>
+
+</head>
+<body>
+    
+    <form method="post">
+
+        <select name="ostype">
+            <option value=""></option>
+            <option value="mac">macOS</option>
+            <option value="linux">linux Ubuntu</option>
+            <option value="windows">windows 10</option>
+        </select><br>
+
+        <br>
+        <div>
+            <div>선택</div>
+            <button type="button" class="ostype mac">macOS</button>
+            <button type="button" class="ostype linux">linux Ubuntu</button>
+            <button type="button" class="ostype windows">windows 10</button>
+        </div>
+
+        <br>
+        <div>
+            <div>해제</div>
+            <button type="button" class="ostype clear">clear select</button>
+        </div>
+
+        <br>
+        <div>
+            <div>선택된 값</div>
+            <button type="button" class="ostype selected-value">선택된 값</button>
+        </div>
+
+        <br>
+        <input type="submit" value="submit">
+        <input type="reset" value="reset">
+
+    </form>
+
+</body>
+</html>
