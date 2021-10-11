@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery-closest</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+    <script>
+        $(document).ready(function() {
+
+            $.findComment = function(elem, className) {
+                // console.log(elem, className);
+                let comment = $(elem).closest("div.comment");
+                let divNo = $(comment).children("div.no")[0];
+                // console.log('divNo', divNo);
+                // console.log('articleId', $(divNo).data("articleId"));
+
+                $("div.comment div.no").each(function (index, elem) {
+                    if (elem == divNo) {
+                        $(elem).css("background-color", "pink");
+                        return;
+                    }
+                    $(elem).css("background-color", "");
+                });
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            
+            $("button[type=button].modify").click(function() {
+                // console.log($(this));
+                // console.log(this.className);
+                $.findComment(this, this.className);
+            });
+
+            $("button[type=button].reply").click(function() {
+                // console.log($(this));
+                // console.log(this.className);
+                $.findComment(this, this.className);
+            });
+
+        });
+    </script>
+
+    <style>
+        .comment {
+            border: 1px solid gray;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div class="comment-wrapper">
+
+        <div class="comment">
+            <div class="no" data-article-id="1">no=1</div>
+            <div>writer</div>
+            <div>content 123 123 123</div>
+            <button type="button" class="modify">modify</button>
+            <button type="button" class="reply">reply</button>
+            <div class="comment-children">
+
+            </div>
+        </div>
+
+        <div class="comment">
+            <div class="no" data-article-id="2">no=2</div>
+            <div>writer</div>
+            <div>content 123 123 123</div>
+            <button type="button" class="modify">modify</button>
+            <button type="button" class="reply">reply</button>
+            <div class="comment-children">
+                
+                <div class="comment">
+                    <div class="no" data-article-id="3">no=3</div>
+                    <div>writer</div>
+                    <div>content 123 123 123</div>
+                    <button type="button" class="modify">modify</button>
+                    <button type="button" class="reply">reply</button>
+                    <div class="comment-children">
+                        
+                        <div class="comment">
+                            <div class="no" data-article-id="6">no=6</div>
+                            <div>writer</div>
+                            <div>content 123 123 123</div>
+                            <button type="button" class="modify">modify</button>
+                            <button type="button" class="reply">reply</button>
+                            <div class="comment-children">
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="comment">
+                    <div class="no" data-article-id="5">no=5</div>
+                    <div>writer</div>
+                    <div>content 123 123 123</div>
+                    <button type="button" class="modify">modify</button>
+                    <button type="button" class="reply">reply</button>
+                    <div class="comment-children">
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="comment">
+            <div class="no" data-article-id="4">no=4</div>
+            <div>writer</div>
+            <div>content 123 123 123</div>
+            <button type="button" class="modify">modify</button>
+            <button type="button" class="reply">reply</button>
+            <div class="comment-children">
+                
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+</html>
