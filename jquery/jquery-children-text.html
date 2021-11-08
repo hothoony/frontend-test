@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery-children-text</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+    <script>
+        $(document).ready(function() {
+            
+            $(".tag-input").on('keypress', function(event) {
+                console.log('keypress', this, event.keyCode);
+                if (event.keyCode == 13) {
+                    $('.tag-wrapper').append('<span class="tag">' + $('.tag-input').val() + '</span> ');
+                    $('.tag-input').val('');
+                }
+            });
+
+            $(".tag-wrapper").on('click', '.tag', function(event) {
+                console.log('click', this);
+                $(this).remove();
+            });
+
+        });
+
+        function getTags() {
+            console.log('getTags()');
+            var list = $(".tag-wrapper").children()
+                .map(function(k, v) { return $(v).text(); })
+                .get();
+            console.log(list);
+            $(".output").text(list);
+        }
+    </script>
+
+    <style>
+        .tag-wrapper {
+
+        }
+        .tag {
+            border: 1px solid blue;
+            padding: 4px;
+            background-color: lightblue;
+            border-radius: 6px;
+        }
+        .tag:hover {
+            cursor: pointer;
+        }
+        .tag:before {
+            content: '#';
+        }
+        .tag::after {
+            content: ' x';
+        }
+
+        .output {
+            width: 100%;
+            height: 200px;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <input type="text" class="tag-input" placeholder="태그 입력 후 엔터">
+
+    <br><br>
+    <div class="tag-wrapper">
+        <span class="tag">tag 11</span>
+        <span class="tag">tag 22</span>
+        <span class="tag">tag 33</span>
+        <span class="tag">tag 44</span>
+        <span class="tag">tag 55</span>
+    </div>
+
+    <br>
+    <button onclick="getTags()">getTags</button>
+
+    <br><br>
+    <textarea class="output"></textarea>
+
+</body>
+</html>
