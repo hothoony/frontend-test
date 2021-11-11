@@ -1,0 +1,10 @@
+@import url(common.css);
+
+ul {
+    display: flex;
+}
+
+li {
+    /* display: flex; */
+    list-style-type: none;
+}
