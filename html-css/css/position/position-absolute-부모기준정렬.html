@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position-absolute-부모기준정렬</title>
+
+    <style>
+        .box1 {
+            border: 1px solid red;
+            background-color: lightblue;
+            width: 600px;
+            height: 3000px;
+            margin-left: 100px;
+        }
+
+        .box2 {
+            border: 1px solid lightcoral;
+            background-color: lightskyblue;
+            width: 200px;
+            height: 200px;
+        }
+
+        .parent {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+        }
+
+        .child {
+            position: absolute;
+            top: 150px;
+            left: 50px;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div class="box1 parent">
+        <div class="box2 child">
+            <pre>
+.child {
+    position: absolute;
+    top: 150px;
+    left: 50px;
+}
+            </pre>
+        </div>
+
+        <pre>
+부모 기준 정렬 (부모 position 값이 아래인 경우)
+- absolute
+- fixed
+- relative
+- sticky
+        </pre>
+
+    </div>
+
+</body>
+</html>
