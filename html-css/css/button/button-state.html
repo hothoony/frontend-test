@@ -11,20 +11,21 @@
             background-color: dodgerblue;
             color: white;
             border: none;
-            width: 100px;
+            width: 150px;
             height: 40px;
             font-size: 20px;
             border-radius: 6px;
             cursor: pointer;
         }
-        .btn.active {
+
+        .btn:hover {
+            background-color: red;
+        }
+        .btn:active {
             background-color: green;
         }
 
-        .btn:hover, .btn:active {
-            background-color: lightsalmon;
-        }
-        .btn:active {
+        .btn.active {
             background-color: green;
         }
         .btn .inactive {
@@ -34,15 +35,24 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
             var btns = document.querySelectorAll('.btn');
             btns.forEach(function(btn) {
-                btn.addEventListener                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ('click', function(value) {
+                btn.addEventListener('click', function(event) {
                     document.querySelectorAll('.btn').forEach(function(btn2) {
                         btn2.classList.remove('active');
                     });
-                    value.target.classList.add('active');
+                    event.target.classList.add('active');
                 });
             });
+
+            var inactiveAllBtn = document.querySelectorAll(".inactiveAll")[0];
+            inactiveAllBtn.addEventListener('click', function(event) {
+                document.querySelectorAll('.btn').forEach(function(btn) {
+                    btn.classList.remove('active');
+                });
+            });
+
         });
     </script>
 
@@ -51,7 +61,9 @@
     
     <button class="btn">btn1</button>
     <button class="btn">btn2</button>
-    <button class="btn inactive">btn3</button>
+    <button class="btn">btn3</button>
+    <br><br>
+    <button class="btn inactiveAll">inactiveAll</button>
 
 </body>
 </html>
