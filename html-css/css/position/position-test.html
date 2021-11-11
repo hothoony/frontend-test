@@ -7,50 +7,89 @@
     <title>position-test</title>
 
     <style>
-        .container {
-            border: 1px solid gray;
-            padding: 10px;
-            height: 2000px;
-            display: block;
+        html, body {
+            margin: 0;
+            padding: 0;
         }
+.container {
+    position: static;
+    border: 1px solid gray;
+    height: 2000px;
+    display: block;
+    margin: 0 300px;
+    margin-top: 50px;
+}
+.box {
+    border: 1px solid lightcoral;
+    width: 300px;
+    height: 150px;
+}
 
-        .box {
-            border: 1px solid lightcoral;
-            width: 100px;
-            height: 80px;
-        }
-
-        .box1 {
-            /* position: static; */
-            top: 20px;
-            left: 20px;
-        }
-        .box2 {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-        }
-        .box3 {
-            /* parent 가 'position: relative;' 이어야 함 */
-            position: absolute;
-            top: 140px;
-            right: 140px;
-        }
-        .box4 {
-            position: relative;
-            top: 140px;
-            left: 20px;
-        }
+.box1 {
+    /* position: static; */
+    top: 50px;
+    left: 50px;
+}
+.box2 {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+}
+.box3 {
+    /* parent 가 'position: relative;' 이어야 함 */
+    position: absolute;
+    top: 150px;
+    right: 150px;
+}
+.box4 {
+    position: relative;
+    top: 150px;
+    right: 150px;
+}
     </style>
 
 </head>
+
 <body>
     
     <div class="container">
-        <div class="box box1">box1</div>
-        <div class="box box2">box2</div>
-        <div class="box box3">box3</div>
-        <div class="box box4">box4</div>
+        <div class="box box1">box1
+            <pre>
+.box1 {
+    /* position: static; */
+    top: 50px;
+    left: 50px;
+}
+            </pre>
+        </div>
+        <div class="box box2">box2
+            <pre>
+.box2 {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+}
+            </pre>
+        </div>
+        <div class="box box3">box3
+            <pre>
+.box3 {
+    /* parent 가 'position: relative;' 이어야 함 */
+    position: absolute;
+    top: 150px;
+    right: 150px;
+}
+            </pre>
+        </div>
+        <div class="box box4">box4
+            <pre>
+.box4 {
+    position: relative;
+    top: 150px;
+    right: 150px;
+}
+            </pre>
+        </div>
     </div>
 
 </body>
