@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fixed</title>
+
+    <style>
+      html, body {
+        padding: 0;
+        margin: 0;
+      }
+      .container {
+        border: 30px solid green;
+        width: 100%;
+        height: 3000px;
+      }
+      .box {
+        border: 1px solid blue;
+        width: 100px;
+        height: 100px;
+      }
+
+      .top-left {
+        position: fixed;
+        top: 50px;
+        left: 50px;
+      }
+      .top-right {
+        position: fixed;
+        top: 50px;
+        right: 50px;
+      }
+
+      .bottom-left {
+        position: fixed;
+        bottom: 50px;
+        left: 50px;
+      }
+      .bottom-right {
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+      }
+    </style>
+
+</head>
+<body>
+
+  <div class="container">
+
+    scroll up<br>
+
+    <div class="box top-left">
+      top-left
+    </div>
+    <div class="box top-right">
+      top-right
+    </div>
+    <div class="box bottom-left">
+      bottom-left
+    </div>
+    <div class="box bottom-right">
+      bottom-right
+    </div>
+
+    scroll down<br>
+
+  </div>
+
+</body>
+</html>
