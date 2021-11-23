@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>block-layout3</title>
+
+    <style>
+      html {
+      }
+      body {
+        /* margin: 0; */
+      }
+
+      .container {
+        border: 1px solid blue;
+        padding: 20px;
+        /* text-align: center; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* width: 100%; */
+      }
+      .sub {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        /* justify-content: flex-start; */
+        /* width: 90%; */
+        border: 1px solid orange;
+        margin: auto;
+      }
+      .box {
+        display: inline-block;
+        width: 200px;
+        height: 250px;
+        background-color: skyblue;
+        margin: 20px 20px;
+      }
+    </style>
+
+</head>
+<body>
+
+  <div class="container">
+    <ul class="sub">
+      <li class="box">01</li>
+      <li class="box">02</li>
+      <li class="box">03</li>
+      <li class="box">04</li>
+      <li class="box">05</li>
+      <li class="box">06</li>
+      <li class="box">07</li>
+      <li class="box">08</li>
+      <li class="box">09</li>
+      <li class="box">10</li>
+    </ul>
+  </div>
+
+</body>
+</html>
