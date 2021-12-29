@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery each children</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+    <script>
+        $(document).ready(function() {
+
+        });
+    </script>
+
+</head>
+<body>
+    
+    <h3>자식 태그 내용 변경</h3>
+    <pre>
+        $('.item_add_option_box dl dt').each(function(index, item) {
+            if ($(item).html().indexOf('날짜')) {
+        
+                let str = `
+                    aa
+                    bb
+                    cc
+                `;
+        
+                $($('.item_add_option_box dl')[index + 1]).children('dt').html('배송날짜TEST');
+                $($('.item_add_option_box dl')[index + 1]).children('dd').html(str);
+            }
+        });
+    </pre>
+
+</body>
+</html>
