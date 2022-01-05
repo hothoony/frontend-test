@@ -26,9 +26,13 @@
                 document.querySelectorAll('.output')[0].innerHTML = document.querySelectorAll('select')[0].value;
             });
         });
+
+        function changeSelect(elem) {
+            console.log(elem.selectedIndex, elem.options[elem.selectedIndex].value);
+        }
     </script>
 
-    <select>
+    <select onchange="changeSelect(this)">
         <option value="">--select--</option>
         <option value="red">red</option>
         <option value="green">green</option>
