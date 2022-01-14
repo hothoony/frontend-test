@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inherit-initial-unset</title>
+</head>
+
+<body>
+
+
+<style>
+.wrapper { color:  green; }
+.wrapper p { color: orange; }
+p.one { color: inherit; }
+p.two { color: initial; }
+p.three { color: unset; }
+</style>
+    
+<div class="wrapper">
+    .wrapper - green
+    <p>.wrapper p - orange</p>
+    <p class="one">p.one - inherit</p>
+    <p class="two">p.two - initial</p>
+    <p class="three">p.three - unset</p>
+</div>
+
+
+</body>
+</html>
