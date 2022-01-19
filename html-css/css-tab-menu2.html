@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css tab menu</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<body>
+
+
+    <div class="tab_wrap">
+        <div class="tab_menu_wrap">
+            <div class="tab_menu on">
+                <div>tab1</div>
+                <div>sub title</div>
+            </div>
+            <div class="tab_menu">
+                <div>tab2</div>
+                <div>sub title</div>
+            </div>
+        </div>
+
+        <div class="tab_content_wrap">
+            <div class="tab_content on">
+                content1
+            </div>
+            <div class="tab_content">
+                content2<br>
+                content2
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .tab_wrap,
+        .tab_wrap .tab_menu_wrap,
+        .tab_wrap .tab_menu_wrap .tab_menu,
+        .tab_wrap .tab_content_wrap,
+        .tab_wrap .tab_content_wrap .tab_content {
+            border: 1px solid blue;
+        }
+
+        /* tab_menu */
+        .tab_wrap .tab_menu_wrap {
+            display: flex;
+        }
+        .tab_wrap .tab_menu_wrap .tab_menu {
+            cursor: pointer;
+            width: 50%;
+            font-size: 16px;
+            height: 100px;
+            /* border-bottom: 1px solid gray; */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .tab_wrap .tab_menu_wrap .tab_menu:hover {
+            background-color: lightgray;
+        }
+        .tab_wrap .tab_menu_wrap .tab_menu.on {
+            color: white;
+            font-weight: bold;
+            background-color: gray;
+        }
+
+        /* tab_content */
+        .tab_wrap .tab_content_wrap .tab_content {
+            display: none;
+            padding: 20px;
+        }
+        .tab_wrap .tab_content_wrap .tab_content.on {
+            display: block;
+        }
+    </style>
+
+    <script>
+        $('.tab_menu').on('click', function() {
+            $('.tab_menu').removeClass('on');
+            $(this).addClass('on')
+
+            // var idx = $('.tab_menu').index(this);
+            // $('.tab_content').hide();
+            // $('.tab_content').eq(idx).show();
+
+            var idx = $('.tab_menu').index(this);
+            $('.tab_content').removeClass('on');
+            $('.tab_content').eq(idx).addClass('on')
+        });
+    </script>
+
+</body>
+</html>
