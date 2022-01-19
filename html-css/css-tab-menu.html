@@ -33,37 +33,39 @@
 
     <style>
         .tab_wrap,
-        .tab_menu_wrap, .tab_menu,
-        .tab_content_wrap, .tab_content {
+        .tab_wrap .tab_menu_wrap,
+        .tab_wrap .tab_menu_wrap .tab_menu,
+        .tab_wrap .tab_content_wrap,
+        .tab_wrap .tab_content_wrap .tab_content {
             border: 1px solid blue;
         }
 
         /* tab_menu */
-        .tab_menu_wrap {
+        .tab_wrap .tab_menu_wrap {
             display: flex;
         }
-        .tab_menu {
+        .tab_wrap .tab_menu_wrap .tab_menu {
             cursor: pointer;
             width: 50%;
             font-size: 16px;
             height: 40px;
             border-bottom: 1px solid gray;
         }
-        .tab_menu:hover {
+        .tab_wrap .tab_menu_wrap .tab_menu:hover {
             background-color: lightgray;
         }
-        .tab_menu.on {
+        .tab_wrap .tab_menu_wrap .tab_menu.on {
             color: white;
             font-weight: bold;
             background-color: gray;
         }
 
         /* tab_content */
-        .tab_content {
+        .tab_wrap .tab_content_wrap .tab_content {
             display: none;
             padding: 20px;
         }
-        .tab_content.on {
+        .tab_wrap .tab_content_wrap .tab_content.on {
             display: block;
         }
     </style>
