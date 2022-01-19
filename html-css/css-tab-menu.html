@@ -73,9 +73,13 @@
             $('.tab_menu').removeClass('on');
             $(this).addClass('on')
 
+            // var idx = $('.tab_menu').index(this);
+            // $('.tab_content').hide();
+            // $('.tab_content').eq(idx).show();
+
             var idx = $('.tab_menu').index(this);
-            $('.tab_content').hide();
-            $('.tab_content').eq(idx).show();
+            $('.tab_content').removeClass('on');
+            $('.tab_content').eq(idx).addClass('on')
         });
     </script>
 
