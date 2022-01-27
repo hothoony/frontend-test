@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css unit</title>
+
+    <style>
+      /* default font size */
+      html {
+        font-size: 12pt;
+      }
+
+      /* unit test */
+      .container { font-size: 24pt; border: 1px solid blue; padding: 4px; }
+      .container2 { font-size: 18pt; }
+      .container * { border: 1px solid red; }
+
+      .upt       { font-size: 30pt; }
+      .upx       { font-size: 30px; }
+      .upercent  { font-size: 30%; }
+      .uvw       { font-size: 10vw; }
+      .uvh       { font-size: 10vh; }
+      .uem1       { font-size: 1em; }
+      .urem1      { font-size: 1rem; }
+      .uem2       { font-size: 2em; }
+      .urem2      { font-size: 2rem; }
+
+      /* Responsive */
+      .screen-type::after {
+        content: 'Mobile';
+      }
+      @media (min-width: 768px) {
+        .screen-type::after {
+          content: 'Tablet';
+        }
+      }
+      @media (min-width: 1024px) {
+        .screen-type::after {
+          content: 'Desktop';
+        }
+      }
+    </style>
+
+</head>
+
+<body>
+
+<h2 class="screen-type"></h2>
+<span>default font-size 12pt</span>
+
+<div class="container">
+  container font-size 24pt
+  <div>inheritted font-size 24pt (부모 속성을 상속받음)</div>
+  <div class="container">container font-size 24pt</div>
+  <div class="container2">container2 font-size 18pt</div>
+  <div>
+    inheritted font-size 24pt
+    <span class="upt">30pt</span>
+    <span class="upx">30px</span>
+    <span class="upercent">30%</span>
+  </div>
+  <div>
+    inheritted font-size 24pt
+    <span class="uvw">10vw</span>
+    <span class="uvh">10vh</span>
+  </div>
+  <div>
+    inheritted font-size 24pt
+    <span class="uem1">1em</span>
+    <span class="uem2">2em</span>
+    <span class="urem1">1rem</span>
+    <span class="urem2">2rem</span>
+  </div>
+</div>
+
+<h2>CSS Units</h2>
+<ul>
+  <li>
+    Absolute Length
+    <ul>
+      <li>cm (centimeters)</li>
+      <li>mm (millimeters)</li>
+      <li>in (inches)</li>
+      <li>px (pixels)</li>
+      <li>pt (points)</li>
+      <li>pc (picas)</li>
+    </ul>
+  </li>
+  <li>
+    Relative Length
+    <ul>
+      <li>% (부모 속성의 %)</li>
+      <li>em (부모 속성의 배수)</li>
+      <li>rem (root element 속성의 배수)</li>
+      <li>vw (Relative to 1% of the width of the viewport)</li>
+      <li>vh (Relative to 1% of the height of the viewport)</li>
+      <li>vmin (Relative to 1% of viewport's smaller dimension)</li>
+      <li>vmax (Relative to 1% of viewport's larger dimension)</li>
+      <li>ex (Relative to x-height of the current font)</li>
+      <li>ch (Relative to the width of the zero)</li>
+    </ul>
+  </li>
+</ul>
+
+<a href="https://www.w3schools.com/cssref/css_units.asp">w3schools CSS Units</a>
+
+</body>
+</html>
