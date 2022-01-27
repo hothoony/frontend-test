@@ -1,19 +1,25 @@
-function Animal() {
+var Animal = (function() {
 
     this.name;
+    
+    function Animal() {
+    }
 
-    this.setName = function(name) {
+    Animal.prototype.setName = function(name) {
         this.name = name;
     }
 
-    this.getName = function() {
+    Animal.prototype.getName = function() {
         return this.name;
     }
 
-    this.bark = function() {
+    Animal.prototype.bark = function() {
         return '동물이 짖다';
     }
-}
+
+    return Animal;
+
+})();
 
 // -------------------------------------
 

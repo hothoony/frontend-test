@@ -1,18 +1,17 @@
 function Animal() {
-
     this.name;
+}
 
-    this.setName = function(name) {
-        this.name = name;
-    }
+Animal.prototype.setName = function(name) {
+    this.name = name;
+}
 
-    this.getName = function() {
-        return this.name;
-    }
+Animal.prototype.getName = function() {
+    return this.name;
+}
 
-    this.bark = function() {
-        return '동물이 짖다';
-    }
+Animal.prototype.bark = function() {
+    return '동물이 짖다';
 }
 
 // -------------------------------------
