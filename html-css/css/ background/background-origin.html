@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>background-origin</title>
+
+    <style>
+        .container {
+            width: 800px;
+            height: 200px;
+            border: 20px dashed gray;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        .bgimg {
+            background-image: url('./img/pattern.png');
+            background-repeat: no-repeat;
+        }
+        span {
+            font-size: 30px;
+        }
+
+        .origin1 {
+            background-origin: border-box;
+        }
+        .origin2 {
+            background-origin: padding-box;
+        }
+        .origin3 {
+            background-origin: content-box;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div class="container bgimg origin1">
+        <span>background-origin: border-box;</span>
+    </div>
+    <div class="container bgimg origin2">
+        <span>background-origin: padding-box;</span>
+    </div>
+    <div class="container bgimg origin3">
+        <span>background-origin: content-box;</span>
+    </div>
+
+</body>
+</html>

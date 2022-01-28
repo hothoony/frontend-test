@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>background-image-multiple</title>
+
+    <style>
+        .container {
+            width: 800px;
+            height: 600px;
+            border: 20px dashed black;
+            padding: 20px;
+            
+        }
+        .bgimg {
+            background-image: url('./img/icon.png'), url('./img/pattern.png');
+            /* background-image: url('./img/pattern.png'), url('./img/icon.png'); */
+            background-repeat: no-repeat, repeat;
+            /* background-repeat: no-repeat, no-repeat; */
+            background-position: center, top left;
+            background-color: orange;
+            background-origin: padding-box, padding-box;
+            background-clip: border-box;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div class="container bgimg">
+        image
+    </div>
+
+</body>
+</html>

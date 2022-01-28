@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>background-clip</title>
+
+    <style>
+        .container {
+            width: 800px;
+            height: 200px;
+            border: 20px dashed gray;
+            padding: 20px;
+            margin-bottom: 20px;
+            /* text-align: right; */
+        }
+        .bgimg {
+            background-color: orange;
+            background-repeat: no-repeat;
+        }
+        span {
+            font-size: 30px;
+        }
+
+        .clip1 {
+            background-clip: border-box;
+        }
+        .clip2 {
+            background-clip: padding-box;
+        }
+        .clip3 {
+            background-clip: content-box;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div class="container bgimg clip1">
+        <span>background-clip: border-box;</span>
+    </div>
+    <div class="container bgimg clip2">
+        <span>background-clip: padding-box;</span>
+    </div>
+    <div class="container bgimg clip3">
+        <span>background-clip: content-box;</span>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>background-image-multiple</title>
+
+    <style>
+        .container {
+            width: 1024px;
+            height: 768px;
+            border: 1px solid gray;
+            
+        }
+        .bgimg {
+            /* background: bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment initial|inherit; */
+            background: orange url('./img/icon.png') no-repeat center;
+            background: orange url('./img/pattern.png') no-repeat center;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div class="container bgimg">
+        image
+    </div>
+
+</body>
+</html>
