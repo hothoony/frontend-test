@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOMContentLoaded');
+            var elems = document.querySelectorAll('li');
+            for (let i = 0; i < elems.length; i++) {
+                var li = elems[i];
+                li.addEventListener('click', function() {
+                    console.log(i, '번째 클릭');
+                })
+            }
+        });
+    </script>
+
+</head>
+<body>
+
+    <code>
+        for (let i = 0;
+    </code>
+    
+    <ul>
+        <li>frontend</li>
+        <li>javascript</li>
+        <li>node</li>
+        <li>npm</li>
+    </ul>
+
+</body>
+</html>
