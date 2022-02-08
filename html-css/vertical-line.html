@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .tab_menu_wrap {
+            display: flex;
+            flex-direction: row;
+            border: 1px solid gray;
+            padding: 10px;
+        }
+        .tab_menu {
+            border: 1px solid lightgray;
+            width: 100%;
+            text-align: center;
+            padding: 0;
+        }
+        .nd-tit-txt {
+            font-size: 30px;
+        }
+        .tab_menu_vline_container {
+            display: flex;
+            align-items: center;
+        }
+        .tab_menu_vline_container .tab_menu_vline {
+            width: 4px;
+            height: 50px;
+            background-color: red;
+        }
+        .tab_menu_left {
+            text-align: right;
+            padding-right: 30px;
+        }
+        .tab_menu_right {
+            text-align: left;
+            padding-left: 30px;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div class="tab_menu_wrap">
+        <div class="tab_menu on nd-main-tit tab_menu_left">
+            <h2 class="nd-tit-txt">Review</h2>
+        </div>
+    <div class="tab_menu_vline_container">
+        <div class="nd-tit-txt tab_menu_vline"></div>
+    </div>
+        <div class="tab_menu nd-main-tit tab_menu_right">
+            <h2 class="nd-tit-txt">My Review</h2>
+        </div>
+    </div>
+
+</body>
+</html>
