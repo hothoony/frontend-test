@@ -23,16 +23,27 @@ function MusicPlayer(name) {
         return volume;
     }
 
+    // return {
+    //     play: play,
+    //     stop: stop,
+    //     volumeUp: volumeUp,
+    //     volumeDown: volumeDown,
+    //     getVolume: getVolume,
+    // }
+
     return {
-        play: play,
-        stop: stop,
-        volumeUp: volumeUp,
-        volumeDown: volumeDown,
-        getVolume: getVolume,
+        play,
+        stop,
+        volumeUp,
+        volumeDown,
+        getVolume,
     }
 }
 
 // -----------------------------------------------
+
+console.log('MusicPlayer', MusicPlayer);
+console.log('MusicPlayer', MusicPlayer());
 
 var player = new MusicPlayer('kpop');
 player.play();

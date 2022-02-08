@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <ul>
+        <li>apple</li>
+        <li>orange</li>
+        <li>banana</li>
+        <li>strawberry</li>
+    </ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(e) {
+            console.log('ready');
+
+            let list = document.querySelectorAll('li');
+            console.log('list', list);
+
+            let ary = Array.from(list);
+            console.log('ary', ary);
+
+            console.log('list instanceof Array', list instanceof Array);
+            console.log('list typeof', typeof list);
+            console.log('list toString.call', toString.call(list));
+
+            console.log('ary instanceof Array', ary instanceof Array);
+            console.log('ary typeof', typeof ary);
+            console.log('ary toString.call', toString.call(ary));
+
+            let result = ary.filter(function(elem) {
+                console.log(elem, elem.innerText);
+                return elem.innerText.includes('e');
+            })
+            console.log('result', result);
+
+            for (let value of result) {
+                console.log(value);
+            }
+        });
+    </script>
+    
+</body>
+</html>

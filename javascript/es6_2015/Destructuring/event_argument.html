@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('ready');
+
+            // document.querySelector('div').addEventListener('click', function(ev) {
+            //     console.log(ev);
+            // });
+
+            // document.querySelector('div').addEventListener('click', function({target}) {
+            //     console.log(target);
+            // });
+
+            document.querySelector('div').addEventListener('click', function({type, target, currentTarget}) {
+                console.log();
+                console.log(type);
+                console.log('target', target, target.tagName);
+                console.log('currentTarget', currentTarget, currentTarget.tagName);
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+    
+    <div>
+        <h1>title</h1>
+        <span>haha hoho</span>
+    </div>
+
+</body>
+</html>
