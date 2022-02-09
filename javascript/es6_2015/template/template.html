@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('ready');
+
+            const data = [
+                {
+                    name: 'james',
+                    order: true,
+                    items: ['ice americano', 'ice latte']
+                },
+                {
+                    name: 'steve',
+                    order: false
+                }
+            ];
+
+            const template = `
+                <div>name: ${data[0].name}</div>
+                <div>order: ${data[0].order}</div>
+                <div>items: ${data[0].items}</div>
+            `;
+            // console.log('template', template);
+
+            const container = document.querySelector('.container');
+            console.log('container', container);
+            container.innerHTML = template;
+
+        });
+    </script>
+
+</head>
+<body>
+    
+    <div>
+        <h2>template test</h2>
+        <div class="container"></div>
+    </div>
+
+</body>
+</html>
