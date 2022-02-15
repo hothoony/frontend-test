@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+const healthObj = {
+    showHealth: function() {
+        console.log('today health time is ' + this.healthTime);
+    },
+    setHealth: function(newTime) {
+        this.healthTime = newTime;
+    }
+}
+
+const myHealth = {
+    name: 'crong',
+    lastTime: '11:20',
+}
+
+console.log('healthObj', healthObj);
+console.log('myHealth', myHealth);
+
+Object.setPrototypeOf(myHealth, healthObj);
+
+console.log('');
+console.log('healthObj', healthObj);
+console.log('myHealth', myHealth);
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
