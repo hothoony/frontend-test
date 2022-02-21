@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event-order</title>
+
+    <style>
+        .output {
+            border: 1px solid gray;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+    <script>
+
+        let BR = '<br>';
+        let msg = '';
+
+        $(document).ready(function(e) {
+            msg += 'jquery document.ready 1' + BR;
+            console.log(msg);
+            $('#output').html(msg);
+        });
+
+        document.addEventListener('readystatechange', function(e) {
+            msg += 'document.readystatechange= ' + document.readyState + BR;
+            console.log(msg);
+            $('#output').html(msg);
+        });
+
+        document.addEventListener('DOMContentLoaded', function(e) {
+            msg += 'document.DOMContentLoaded' + BR;
+            console.log(msg);
+            $('#output').html(msg);
+        });
+
+        window.addEventListener('DOMContentLoaded', function(e) {
+            msg += 'window.DOMContentLoaded' + BR;
+            console.log(msg);
+            $('#output').html(msg);
+        });
+        
+        window.addEventListener('load', function(e) {
+            msg += 'window.load' + BR;
+            console.log(msg);
+            $('#output').html(msg);
+        });
+
+        $(document).ready(function(e) {
+            msg += 'jquery document.ready 2' + BR;
+            console.log(msg);
+            $('#output').html(msg);
+        });
+
+        function bodyOnLoad() {
+            msg += 'document.body.load' + BR;
+            console.log(msg);
+            $('#output').html(msg);
+        }
+
+    </script>
+
+</head>
+
+<body onload="bodyOnLoad()">
+BODY_BEGIN
+
+<div id="output" class="output">output</div>
+
+<script>
+    $(document).ready(function(e) {
+        msg += 'jquery document.ready 3' + BR;
+        console.log(msg);
+        $('#output').html(msg);
+    });
+</script>
+
+<script>
+    msg += 'LAST_CONTENT' + BR;
+    console.log(msg);
+    $('#output').html(msg);
+</script>
+
+BODY_END
+</body>
+
+</html>
