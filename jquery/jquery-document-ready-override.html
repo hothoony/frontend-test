@@ -14,9 +14,11 @@
     <script>
         // $(document).ready 오버라이딩
         (function() {
+            let readyFnCount = 0;
             const originalReady = $.fn.ready;
             $.fn.ready = function(fn) {
-                console.log('-------------------- document.ready debug');
+                readyFnCount++;
+                console.log('-------------------- document.ready debug,', 'readyFnCount=', readyFnCount);
                 console.log(fn);
                 originalReady.call(this, fn);
                 // originalReady.apply(this, arguments);
