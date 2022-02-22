@@ -15,8 +15,7 @@
         (function() {
             const originalReady = $.fn.ready;
             $.fn.ready = function(fn) {
-                console.log('');
-                console.log('document.ready debug');
+                console.log('-------------------- document.ready debug');
                 console.log(fn);
                 originalReady.call(this, fn);
                 // originalReady.apply(this, arguments);
