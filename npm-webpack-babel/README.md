@@ -85,7 +85,7 @@
     $ npm run build
     ```
 
-- ### index.html 신규 생성
+- ### index.html 파일 생성
     ```html
     $ vi index.html
     <!DOCTYPE html>
