@@ -19,11 +19,7 @@
 - ### webpack 설치
     ```shell
     $ npm install webpack --save-dev
-    $ npm install webpack-cli -D
-
-    or
-
-    $ npm install webpack webpack-cli --save-dev
+    $ npm install webpack-cli --save-dev
     ```
 
 - ### webpack 설치 확인
@@ -53,7 +49,7 @@
     var path = require('path');
 
     module.exports = {
-        entry: './src/index.js',
+        entry: './src/js/index.js',
         output: {
             filename: 'bundle.js',
             path: path.resolve(__dirname, 'dist')
@@ -68,10 +64,13 @@
 
 - ### index.js 파일 생성
     ```shell
-    $ mkdir src
+    $ mkdir -p src/js
 
-    $ vi src/index.js
-    console.log('index.js run ok');
+    $ vi src/js/index.js
+    let greeting = () => {
+        return 'hello world';
+    };
+    console.log(greeting());
     ```
 
 - ### scripts build 추가
@@ -116,6 +115,9 @@
 
 - ### babel 설치
     ```bash
+    $ npm install @babel/core --save-dev
+    $ npm install @babel/cli --save-dev
+    $ npm install babel-cli --save-dev
     $ npm install babel-loader --save-dev
     $ npm install babel-preset-env --save-dev
     ```
@@ -124,7 +126,7 @@
     ```javascript
     $ vi package.json
     "scripts": {
-        "build": "babel src/js -w -d dist/js"
+        "babel": "babel src/js -w -d dist/js"
     }
     ```
 
