@@ -18,7 +18,7 @@
     ```shell
     $ npm install webpack --save-dev
     $ npm install webpack-cli -D
-    
+
     or
 
     $ npm install webpack webpack-cli --save-dev
@@ -66,6 +66,7 @@
 
 - ### index.js 파일 생성
     ```shell
+    $ mkdir src
     $ vi src/index.js
     console.log('index.js run ok');
     ```
