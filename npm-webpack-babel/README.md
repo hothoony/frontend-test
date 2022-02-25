@@ -93,7 +93,7 @@
     ```
 
 - ### scripts build 추가
-    ```json
+    ```javascript
     $ vi package.json
     {
         "scripts": {
