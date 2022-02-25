@@ -18,9 +18,26 @@
     ```shell
     $ npm install webpack --save-dev
     $ npm install webpack-cli -D
+    or
+    $ npm install webpack webpack-cli --save-dev
 
     $ ls
     node_modules    package-lock.json    package.json
+
+    $ npm list
+    example01@1.0.0 ~/example01
+    ├── webpack-cli@4.9.2
+    └── webpack@5.69.1
+
+    $ vi package.json
+    {
+        "name": "example01",
+        ...
+        "devDependencies": {
+            "webpack": "^5.69.1",
+            "webpack-cli": "^4.9.2"
+        }
+    }
     ```
 
 - ### webpack.config.js 파일 생성
