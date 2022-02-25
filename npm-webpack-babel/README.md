@@ -18,9 +18,14 @@
     ```shell
     $ npm install webpack --save-dev
     $ npm install webpack-cli -D
+    
     or
-    $ npm install webpack webpack-cli --save-dev
 
+    $ npm install webpack webpack-cli --save-dev
+    ```
+
+- ### webpack 설치 확인
+    ```shell
     $ ls
     node_modules    package-lock.json    package.json
 
