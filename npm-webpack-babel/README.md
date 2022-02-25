@@ -48,8 +48,7 @@
     console.log('index.js run ok');
     ```
 
-- ### scripts build 추가 | package.json
-    - package.json 수정
+- ### scripts build 추가
     ```shell
     $ vi package.json
     "scripts": {
@@ -93,7 +92,7 @@
     $ npm install babel-loader --save-dev
     ```
 
-- ### scripts build 추가 | package.json
+- ### scripts build 추가
     ```json
     $ vi package.json
     {
