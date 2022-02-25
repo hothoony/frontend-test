@@ -145,7 +145,7 @@
     $ sudo npm install webpack-dev-server --save-dev
     ```
 
-- ### scripts devserver 추가 | package.json
+- ### scripts devserver 추가
     ```
     $ vi package.json
     "scripts": {
