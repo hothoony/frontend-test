@@ -67,7 +67,7 @@
 - ### index.js 파일 생성
     ```shell
     $ mkdir src
-    
+
     $ vi src/index.js
     console.log('index.js run ok');
     ```
@@ -110,30 +110,18 @@
     - transpiler
     - ES6 의 문법을 지원하지 않는 구형 브라우저에서 동작할 수 있도록 ES5 이하 코드로 변환해 준다
 
-- ### 설치
-    - Babel CLI 설치
+- ### babel 설치
     ```bash
     $ npm install babel-loader --save-dev
+    $ npm install babel-preset-env --save-dev
     ```
 
 - ### scripts build 추가
     ```javascript
     $ vi package.json
-    {
-        "scripts": {
-            "build": "babel src/js -w -d dist/js"
-        },
-        "devDependencies": {
-            "@babel/cli": "^7.7.0",
-            "@babel/core": "^7.7.2",
-            "@babel/preset-env": "^7.7.1",
-        }
+    "scripts": {
+        "build": "babel src/js -w -d dist/js"
     }
-    ```
-
-- ### babel-present-env 설치
-    ```bash
-    $ sudo npm install babel-preset-env --save-dev
     ```
 
 - ### webpack.config.js 수정
@@ -164,6 +152,8 @@
     $ npm run build
     ```
 
+# webpack-dev-server
+## webpack-dev-server
 - ### webpack-dev-server 설치
     ```bash
     $ sudo npm install webpack-dev-server --save-dev
