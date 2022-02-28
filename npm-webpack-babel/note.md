@@ -1,45 +1,20 @@
+## node
+- `npm` Node Package Manager
+- `npx` Node Package Runner
+
 ## npm init
 ```
 npm init -y
 ```
 
-## Babel
-```
-npm install -D @babel/core
-npm install -D @babel/cli
-npm install -D @babel/preset-env
-npm install -D @babel/polyfill
-
-npm install -D @babel/preset-flow
-npm install -D @babel/preset-react
-npm install -D @babel/preset-typescript
-```
-
-```javascript
-// babel.config.js
-const presets = [
-  [
-    "@babel/preset-env",
-    {
-      targets: {
-        chrome: "87",
-      },
-      useBuiltIns: "usage",
-      corejs: "3.6.4",
-    },
-  ],
-];
-
-module.exports = { presets };
-```
-
-## Webpack
+## Webpack 설치
 ```
 npm install -D webpack
 npm install -D webpack-cli
-npm install -D webpack-dev-server
 ```
 
+## Webpack config
+- ### webpack.config.js
 ```javascript
 // webpack.config.js
 const path = require("path");
@@ -97,12 +72,49 @@ module.exports = {
   devtool: "source-map",
 };
 ```
+
+
+## Babel 설치
+```
+npm install -D @babel/core
+npm install -D @babel/cli
+npm install -D @babel/preset-env
+npm install -D @babel/polyfill
+```
+
+## Babel config
+- ### babel.config.json
+```javascript
+// babel.config.json
+{
+  "presets": ["@babel/preset-env"]
+}
+```
+- ### babel.config.js
+```javascript
+// babel.config.js
+const presets = [
+  [
+    "@babel/preset-env",
+    {
+      targets: {
+        chrome: "87",
+      },
+      useBuiltIns: "usage",
+      corejs: "3.6.4",
+    },
+  ],
+];
+
+module.exports = { presets };
+```
+
 ## loader 설치
 ```
-npm install -D css-loader
-npm install -D style-loader
-
 npm install -D babel-loader
+
+npm install -D style-loader
+npm install -D css-loader
 
 npm install -D html-loader
 ```
@@ -161,10 +173,13 @@ mkdir -p src/css
 
 ## webpack 실행
 ```
-npx webpack
+$ ./node_modules/.bin/webpack --mode=development
+
+$ npx webpack
 ```
 
 ## babel 실행
 ```
-./node_modules/.bin/babel src --out-dir lib
+$ ./node_modules/.bin/babel src
+$ ./node_modules/.bin/babel src --out-dir lib
 ```
