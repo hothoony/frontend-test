@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>checkbox</title>
-</head>
-<body>
 
     <style>
         .output {
@@ -20,46 +18,41 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function(e) {
+            console.log('DOMContentLoaded');
             var btn1 = document.querySelectorAll('.btn1')[0];
             var btn2 = document.querySelectorAll('.btn2')[0];
             var btn3 = document.querySelectorAll('.btn3')[0];
             btn1.addEventListener('click', function(e) {
-                document.querySelectorAll('input[name=color]').forEach(function(e) {
-                    e.checked = true;
-                });
+                document.querySelector('.output').innerHTML = document.querySelector('#txt1').value;
             });
             btn2.addEventListener('click', function(e) {
-                document.querySelectorAll('input[name=color]').forEach(function(e) {
-                    e.checked = false;
-                });
+                document.querySelector('.output').innerHTML = document.querySelector('#txt2').value;
             });
             btn3.addEventListener('click', function(e) {
-                document.querySelectorAll('.output')[0].innerHTML = '';
-                document.querySelectorAll('input[name=color]').forEach(function(e) {
-                    if (e.checked) {
-                        document.querySelectorAll('.output')[0].innerHTML += e.value + ' ';
-                    }
-                });
+                document.querySelector('.output').innerHTML = document.querySelector('#txt3').value;
             });
         });
     </script>
 
+</head>
+<body>
+
     <form action="#" method="POST">
         <label for="txt1">readonly</label>
-        <input type="text" id="txt1" value="readonly" readonly><br>
+        <input type="text" id="txt1" value="readonly 123" readonly><br>
         
         <label for="txt2">disabled</label>
-        <input type="text" id="txt2" value="disabled" disabled><br>
+        <input type="text" id="txt2" value="disabled 123" disabled><br>
         
         <label for="txt3">required</label>
-        <input type="text" id="txt3" value="required" required><br>
+        <input type="text" id="txt3" value="required 123" required><br>
 
         <input type="submit">
     </form>
     
-    <button class="btn1">check all</button>
-    <button class="btn2">uncheck all</button>
-    <button class="btn3">checked values</button>
+    <button class="btn1">readonly value</button>
+    <button class="btn2">disabled value</button>
+    <button class="btn3">required value</button>
     
     <div class="output"></div>
     
