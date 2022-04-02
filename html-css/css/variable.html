@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css variable</title>
+
+    <style>
+        body {
+            background-color: lightgray;
+        }
+
+        /* 변수 선언 */
+        :root {
+            --some-color: red;
+
+            /* 변수 조합 */
+            --r: 255;
+            --g: 255;
+            --b: 0;
+            --my-text-color: rgb(var(--r), var(--g), var(--b));
+        }
+
+        h1 {
+            /* 변수 사용 */
+            color: var(--some-color);
+        }
+
+        h2 {
+            /* 오버라이딩 */
+            --some-color: blue;
+            color: var(--some-color);
+        }
+
+        .my-text-color {
+            color: var(--my-text-color);
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1>h1 text</h1>
+    <h2>h2 text</h2>
+    <h1 class="my-text-color">my-text-color</h1>
+    
+</body>
+</html>
