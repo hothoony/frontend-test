@@ -5,78 +5,201 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML form</title>
+
+    <style>
+        .form-label {
+            display: inline-block;
+            width: 110px;
+            text-align: right;
+            vertical-align: top;
+        }
+        .form-item {
+            display: inline-block;
+        }
+    </style>
+
 </head>
 <body>
 
-    text
-    <input type="text" placeholder="text"><br>
-    password
-    <input type="password" placeholder="password"><br>
-    button
-    <input type="button" placeholder="button" value="btnName"><br>
-    checkbox
-    <input type="checkbox" placeholder="checkbox"><br>
-    color
-    <input type="color" placeholder="color"><br>
-    date
-    <input type="date" placeholder="date"><br>
-    datetime
-    <input type="datetime" placeholder="datetime"><br>
-    datetime-local
-    <input type="datetime-local" placeholder="datetime-local"><br>
-    email
-    <input type="email" placeholder="email"><br>
-    file
-    <input type="file" placeholder="file"><br>
-    hidden
-    <input type="hidden" placeholder="hidden"><br>
-    image
-    <input type="image" placeholder="image"><br>
-    month
-    <input type="month" placeholder="month"><br>
-    number
-    <input type="number" placeholder="number"><br>
-    radio
-    <input type="radio" placeholder="radio"><br>
-    range
-    <input type="range" placeholder="range"><br>
-    reset
-    <input type="reset" placeholder="reset"><br>
-    search
-    <input type="search" placeholder="search"><br>
-    submit
-    <input type="submit" placeholder="submit"><br>
-    tel
-    <input type="tel" placeholder="tel"><br>
-    time
-    <input type="time" placeholder="time"><br>
-    url
-    <input type="url" placeholder="url"><br>
-    week
-    <input type="week" placeholder="week"><br>
+    <div>
+        <div class="form-label">text</div>
+        <div class="form-item">
+            <input type="text" placeholder="text"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">password</div>
+        <div class="form-item">
+            <input type="password" placeholder="password"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">button</div>
+        <div class="form-item">
+            <input type="button" placeholder="button" value="btnName"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">checkbox</div>
+        <div class="form-item">
+            <input type="checkbox" placeholder="checkbox"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">color</div>
+        <div class="form-item">
+            <input type="color" placeholder="color"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">date</div>
+        <div class="form-item">
+            <input type="date" placeholder="date"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">datetime</div>
+        <div class="form-item">
+            <input type="datetime" placeholder="datetime"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">datetime-local</div>
+        <div class="form-item">
+            <input type="datetime-local" placeholder="datetime-local"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">email</div>
+        <div class="form-item">
+            <input type="email" placeholder="email"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">file</div>
+        <div class="form-item">
+            <input type="file" placeholder="file"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">hidden</div>
+        <div class="form-item">
+            <input type="hidden" placeholder="hidden"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">image</div>
+        <div class="form-item">
+            <input type="image" placeholder="image"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">month</div>
+        <div class="form-item">
+            <input type="month" placeholder="month"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">number</div>
+        <div class="form-item">
+            <input type="number" placeholder="number"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">radio</div>
+        <div class="form-item">
+            <input type="radio" placeholder="radio"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">range</div>
+        <div class="form-item">
+            <input type="range" placeholder="range"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">reset</div>
+        <div class="form-item">
+            <input type="reset" placeholder="reset"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">search</div>
+        <div class="form-item">
+            <input type="search" placeholder="search"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">submit</div>
+        <div class="form-item">
+            <input type="submit" placeholder="submit"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">tel</div>
+        <div class="form-item">
+            <input type="tel" placeholder="tel"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">time</div>
+        <div class="form-item">
+            <input type="time" placeholder="time"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">url</div>
+        <div class="form-item">
+            <input type="url" placeholder="url"><br>
+        </div>
+    </div>
+    <div>
+        <div class="form-label">week</div>
+        <div class="form-item">
+            <input type="week" placeholder="week"><br>
+        </div>
+    </div>
 
-    select
-    <select name="color">
-        <option value="red">red</option>
-        <option value="green">green</option>
-        <option value="blue">blue</option>
-    </select><br>
-    <select name="color" multiple>
-        <option value="red">red</option>
-        <option value="green">green</option>
-        <option value="blue">blue</option>
-    </select><br>
+    <div>
+        <div class="form-label">select single</div>
+        <div class="form-item">
+            <select name="color">
+                <option value="red">red</option>
+                <option value="green">green</option>
+                <option value="blue">blue</option>
+            </select>
+        </div>
+    </div>
 
-    datalist
-    <input list="mylist">
-    <datalist id="mylist">
-        <option value="red">
-        <option value="green">
-        <option value="blue">
-    </datalist><br>
+    <div>
+        <div class="form-label">select multiple</div>
+        <div class="form-item">
+            <select name="color" multiple>
+                <option value="red">red</option>
+                <option value="green">green</option>
+                <option value="blue">blue</option>
+            </select>
+        </div>
+    </div>
 
-    textarea
-    <textarea>type here</textarea>
+    <div>
+        <div class="form-label">datalist</div>
+        <div class="form-item">
+            <input list="mylist">
+            <datalist id="mylist">
+                <option value="red">
+                <option value="green">
+                <option value="blue">
+            </datalist><br>
+        </div>
+    </div>
+
+    <div>
+        <div class="form-label">textarea</div>
+        <div class="form-item">
+            <textarea>type here</textarea>
+        </div>
+    </div>
     
 </body>
 </html>
