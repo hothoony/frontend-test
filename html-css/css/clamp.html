@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- using-media-query -->
+    <style>
+        /* preferred */
+        .using-media-query {
+            width: 50%;
+            border: 10px solid red;
+        }
+        /* small screen */
+        @media only screen and (max-width: 600px) {
+            .using-media-query {
+                width: 200px;
+                border: 10px solid green;
+            }
+        }
+        /* large screen */
+        @media only screen and (min-width: 1200px) {
+            .using-media-query {
+                width: 800px;
+                border: 10px solid blue;
+            }
+        }
+    </style>
+
+    <!-- using-clamp -->
+    <!-- clamp(min, preferred, max) -->
+    <style>
+        .using-clamp {
+            /* width: clamp(600px, 50%, 1200px); */
+            /* border: 10px solid gray; */
+            /* border-color: clamp(green, red, blue); */
+            /* font-size: clamp(20px, 40px, 60px); */
+            color: clamp(red, green, blue);
+        }
+    </style>
+
+</head>
+<body>
+    
+    <article class="using-media-query">
+        using-media-query
+    </article>
+
+    <article class="using-clamp">
+        using-clamp
+    </article>
+
+</body>
+</html>
