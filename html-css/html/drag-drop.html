@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .drag-box {
+            width: 150px;
+            height: 60px;
+            border: 3px solid gray;
+            border-radius: 6px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .drag-over {
+            border: 3px dotted #666;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            console.log('DOMContentLoaded');
+
+            let dragSrc = null;
+
+            const handleDragStart = (e) => {
+                console.log('\nhandleDragStart');
+                e.target.style.opacity = '0.4';
+
+                dragSrc = e.target;
+
+                e.dataTransfer.setData('text/html', e.target.innerHTML);
+            }
+
+            const handleDragEnd = (e) => {
+                console.log('handleDragEnd');
+                e.target.style.opacity = '1';
+
+                elems.forEach(elem => {
+                    elem.classList.remove('drag-over');
+                });
+            }
+
+            const handleDragEnter = (e) => {
+                console.log('handleDragEnter');
+                e.target.classList.add('drag-over');
+            }
+
+            const handleDragOver = (e) => {
+                e.preventDefault();
+                console.log('handleDragOver', e.target);
+                return false;
+            }
+
+            const handleDragLeave = (e) => {
+                console.log('handleDragLeave');
+                e.target.classList.remove('drag-over');
+            }
+
+            const handleDrop = (e) => {
+                console.log('handleDrop');
+                e.stopPropagation();
+
+                if (e.target !== dragSrc) {
+                    dragSrc.innerHTML = e.target.innerHTML;
+                    e.target.innerHTML = e.dataTransfer.getData('text/html');
+                }
+
+
+                return false;
+            }
+
+            const elems = document.querySelectorAll('.drag-box');
+            elems.forEach(elem => {
+                console.log(elem);
+                elem.addEventListener('dragstart', handleDragStart);
+                elem.addEventListener('dragenter', handleDragEnter);
+                elem.addEventListener('dragover', handleDragOver);
+                elem.addEventListener('dragleave', handleDragLeave);
+                elem.addEventListener('dragend', handleDragEnd);
+                elem.addEventListener('drop', handleDrop);
+            });
+        });
+    </script>
+
+</head>
+<body>
+
+    <div class="container">
+    
+        <div draggable="true" class="drag-box">A</div>
+        <div draggable="true" class="drag-box">B</div>
+        <div draggable="true" class="drag-box">C</div>
+
+    </div>
+
+</body>
+</html>
