@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+            /* padding: 20px; */
+        }
+
+        /* desktop */
+        /* 1171 354 */
+        .img-container {
+            border: 1px solid red;
+            width: 99%;
+            height: 100vw;
+            max-height: 300px;
+            background-image: url(./img/main01.png);
+            background-repeat: no-repeat;
+            background-position: center center;
+            /* background-attachment: fixed; */
+            background-size: contain;
+        }
+
+        /* mobile */
+        /* 720 760 */
+        @media (max-width: 768px) {
+            .img-container {
+                /* height: 100vw; */
+                max-height: 400px;
+                background-image: url(./img/m_main01.png);
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="img-container"></div>
+    
+</body>
+</html>
