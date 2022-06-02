@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select</title>
+
+    <style>
+        .output {
+            border: 1px solid lightgray;
+            height: 20px;
+        }
+    </style>
+
+    <script>
+        $ = (selector) => {
+            return document.querySelectorAll(selector);
+        };
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(e) {
+            console.log('DOMContentLoaded');
+
+            const params = new URLSearchParams(window.location.search);
+            console.log(params.get('username'));
+            console.log(params.get('password'));
+            console.log(params.get('email'));
+        });
+
+        function checkOnSubmit() {
+            console.log('checkOnSubmit');
+
+            const email = $('input[name=email]')[0].value;
+            $('input[name=email]')[0].value = email + '-modified';
+
+            return true;
+        }
+    </script>
+
+</head>
+<body>
+
+    <form method="get" action="" onsubmit="return checkOnSubmit();">
+        <div>
+            회원이름<input type="text" name="username">
+        </div>
+        <div>
+            회원이름<input type="text" name="password">
+        </div>
+        <div>
+            <input type="text" name="email">    
+        </div>
+        <div>
+            <button type="submit">가입하기</button>
+        </div>
+    </form>
+    
+</body>
+</html>
