@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css variable</title>
+
+    <style>
+        code {
+            font-size: 1rem;
+        }
+        .container {
+            border: 1px solid lightgray;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        .box {
+            width: 100%;
+            height: 60px;
+            background-color: darkblue;
+            color: red;
+        }
+        .box1 {
+            opacity: 1;
+        }
+        .box2 {
+            opacity: 0.75;
+        }
+        .box3 {
+            opacity: 0.5;
+        }
+        .box4 {
+            opacity: 0.25;
+        }
+        .box5 {
+            opacity: 0;
+            color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <code>opacity: 1;</code>
+        <div class="box box1">
+            box text
+        </div>
+    </div>
+
+    <div class="container">
+        <code>opacity: 0.75;</code>
+        <div class="box box2">
+            box text
+        </div>
+    </div>
+
+    <div class="container">
+        <code>opacity: 0.5;</code>
+        <div class="box box3">
+            box text
+        </div>
+    </div>
+
+    <div class="container">
+        <code>opacity: 0.25;</code>
+        <div class="box box4">
+            box text
+        </div>
+    </div>
+
+    <div class="container">
+        <code>opacity: 0;</code>
+        <div class="box box5">
+            box text
+        </div>
+    </div>
+    
+</body>
+</html>
