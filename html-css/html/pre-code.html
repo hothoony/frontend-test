@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pre vs code</title>
+
+    <style>
+        p {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+    </style>
+
+</head>
+<body>
+
+    <br>
+    <p>code 만 사용</p>
+    <code>
+        하위 엘리먼트 배경색이 먼저 표시된다 <b>bold</b>
+        public static void main(String[] args) {
+            System.out.println("run main");
+        }
+    </code>
+
+    <br>
+    <p>pre 만 사용</p>
+    <pre>
+        하위 엘리먼트 배경색이 먼저 표시된다 <b>bold</b>
+        public static void main(String[] args) {
+            System.out.println("run main");
+        }
+    </pre>
+
+    <br>
+    <p>pre > code 사용</p>
+    <pre>
+        <code>
+        하위 엘리먼트 배경색이 먼저 표시된다 <b>bold</b>
+        public static void main(String[] args) {
+            System.out.println("run main");
+        }
+        </code>
+    </pre>
+
+    <br>
+    <p>code > pre 사용</p>
+    <code>
+        <pre>
+        하위 엘리먼트 배경색이 먼저 표시된다 <b>bold</b>
+        public static void main(String[] args) {
+            System.out.println("run main");
+        }
+        </pre>
+    </code>
+    
+</body>
+</html>
