@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>background-color-order</title>
+
+    <style>
+        code {
+            /* font-size: 1rem; */
+        }
+
+        .container {
+            /* border: 1px solid gray; */
+            /* margin-bottom: 10px; */
+        }
+
+        .box {
+            /* height: 50px; */
+            color: white;
+        }
+        
+        .bg-red {
+            background-color: red;
+        }
+
+        .bg-blue {
+            background-color: blue;
+        }
+
+        .bg-red-alpha0 {
+            background-color: rgba(255, 0, 0, 0);
+        }
+        
+        .bg-blue-alpha0 {
+            background-color: rgba(0, 0, 255, 0);
+        }
+    </style>
+
+</head>
+<body>
+
+<pre>
+    <code>
+    하위 엘리먼트 배경색이 먼저 표시된다
+    </code>
+</pre>
+    
+    <div class="container bg-red">
+        <div class="box bg-blue">
+            <pre>
+                <code>
+                &lt;div class="container bg-red"&gt;
+                    &lt;div class="box bg-blue"&gt;
+                        box text
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                </code>
+            </pre>
+        </div>
+    </div>
+
+    <div class="container bg-red-alpha0">
+        <div class="box bg-blue">
+            <pre>
+                <code>
+                &lt;div class="container bg-red-alpha0"&gt;
+                    &lt;div class="box bg-blue"&gt;
+                        box text
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                </code>
+            </pre>
+        </div>
+    </div>
+
+    <div class="container bg-red">
+        <div class="box bg-blue-alpha0">
+            <pre>
+                <code>
+                &lt;div class="container bg-red"&gt;
+                    &lt;div class="box bg-blue-alpha0"&gt;
+                        box text
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                </code>
+            </pre>
+        </div>
+    </div>
+
+</body>
+</html>
