@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nth-child</title>
+
+    <style>
+        /* div 태그 2번째 */
+        div:nth-child(2) {
+            background-color: lightcoral;
+        }
+
+        /* li 태그 2번째 */
+        li:nth-child(2) {
+            background-color: lightgreen;
+        }
+
+        /* 모든 태그들 2번째 */
+        :nth-child(3) {
+            background-color: yellow;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <div>
+        div 01
+    </div>
+
+    <div>
+        div 02
+    </div>
+
+    <div>
+        div 03
+    </div>
+
+    <ul>
+        <li>li 01</li>
+        <li>li 02</li>
+        <li>li 03</li>
+        <li>li 04</li>
+        <li>li 05</li>
+    </ul>
+
+</body>
+</html>
