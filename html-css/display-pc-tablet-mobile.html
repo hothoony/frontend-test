@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display-pc-tablet-mobile</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            hljs.highlightAll();
+        });
+    </script>
+
+    <style>
+        div {
+            height: 50px;
+            padding: 4px;
+            margin-bottom: 10px;
+            border: 2px solid blue;
+        }
+
+        .displayPc {
+            display: block;
+            background-color: lightblue;
+        }
+        .displayTablet {
+            display: none;
+            background-color: lightgreen;
+        }
+        .displayMobile {
+            display: none;
+            background-color: lightcoral;
+        }
+        
+        @media (max-width: 768px) {
+            .displayPc {
+                display: none;
+            }
+            .displayTablet {
+                display: block;
+            }
+            .displayMobile {
+                display: none;
+            }
+        }
+        @media (max-width: 375px) {
+            .displayPc {
+                display: none;
+            }
+            .displayTablet {
+                display: none;
+            }
+            .displayMobile {
+                display: block;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="displayPc">displayPc</div>
+    <div class="displayPc displayNone">displayPc displayNone</div>
+    <div class="displayNone displayPc">displayNone displayPc</div>
+
+    <div class="displayPc">displayPc</div>
+    <div class="displayTablet">displayTablet</div>
+    <div class="displayMobile">displayMobile</div>
+
+<pre><code class="language-css">
+    .displayPc {
+        display: block;
+        background-color: lightblue;
+    }
+    .displayTablet {
+        display: none;
+        background-color: lightgreen;
+    }
+    .displayMobile {
+        display: none;
+        background-color: lightcoral;
+    }
+    
+    @media (max-width: 768px) {
+        .displayPc {
+            display: none;
+        }
+        .displayTablet {
+            display: block;
+        }
+        .displayMobile {
+            display: none;
+        }
+    }
+    @media (max-width: 375px) {
+        .displayPc {
+            display: none;
+        }
+        .displayTablet {
+            display: none;
+        }
+        .displayMobile {
+            display: block;
+        }
+    }
+
+</code></pre>
+    
+</body>
+</html>
