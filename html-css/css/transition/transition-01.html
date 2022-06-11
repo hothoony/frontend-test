@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transition</title>
+
+    <style>
+        div {
+            width: 400px;
+            height: 100px;
+            margin-bottom: 10px;
+            background-color: lightseagreen;
+        }
+
+        div:hover {
+            width: 600px;
+            border: 10px solid blue;
+        }
+
+        div#box01 {
+            /* no transition */
+        }
+        div#box02 {
+            transition: width, border .7s;
+        }
+        div#box03 {
+            transition: width, border .7s ease-in;
+        }
+        div#box04 {
+            transition: width, border .7s ease-out;
+        }
+        div#box05 {
+            transition: width, border .7s ease-in-out;
+        }
+    </style>
+
+</head>
+<body>
+
+<div id="box01">
+<pre><code>
+    no transition
+</code></pre>
+</div>
+
+<div id="box02">
+<pre><code>
+    transition: width, border .7s;
+</code></pre>
+</div>
+
+<div id="box03">
+<pre><code>
+    transition: width, border .7s ease-in;
+</code></pre>
+</div>
+
+<div id="box04">
+<pre><code>
+    transition: width, border .7s ease-out;
+</code></pre>
+</div>
+
+<div id="box05">
+<pre><code>
+    transition: width, border .7s ease-in-out;
+</code></pre>
+</div>
+    
+</body>
+</html>
