@@ -83,11 +83,11 @@
                 var modal = document.getElementById('myModal');
                 modal.classList.add('active');
             });
-            // var modalCloseBtn = document.querySelectorAll('#myModal .modal-header>.close')[0];
-            // modalCloseBtn.addEventListener('click', function() {
-            //     var modal = document.getElementById('myModal');
-            //     modal.classList.remove('active');
-            // });
+            var modalCloseBtn = document.querySelectorAll('#myModal .cancel-btn')[0];
+            modalCloseBtn.addEventListener('click', function() {
+                var modal = document.getElementById('myModal');
+                modal.classList.remove('active');
+            });
         });
     </script>
 
