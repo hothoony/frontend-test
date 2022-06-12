@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position-test</title>
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+.container {
+    border: 1px solid gray;
+    height: 2000px;
+    margin: 0 200px;
+    margin-top: 100px;
+}
+.box {
+    border: 1px solid lightcoral;
+    width: 300px;
+    height: 200px;
+}
+
+.container1 {
+    position: relative;
+}
+.box1 {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container container1">
+        <div class="box box1">box1
+            <pre>
+        .container1 {
+            position: relative;
+        }
+        .box1 {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+        }
+            </pre>
+        </div>
+    </div>
+
+</body>
+</html>
