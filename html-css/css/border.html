@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>border</title>
+
+    <style>
+        body {
+            padding: 10px;
+        }
+
+        .box {
+            width: 100%;
+            height: 100px;
+            background-color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        
+        .border-common {
+            border-width: 5px;
+            border-style: solid;
+        }
+        .border-color-red {
+            border-color: red;
+        }
+        .border-color-blue {
+            border-color: blue;
+        }
+
+        .border-style-dashed {
+            border-width: 5px;
+            border-style: dashed;
+            border-color: green;
+        }
+        .border-style-dotted {
+            border-width: 5px;
+            border-style: dotted;
+            border-color: green;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="box border-common border-color-red">
+        <pre><code>
+            border-width: 5px;
+            border-style: solid;
+            border-color: red;
+        </code></pre>
+    </div>
+    <div class="box border-common border-color-blue">
+        <pre><code>
+            border-width: 5px;
+            border-style: solid;
+            border-color: blue;
+        </code></pre>
+    </div>
+    <div class="box border-style-dashed">
+        <pre><code>
+            border-style: dashed;
+        </code></pre>
+    </div>
+    <div class="box border-style-dotted">
+        <pre><code>
+            border-style: dotted;
+        </code></pre>
+    </div>
+
+</body>
+</html>
