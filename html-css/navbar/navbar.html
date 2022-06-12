@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+#nav {
+    /* display: block; */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#nav li {
+    /* display: block; */
+    position: relative;
+    float: left;
+    width: 200px;
+    background: #24af15;
+    text-align: center;
+}
+#nav li a {
+    display: block;
+    /* padding: 0; */
+    line-height: 40px;
+    color: #ffffff;
+    text-decoration: none;
+}
+#nav ul {
+    list-style: none;
+    padding: 0;
+    position: absolute;
+    display: none;
+}
+
+/* hover */
+#nav li:hover {
+    background: yellowgreen;
+}
+#nav li:hover ul ul {
+    display: none;
+}
+#nav li:hover ul {
+    display: block;
+}
+#nav li li:hover ul {
+    display: block;
+    margin-left: 200px;
+    margin-top: -40px;
+}
+
+/* border */
+ul, li, a {
+    border-width: 2px;
+    /* border-style: solid; */
+}
+ul {
+    border-color: red;
+}
+li {
+    border-color: blue;
+}
+a {
+    border-color: yellow;
+}
+
+</style>
+
+</head>
+<body>
+    
+    <ul id="nav">
+        <li><a href="#menu1">menu1</a></li>
+        <li><a href="#menu2">menu2</a>
+            <ul>
+                <li><a href="#menu21">menu21</a></li>
+                <li><a href="#menu22">menu22</a></li>
+                <li><a href="#menu23">menu23</a>
+                    <ul>
+                        <li><a href="#menu231">menu231</a></li>
+                        <li><a href="#menu232">menu232</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#menu3">menu3</a></li>
+    </ul>
+
+</body>
+</html>
