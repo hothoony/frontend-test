@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery-map</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+    <style>
+        .test {
+            display: inline-block;
+            width: 200px;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function() {
+
+            let list = [11, 22, 33];
+            // [11, 22, 33]
+            console.log('list', list);
+
+            let list2 = $.map(list, function(item, index) {
+                console.log(index, item);
+                return item * 10;
+            });
+
+            // [11, 22, 33]
+            console.log('list', list);
+
+            // [110, 220, 330]
+            console.log('list2', list2);
+            
+        });
+
+    </script>
+
+</head>
+<body>
+    
+    <h1>jquery map</h1>
+
+</body>
+</html>
