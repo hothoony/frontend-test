@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .container {
+            display: block;
+            border: 1px solid lightgray;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+        }
+        .container input {
+            position: absolute;
+            cursor: pointer;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .container .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+            border-radius: 50%;
+        }
+        .container:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+        .container input:checked ~ .checkmark {
+            background-color: #2196f3;
+        }
+        .container .checkmark:after {
+            display: none;
+            content: '';
+            position: absolute;
+            top: 9px;
+            left: 9px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+        .container input:checked ~ .checkmark:after {
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+
+    <label class="container">One
+        <input type="radio" name="radio" checked="checked">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="container">Two
+        <input type="radio" name="radio">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="container">Three
+        <input type="radio" name="radio">
+        <span class="checkmark"></span>
+    </label>
+    
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .wrapper {
+            height: 100%;
+            /* padding: 2em; */
+            display: grid;
+            place-content: center;
+        }
+        .wrapper label {
+            margin-top: 1.5em;
+            margin-bottom: .5em;
+            /* font-weight: bold; */
+            /* font-size: 1.2em; */
+        }
+        .wrapper select {
+            padding: 1em;
+            width: 130%;
+            border-radius: .2em;
+            /* border-radius: 20px; */
+            border: 1px solid #acacac;
+            /* 우측 화살표 제거 */
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-appearance: none;
+            background: url('https://cdn1.iconfinder.com/data/icons/arrows-vol-1-4/24/dropdown_arrow-512.png');
+            background-repeat: no-repeat;
+            background-size: 15px 15px;
+            background-position: right;
+            background-origin: content-box;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="wrapper">
+        <label>select option
+            <select>
+                <option value="macos">MacOS</option>
+                <option value="linux">Linux</option>
+                <option value="windows">Windows</option>
+            </select>
+        </label>
+    </div>
+    
+</body>
+</html>
