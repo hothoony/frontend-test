@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bootstrap-datepicker</title>
+
+    <!-- bootstrap-4.6.2-dist -->
+    <!-- https://getbootstrap.com/docs/4.6/getting-started/download/ -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+
+    <script src="js/jquery-3.6.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="locales/bootstrap-datepicker.ko.min.js"></script>
+    
+</head>
+<body>
+
+<form>
+
+    <h1>bootstrap datepicker</h1>
+
+    <div class="container">
+        <h3>datepicker1</h3>
+        <div class="input-group date datepicker1">
+            <input type="text" class="form-control">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(e) {
+            console.log('ready');
+
+            $('.datepicker1').datepicker({
+                language: 'ko',
+                format: 'yyyy-mm-dd',
+                title: '달력입니다',
+                autoclose: true,
+                todayHighlight: true,
+                // todayBtn: 'linked',
+                // clearBtn: true,
+                // defaultViewDate: {year: 2022, month: 8, day: 1 }, // 2022-09-01
+                // defaultViewDate: {year: 2022, month: 8}, // 2022-09
+                // startDate: '-10d',
+                // endDate: '+10d',
+                // immediateUpdates: true,
+                // showWeekDays: false,
+                // toggleActive: false,
+            })
+            .on('changeDate', function(e) {
+                console.log(e);
+                console.log(e.date);
+                let date = e.date;
+                let yyyy = date.getFullYear();
+                let mm = date.getMonth() + 1;
+                let dd = date.getDate();
+                console.log(yyyy, mm, dd);
+            });
+
+            $('.datepicker1').datepicker('setDate', '2022-12-25');
+
+        });
+    </script>
+
+</form>
+    
+</body>
+</html>
