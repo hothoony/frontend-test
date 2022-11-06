@@ -118,7 +118,7 @@
             $('.btn_data').on('click', function() {
                 console.log('click btn_data');
                 let data = {};
-                _getJson('data.json', data, function(data) {
+                _getJson('./data.json', data, function(data) {
                     console.log('success', data);
                     $('#myDataTable1').DataTable().rows().remove().draw();
                     $('#myDataTable1').DataTable().rows.add(data).draw();
@@ -128,7 +128,7 @@
             $('.btn_dataEmpty').on('click', function() {
                 console.log('click btn_dataEmpty');
                 let data = {};
-                _getJson('dataEmpty.json', data, function(data) {
+                _getJson('./dataEmpty.json', data, function(data) {
                     console.log('success', data);
                     $('#myDataTable1').DataTable().rows().remove().draw();
                     $('#myDataTable1').DataTable().rows.add(data).draw();
