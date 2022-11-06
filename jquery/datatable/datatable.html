@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery datatable</title>
+
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="http://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+</head>
+<body>
+
+    <div>
+        <h1>myDataTable1</h1>
+        <table id="myDataTable1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>title</th>
+                    <th>price</th>
+                    <th>note</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <script>
+
+        function renderDataTable2(data) {
+
+            $('#myDataTable1').DataTable({
+                // searching: false, // 우측 상단 검색창의 표시여부를 설정한다
+                // lengthChange: false, // 리스틑 갯수 select 표시여부를 설정한다
+                // lengthMenu: [2, 4, 6], // lengthChange 가 true 인 경우 select 의 값을 설정한다
+                // paging: false, // 페이징 여부를 설정한다
+                // ordering: false, // 컬럼 정렬 여부를 설정한다
+                // info: false, // 총 몇건 표시여부를 설정한다
+                // stateSave: true,
+                // ajax: {
+                //     url: 'data.json',
+                //     data: function(e) {
+                //         console.log('data', e);
+                //     }
+                // },
+                thousands: ',',
+                columns: [
+                    {data: 'id'},
+                    {data: 'title'},
+                    {data: 'price'},
+                    {data: 'note'},
+                ],
+                columnDefs: [
+                    {targets: [0], width: 100},
+                    {targets: [3], visible: false},
+                ],
+                data: data,
+                language: {
+                    emptyTable: '데이터가 없습니다',
+                    infoEmpty: '0 건',
+                    info: '_START_ / _END_ (총 _TOTAL_ 건)',
+                    search: '검색',
+                    zeroRecords: '검색된 데이터가 없습니다',
+                    paginate: {
+                        previous: '이전',
+                        next: '다음',
+                        first: '첫 페이지',
+                        last: '마지막 페이지',
+                    }
+                },
+            });
+
+        }
+
+        function loadData(url) {
+            setTimeout(() => {
+
+                $.ajax({
+                    method: 'get',
+                    url: url,
+                    data: {},
+                    dataType: 'json',
+                    beforeSend: function() {
+                        console.log('beforeSend');
+                    },
+                    success: function(data) {
+                        console.log('success', data);
+                        renderDataTable2(data);
+                    },
+                    error: function(request, status, error) {
+                        console.log('error');
+                        console.log('  request', request);
+                        console.log('  status', status);
+                        console.log('  error', error);
+                    },
+                    complete: function(request, status, error) {
+                        console.log('complete');
+                        console.log('  request', request);
+                        console.log('  status', status);
+                        console.log('  error', error);
+                    }
+                });
+
+            }, 1000);
+        }
+
+        $(document).ready( function () {
+
+            // loadData('dataEmpty.json');
+            loadData('data.json');
+
+        });
+
+    </script>
+
+</body>
+</html>
