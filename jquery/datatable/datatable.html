@@ -26,11 +26,15 @@
                 </tr>
             </thead>
         </table>
+        <div>
+            <button class="btn_data">load data</button>
+            <button class="btn_dataEmpty">load dataEmpty</button>
+        </div>
     </div>
 
     <script>
 
-        function renderDataTable2(data) {
+        function initDataTable(data) {
 
             $('#myDataTable1').DataTable({
                 // searching: false, // 우측 상단 검색창의 표시여부를 설정한다
@@ -75,7 +79,7 @@
 
         }
 
-        function loadData(url) {
+        function _getJson(url, success) {
             setTimeout(() => {
 
                 $.ajax({
@@ -86,10 +90,7 @@
                     beforeSend: function() {
                         console.log('beforeSend');
                     },
-                    success: function(data) {
-                        console.log('success', data);
-                        renderDataTable2(data);
-                    },
+                    success: success,
                     error: function(request, status, error) {
                         console.log('error');
                         console.log('  request', request);
@@ -109,8 +110,25 @@
 
         $(document).ready( function () {
 
-            // loadData('dataEmpty.json');
-            loadData('data.json');
+            initDataTable();
+
+            $('.btn_data').on('click', function() {
+                console.log('click btn_data');
+                _getJson('data.json', function(data) {
+                    console.log('success', data);
+                    $('#myDataTable1').DataTable().rows().remove().draw();
+                    $('#myDataTable1').DataTable().rows.add(data).draw();
+                });
+            });
+
+            $('.btn_dataEmpty').on('click', function() {
+                console.log('click btn_dataEmpty');
+                _getJson('dataEmpty.json', function(data) {
+                    console.log('success', data);
+                    $('#myDataTable1').DataTable().rows().remove().draw();
+                    $('#myDataTable1').DataTable().rows.add(data).draw();
+                });
+            });
 
         });
 
