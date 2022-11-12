@@ -40,6 +40,24 @@
     /* align-items: center; */
     justify-content: center;
 }
-.modal .footer button + button {
+/* .modal .footer button + button {
     margin-left: 5px;
+} */
+.modal .footer a + a {
+    margin-left: 5px;
+}
+.modal .footer a,
+.modal .footer a:visited {
+    display: inline-block;
+    background-color: #447CED;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.modal .footer a:hover,
+.modal .footer a:active {
+    background-color: blue;
 }

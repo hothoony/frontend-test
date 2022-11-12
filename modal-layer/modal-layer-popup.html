@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    
+
 
     <!-- modal layer pupup -->
     <div class="modal alert" style="display: none;">
@@ -22,7 +22,8 @@
             <div class="content">
             </div>
             <div class="footer">
-                <button class="btnOk">Ok</button>
+                <!-- <button class="btnOk">Ok</button> -->
+                <a class="btn btnOk">OK</a>
             </div>
         </div>
     </div>
@@ -33,8 +34,10 @@
             <div class="content">
             </div>
             <div class="footer">
-                <button class="btnCancel">Cancel</button>
-                <button class="btnOk">Save</button>
+                <!-- <button class="btnCancel">Cancel</button> -->
+                <!-- <button class="btnOk">Save</button> -->
+                <a class="btn btnCancel">Cancel</a>
+                <a class="btn btnOk">Save</a>
             </div>
         </div>
     </div>
@@ -56,11 +59,13 @@
                 closeModal();
             }
 
-            var btnOk = document.querySelector(modalSelector + ' .btnOk');
-            btnOk.onclick = function() {
-                if (callback) callback();
-                closeModal();
-            }
+            var btnOk = document.querySelectorAll(modalSelector + ' .btnOk');
+            btnOk.forEach(function(btnOk) {
+                btnOk.onclick = function() {
+                    if (callback) callback();
+                    closeModal();
+                }
+            });
 
             // window.onclick = function(event) {
             //     if (event.target == modal) {
@@ -87,16 +92,20 @@
                 closeModal();
             }
 
-            var btnCancel = document.querySelector(modalSelector + ' .btnCancel');
-            btnCancel.onclick = function() {
-                closeModal();
-            }
+            var btnCancel = document.querySelectorAll(modalSelector + ' .btnCancel');
+            btnCancel.forEach(function(btnCancel) {
+                btnCancel.onclick = function() {
+                    closeModal();
+                }
+            });
 
-            var btnOk = document.querySelector(modalSelector + ' .btnOk');
-            btnOk.onclick = function() {
-                if (callback) callback();
-                closeModal();
-            }
+            var btnOk = document.querySelectorAll(modalSelector + ' .btnOk');
+            btnOk.forEach(function(btnOk) {
+                btnOk.onclick = function() {
+                    if (callback) callback();
+                    closeModal();
+                }
+            });
 
             // window.onclick = function(event) {
             //     if (event.target == modal) {
@@ -126,7 +135,7 @@
                 });
             }
 
-            btnAlert.click();
+            btnConfirm.click();
         });
 
     </script>
