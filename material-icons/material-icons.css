@@ -9,6 +9,17 @@
         url(css/font/MaterialIcons-Regular.ttf) format('truetype');
 }
 
+@font-face {
+    font-family: 'Material Icons Outlined';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons Outlined'),
+        local('MaterialIconsOutlined-Regular'),
+        /* url(css/font/MaterialIconsOutlined-Regular.woff2) format('woff2'), */
+        /* url(css/font/MaterialIconsOutlined-Regular.woff) format('woff'), */
+        url(css/font/MaterialIconsOutlined-Regular.otf) format('opentype');
+}
+
 .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;
