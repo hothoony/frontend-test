@@ -26,7 +26,6 @@
             <div class="content">
             </div>
             <div class="footer">
-                <!-- <button class="btnOk">Ok</button> -->
                 <a class="btn btnOk">OK</a>
             </div>
         </div>
@@ -41,10 +40,22 @@
             <div class="content">
             </div>
             <div class="footer">
-                <!-- <button class="btnCancel">Cancel</button> -->
-                <!-- <button class="btnOk">Save</button> -->
                 <a class="btn btnCancel">Cancel</a>
                 <a class="btn btnOk">Save</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal error" style="display: none;">
+        <div class="body">
+            <span class="close">&times;</span>
+            <div class="icon error">
+                <i class="material-icons">close</i>
+            </div>
+            <div class="content">
+            </div>
+            <div class="footer">
+                <a class="btn btnOk">Ok</a>
             </div>
         </div>
     </div>
@@ -104,6 +115,11 @@
             popupModal(modalSelector, message, callback);
         }
 
+        function popupError(message, callback) {
+            let modalSelector = '.modal.error';
+            popupModal(modalSelector, message, callback);
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
 
             var btnAlert = document.getElementById("btnAlert");
@@ -120,6 +136,13 @@
                 });
             }
 
+            var btnError = document.getElementById("btnError");
+            btnError.onclick = function() {
+                popupError('에러가 발생했습니다!', function() {
+                    console.log('OK 를 클릭했습니다.');
+                });
+            }
+
             btnConfirm.click();
         });
 
@@ -127,6 +150,7 @@
 
 <button id="btnAlert">open alert</button>
 <button id="btnConfirm">open confirm</button>
+<button id="btnError">open error</button>
 
 <p>body content</p>
 <p>body content</p>
