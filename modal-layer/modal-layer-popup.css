@@ -11,23 +11,49 @@
 .modal .body {
     background-color: #fefefe;
     /* width: 50%; */
-    min-width: 500px;
+    min-width: 450px;
     margin :auto;
     padding: 15px;
     border: 1px solid #888;
     border-radius: 8px;
+    position: relative;
+}
+.modal .close {
+    color: #aaa;
+    /* float: right; */
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 4px;
+    right: 12px;
+}
+.modal .body .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto 0;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #000;
+    border-radius: 50%;
+}
+.modal .body .icon.info {
+    color: yellowgreen;
+    border-color: yellowgreen;
+}
+.modal .body .icon.warn {
+    color: orange;
+    border-color: orange;
+}
+.modal .body .icon.error {
+    color: red;
+    border-color: red;
 }
 .modal .body .content {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 200px;
-}
-.modal .close {
-    color: #aaa;
-    float: right;
-    font-size: 20px;
-    font-weight: bold;
+    min-height: 100px;
 }
 .modal .close:hover,
 .modal .close:focus {
