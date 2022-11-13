@@ -53,20 +53,28 @@
 
     <script>
 
-        function popupAlert(message, callback) {
-            let modalSelector = '.modal.alert';
+        function popupModal(modalSelector, message, callback) {
             let modal = document.querySelector(modalSelector);
 
-            let closeModal = function() {
+            const closeModal = function() {
                 modal.style.display = 'none';
             }
 
-            var close = document.querySelector(modalSelector + ' .close');
+            let close = document.querySelector(modalSelector + ' .close');
             close.onclick = function() {
                 closeModal();
             }
 
-            var btnOk = document.querySelectorAll(modalSelector + ' .btnOk');
+            let btnCancel = document.querySelectorAll(modalSelector + ' .btnCancel');
+            if (btnCancel != null) {
+                btnCancel.forEach(function(btnCancel) {
+                    btnCancel.onclick = function() {
+                        closeModal();
+                    }
+                });
+            }
+
+            let btnOk = document.querySelectorAll(modalSelector + ' .btnOk');
             btnOk.forEach(function(btnOk) {
                 btnOk.onclick = function() {
                     if (callback) callback();
@@ -80,50 +88,20 @@
             //     }
             // }
 
-            var content = document.querySelector(modalSelector + ' .body .content');
+            let content = document.querySelector(modalSelector + ' .body .content');
             content.innerHTML = message;
 
             modal.style.display = 'flex';
         }
 
+        function popupAlert(message, callback) {
+            let modalSelector = '.modal.alert';
+            popupModal(modalSelector, message, callback);
+        }
+
         function popupConfirm(message, callback) {
             let modalSelector = '.modal.confirm';
-            let modal = document.querySelector(modalSelector);
-
-            let closeModal = function() {
-                modal.style.display = 'none';
-            }
-
-            var close = document.querySelector(modalSelector + ' .close');
-            close.onclick = function() {
-                closeModal();
-            }
-
-            var btnCancel = document.querySelectorAll(modalSelector + ' .btnCancel');
-            btnCancel.forEach(function(btnCancel) {
-                btnCancel.onclick = function() {
-                    closeModal();
-                }
-            });
-
-            var btnOk = document.querySelectorAll(modalSelector + ' .btnOk');
-            btnOk.forEach(function(btnOk) {
-                btnOk.onclick = function() {
-                    if (callback) callback();
-                    closeModal();
-                }
-            });
-
-            // window.onclick = function(event) {
-            //     if (event.target == modal) {
-            //         closeModal();
-            //     }
-            // }
-
-            var content = document.querySelector(modalSelector + ' .body .content');
-            content.innerHTML = message;
-
-            modal.style.display = 'flex';
+            popupModal(modalSelector, message, callback);
         }
 
         document.addEventListener("DOMContentLoaded", function() {
