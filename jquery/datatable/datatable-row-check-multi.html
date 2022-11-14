@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery DataTable</title>
+
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.5.0/css/select.dataTables.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="http://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+</head>
+<body>
+
+    <div>
+        <h1>myDataTable1</h1>
+        <table id="myDataTable1">
+            <thead>
+                <tr>
+                    <th>
+                        <label>
+                            <input type="checkbox" class="td_all_chk">
+                            <span></span>
+                        </label>
+                    </th>
+                    <th>ID</th>
+                    <th>title</th>
+                    <th>price</th>
+                    <th>note</th>
+                </tr>
+            </thead>
+        </table>
+        <div>
+            <button class="btn_data">load data</button>
+
+        </div>
+    </div>
+
+    <script>
+
+        function initDataTable(data) {
+
+            $('#myDataTable1').DataTable({
+                columns: [
+                    {data: 'chk', render: function() { return ''; }},
+                    {data: 'id'},
+                    {data: 'title'},
+                    {data: 'price'},
+                    {data: 'note'},
+                ],
+                columnDefs: [
+                    {targets: [0], orderable: false, className: 'select-checkbox'},
+                    // {targets: [1], width: '100'},
+                    // {targets: [4], visible: false},
+                ],
+                select: {
+                    style: 'multi',
+                    selector: 'td:first-child',
+                    // info: false,
+                },
+                data: data,
+                language: {
+                    emptyTable: '데이터가 없습니다',
+                    infoEmpty: '0 건',
+                    info: '_START_ / _END_ (총 _TOTAL_ 건)',
+                    search: '검색',
+                    zeroRecords: '검색된 데이터가 없습니다',
+                    paginate: {
+                        previous: '이전',
+                        next: '다음',
+                        first: '첫 페이지',
+                        last: '마지막 페이지',
+                    }
+                },
+            });
+
+        }
+
+        function _getJson(url, data, success) {
+            let headers = {};
+
+            $.ajax({
+                method: 'get',
+                url: url,
+                data: data,
+                dataType: 'json',
+                headers: headers,
+                beforeSend: function() {
+                    console.log('beforeSend');
+                },
+                success: success,
+                error: function(request, status, error) {
+                    console.log('error');
+                    console.log('  request', request);
+                    console.log('  status', status);
+                    console.log('  error', error);
+                },
+                complete: function(request, status, error) {
+                    console.log('complete');
+                    console.log('  request', request);
+                    console.log('  status', status);
+                    console.log('  error', error);
+                }
+            });
+        }
+
+        $(document).ready( function () {
+
+            initDataTable();
+
+            $('.btn_data').on('click', function() {
+                console.log('click btn_data');
+                let data = {};
+                _getJson('./data.json', data, function(data) {
+                    console.log('success', data);
+                    $('#myDataTable1').DataTable().rows().remove().draw();
+                    $('#myDataTable1').DataTable().rows.add(data).draw();
+                });
+            });
+
+            // $('.btn_data').click();
+            $('.btn_data').trigger('click');
+
+        });
+
+    </script>
+
+</body>
+</html>
