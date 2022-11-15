@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery-siblings</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+    <script>
+        $(document).ready(function() {
+            
+var ary = ['aa', 'bb', 'cc', 'dd', 'ee'];
+
+console.log('');
+ary.forEach(function(item, index) {
+    console.log(index, item);
+});
+
+console.log('');
+$.each(ary, function(index, item) {
+    console.log(index, item);
+});
+
+        });
+    </script>
+
+</head>
+<body>
+    
+
+
+</body>
+</html>
