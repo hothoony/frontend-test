@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .formItem {
+            display: block;
+        }
+        .formItem span {
+            display: inline-block;
+            width: 140px;
+        }
+        .formItem + .formItem {
+            margin-top: 10px;
+        }
+    </style>
+
+    <script>
+        function numberOnly(e) {
+            console.log('');
+            console.log('numberOnly');
+            console.log('e', e);
+            console.log('e.target', e.target);
+            console.log('e.target.value', e.target.value);
+            return false;
+        }
+    </script>
+
+</head>
+<body>
+    
+    <label class="formItem">
+        <span>number keydown</span>
+        <input type="text" onkeydown="numberOnly(event)">
+    </label>
+
+    <label class="formItem">
+        <span>number pattern</span>
+        <input type="text" pattern="[0-9]+">
+    </label>
+
+    <label class="formItem">
+        <span>number pattern</span>
+        <input type="text" pattern="[0-9]+">
+    </label>
+
+</body>
+</html>

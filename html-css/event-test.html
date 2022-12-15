@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .wrap {
+            display: block;
+            width: 130px;
+            height: 100px;
+        }
+        .wrap1 {
+            border: 1px solid red;
+        }
+        .wrap2 {
+            border: 1px solid blue;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            console.log('ready');
+
+            $('.wrap2').on('hello', function(e) {
+                console.log('wrap2 hello', e);
+                console.log('e.detail', e.detail);
+            });
+
+            $('.wrap1').off('click').on('click', function(e) {
+                console.log('click wrap1');
+                // $('.wrap2').trigger('hello');
+
+                let event = new Event('hello', {detail: {myData: 123}});
+                document.querySelector('.wrap2').dispatchEvent(event);
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+
+    <h1>event-test</h1>
+    
+    <div class="wrap wrap1">
+        
+    </div>
+
+    <div class="wrap wrap2">
+        
+    </div>
+
+</body>
+</html>
