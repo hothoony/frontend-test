@@ -26,7 +26,7 @@
             console.log('e', e);
             console.log('e.target', e.target);
             console.log('e.target.value', e.target.value);
-            return false;
+            e.target.value = e.target.value.replace(/[^0-9.]/g, '');
         }
     </script>
 
@@ -34,18 +34,24 @@
 <body>
     
     <label class="formItem">
-        <span>number keydown</span>
+        <span>text onkeydown</span>
         <input type="text" onkeydown="numberOnly(event)">
     </label>
 
     <label class="formItem">
-        <span>number pattern</span>
-        <input type="text" pattern="[0-9]+">
+        <span>text oninput</span>
+        <input type="text" oninput="numberOnly(event)">
     </label>
 
     <label class="formItem">
-        <span>number pattern</span>
+        <span>text pattern</span>
         <input type="text" pattern="[0-9]+">
+
+    </label>
+
+    <label class="formItem">
+        <span>type number</span>
+        <input type="number">
     </label>
 
 </body>

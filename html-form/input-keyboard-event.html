@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .formItem {
+            display: block;
+        }
+        .formItem span {
+            display: inline-block;
+            width: 200px;
+        }
+        .formItem + .formItem {
+            margin-top: 10px;
+        }
+    </style>
+
+    <script>
+        function onKeyboardEvent(e) {
+            console.log('onKeyboardEvent, type=', e.type, ', keyCode=', e.keyCode, ', e=', e);
+        }
+    </script>
+
+</head>
+<body>
+    
+    <label class="formItem">
+        <span>input text onKeyboardEvent</span>
+        <input type="text" name="memberName" id="memberName"
+            onkeydown="onKeyboardEvent(event)"
+            onkeypress="onKeyboardEvent(event)"
+            oninput="onKeyboardEvent(event)"
+            onkeyup="onKeyboardEvent(event)"
+        >
+    </label>
+
+</body>
+</html>
