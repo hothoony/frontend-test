@@ -12,39 +12,38 @@
         }
         .formItem span {
             display: inline-block;
-            width: 140px;
+            width: 200px;
         }
         .formItem + .formItem {
             margin-top: 10px;
         }
     </style>
 
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script>
     <script>
         function numberOnly(e) {
-            console.log('');
-            console.log('numberOnly');
-            console.log('e', e);
-            console.log('e.target', e.target);
-            console.log('e.target.value', e.target.value);
             e.target.value = e.target.value.replace(/[^0-9.]/g, '');
         }
+
+        $(document).ready(function() {
+            console.log('ready');
+
+            $('input[compType=number]').off().on('input', function(e) {
+                e.target.value = e.target.value.replace(/[^0-9.]/g, '');
+            });
+        });
     </script>
 
 </head>
 <body>
-    
-    <label class="formItem">
-        <span>text onkeydown</span>
-        <input type="text" onkeydown="numberOnly(event)">
-    </label>
 
     <label class="formItem">
-        <span>text oninput</span>
+        <span>text text oninput</span>
         <input type="text" oninput="numberOnly(event)">
     </label>
 
     <label class="formItem">
-        <span>text pattern</span>
+        <span>text text pattern</span>
         <input type="text" pattern="[0-9]+">
 
     </label>
@@ -52,6 +51,11 @@
     <label class="formItem">
         <span>type number</span>
         <input type="number">
+    </label>
+
+    <label class="formItem">
+        <span>type text compType number</span>
+        <input type="text" compType="number">
     </label>
 
 </body>
