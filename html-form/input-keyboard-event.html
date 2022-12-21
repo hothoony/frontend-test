@@ -17,6 +17,8 @@
         .formItem + .formItem {
             margin-top: 10px;
         }
+        .mb10 {margin-bottom: 10px;}
+        .mb20 {margin-bottom: 20px;}
     </style>
 
     <script>
@@ -27,6 +29,11 @@
 
 </head>
 <body>
+
+    <h2>input 박스 keyboard event 순서 테스트</h2>
+    <div class="mb20">
+        <div>이벤트 순서 : keydown > keypress > input > keyup</div>
+    </div>
     
     <label class="formItem">
         <span>input KeyboardEvent</span>
