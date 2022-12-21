@@ -20,69 +20,22 @@
     </style>
 
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script>
-    <script>
-        function initInputElem() {
-            const numberOnly = function(value) {
-                return value.replace(/[^0-9.]/g, '');
-            };
-            
-            $('input[comptype^=number]').off().on('input', function(e) {
-                // e.target.value = e.target.value.replace(/[^0-9.]/g, '');
-                e.target.value = numberOnly(e.target.value);
-            });
-
-            $('input[comptype*=MaxLen]').each(function(index, item) {
-                console.log(item);
-                let comptype = item.getAttribute('comptype');
-                let maxLen1 = comptype.substring(comptype.indexOf('MaxLen') + 'MaxLen'.length);
-                let maxLen2 = comptype.replace(/[^0-9.]/g, '');
-                // console.log('maxLen1', maxLen1);
-                // console.log('maxLen2', maxLen2);
-                item.setAttribute('maxlength', maxLen1);
-            });
-        }
-
-        $(document).ready(function() {
-            console.log('ready');
-            initInputElem();
-        });
-    </script>
 
 </head>
 <body>
 
     <label class="formItem">
-        <span>text text minlength 3</span>
+        <span>type text minlength 3</span>
         <input type="text"
             minlength="3"
         >
     </label>
     
     <label class="formItem">
-        <span>text text maxlength 3</span>
+        <span>type text maxlength 3</span>
         <input type="text"
             maxlength="3"
         >
-    </label>
-
-    <label class="formItem">
-        <span>text text compType text 3</span>
-        <input type="text" compType="textMaxLen3">
-    </label>
-
-    <label class="formItem">
-        <span>text text compType text 5</span>
-        <input type="text" compType="textMaxLen5">
-    </label>
-
-    <label class="formItem">
-        <span>text text compType number 3</span>
-        <input type="text" compType="numberMaxLen3">
-    </label>
-
-    <label class="formItem">
-        <span>text text compType number 5</span>
-        <input type="text" compType="numberMaxLen5">
     </label>
 
 </body>
