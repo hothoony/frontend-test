@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .formItem {
+            display: block;
+        }
+        .formItem span {
+            display: inline-block;
+            width: 200px;
+        }
+        .formItem span.note {
+            display: inline-block;
+            width: 300px;
+        }
+        .formItem span.note.choice {
+            background-color: yellow;
+        }
+        .formItem + .formItem {
+            margin-top: 10px;
+        }
+    </style>
+
+    <script>
+        function onKeyDown(e) {
+            if (e.keyCode == 13) {
+                console.log('onKeyDown, type=', e.type, ', keyCode=', e.keyCode, ', e=', e);
+                search();
+            }
+        }
+        function onKeyPress(e) {
+            if (e.keyCode == 13) {
+                console.log('onKeyPress, type=', e.type, ', keyCode=', e.keyCode, ', e=', e);
+                search();
+            }
+        }
+        function onKeyUp(e) {
+            if (e.keyCode == 13) {
+                console.log('onKeyUp, type=', e.type, ', keyCode=', e.keyCode, ', e=', e);
+                search();
+            }
+        }
+        function onInput(e) {
+            if (e.keyCode == 13) {
+                console.log('onInput, type=', e.type, ', keyCode=', e.keyCode, ', e=', e);
+                search();
+            }
+        }
+        function search() {
+            console.log('search()');
+        }
+    </script>
+
+</head>
+<body>
+
+    <h2>input 박스에서 enter 키 입력시 search() 실행을 테스트</h2>
+    
+    <label class="formItem">
+        <span>input onKeyDown enter</span>
+        <input type="text" name="memberName" id="memberName"
+            onkeydown="onKeyDown(event)"
+        >
+        <span class="note">여러 번만 실행됨</span>
+    </label>
+
+    <label class="formItem">
+        <span>input onKeyPress enter</span>
+        <input type="text" name="memberName" id="memberName"
+            onkeypress="onKeyPress(event)"
+        >
+        <span class="note">여러 번만 실행됨</span>
+    </label>
+
+    <label class="formItem">
+        <span>input onKeyUp enter</span>
+        <input type="text" name="memberName" id="memberName"
+            onkeyup="onKeyUp(event)"
+        >
+        <span class="note choice">한 번만 실행됨</span>
+    </label>
+
+    <label class="formItem">
+        <span>input onInput enter</span>
+        <input type="text" name="memberName" id="memberName"
+            oninput="onInput(event)"
+        >
+        <span class="note">실행 안됨</span>
+    </label>
+
+</body>
+</html>
