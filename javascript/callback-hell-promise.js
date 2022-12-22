@@ -1,38 +1,38 @@
-function step1(callback) {
+function step1() {
     console.log('step1 processing');
-    setTimeout(() => {
-        callback();
-    }, 1000);
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('step1 processing done');
+            resolve();
+        }, 1000);
+    });
 }
 
-function step2(callback) {
+function step2() {
     console.log('step2 processing');
-    setTimeout(() => {
-        callback();
-    }, 1000);
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('step2 processing done');
+            resolve();
+        }, 1000);
+    });
 }
 
-function step3(callback) {
+function step3() {
     console.log('step3 processing');
-    setTimeout(() => {
-        callback();
-    }, 1000);
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('step3 processing done');
+        }, 1000);
+    });
 }
 
 // -----------------------------------------
 
-let myPromise = new Promise((resolve, reject) => {
-    // setTimeout(function() {
-    //     resolve('success');
-    // }, 1000);
-    setTimeout(function() {
-        reject('error !!');
-    }, 2000);
-});
-myPromise
-.then(message => {
-    console.log('success', message);
+step1()
+.then(() => {
+    return step2();
 })
-.catch(message => {
-    console.log('fail', message);
+.then(() => {
+    return step3();
 });
