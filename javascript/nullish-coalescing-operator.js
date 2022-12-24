@@ -1,3 +1,5 @@
+// Nullish coalescing operator (??)
+
 let data1 = null;
 let data2 = 'ok';
 
