@@ -8,6 +8,7 @@ set.add('aa');
 set.add('bb');
 set.add('cc');
 set.add('AA');
+set.add('aa');
 console.log('set', set);
 
 // has
