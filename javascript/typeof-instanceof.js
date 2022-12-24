@@ -1,0 +1,34 @@
+console.log('');
+console.log( typeof null );
+console.log( typeof undefined );
+console.log( typeof '' );
+console.log( typeof 10 );
+console.log( typeof true );
+console.log( typeof [] );
+console.log( typeof {} );
+console.log( typeof (new String()) );
+console.log( typeof (new Number()) );
+console.log( typeof (new Boolean()) );
+console.log( typeof (new Date()) );
+console.log( typeof (function(){}) );
+console.log( typeof (() => {}) );
+
+console.log('');
+console.log( null            instanceof Object );
+console.log( undefined       instanceof Object );
+console.log( ''              instanceof String );
+console.log( 10              instanceof Number );
+console.log( true            instanceof Boolean );
+console.log( []              instanceof Array );
+console.log( {}              instanceof Object );
+console.log( (new String())  instanceof String );
+console.log( (new Number())  instanceof Number );
+console.log( (new Boolean()) instanceof Boolean );
+console.log( (new Date())    instanceof Date );
+console.log( (function(){})  instanceof Function );
+console.log( (() => {})      instanceof Function );
+
+console.log('');
+console.log(toString.call(null));
+console.log(toString.call(undefined));
+console.log(toString.call(''));
