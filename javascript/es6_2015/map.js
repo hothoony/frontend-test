@@ -6,9 +6,9 @@ let mapA = new Map();
 mapA.set(red, 100);
 mapA.set(green, 200);
 mapA.set(blue, 300);
-console.log(mapA);
+console.log('mapA', mapA);
 
 let mapB = new Map();
 mapB.set('name', 'apple');
 mapB.set('product', 'mac');
-console.log(mapB);
+console.log('mapB', mapB);
