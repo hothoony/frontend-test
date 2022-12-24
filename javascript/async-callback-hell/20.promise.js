@@ -52,6 +52,9 @@ function successAll() {
     })
     .catch(e => {
         console.log('catch', e);
+    })
+    .finally(() => {
+        console.log('finally');
     });
 }
 
@@ -65,6 +68,9 @@ function failTest() {
     })
     .catch(e => {
         console.log('catch', e);
+    })
+    .finally(() => {
+        console.log('finally');
     });
 }
 

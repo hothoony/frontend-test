@@ -37,38 +37,52 @@ function step3(success = true, successCallback, failCallback) {
 // -----------------------------------------
 
 function successAll() {
+    const finalJob = () => {
+        console.log('finally');
+    };
+
     step1(true, function() {
 
         step2(true, function() {
             
             step3(true, function() {
-                
+                finalJob();
             }, function(e) {
                 console.log('err', e);
+                finalJob();
             });
         }, function(e) {
             console.log('err', e);
+            finalJob();
         });
     }, function(e) {
         console.log('err', e);
+        finalJob();
     });
 }
 
 function failTest() {
+    const finalJob = () => {
+        console.log('finally');
+    };
+
     step1(true, function() {
 
         step2(false, function() {
             
             step3(true, function() {
-                
+                finalJob();
             }, function(e) {
                 console.log('err', e);
+                finalJob();
             });
         }, function(e) {
             console.log('err', e);
+            finalJob();
         });
     }, function(e) {
         console.log('err', e);
+        finalJob();
     });
 }
 

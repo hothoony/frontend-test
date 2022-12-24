@@ -53,6 +53,8 @@ async function successAll() {
         await step3();
     } catch (e) {
         console.log('error', e);
+    } finally {
+        console.log('finally');
     }
 }
 async function failTest() {
@@ -62,6 +64,8 @@ async function failTest() {
         await step3();
     } catch (e) {
         console.log('catch', e);
+    } finally {
+        console.log('finally');
     }
 }
 
