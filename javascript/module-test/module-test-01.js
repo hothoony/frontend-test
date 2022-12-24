@@ -1,6 +1,6 @@
-var moduleName = "NO moduleName";
+let moduleName = "NO moduleName";
 
-var module_v1 = {
+let module_v1 = {
     moduleName: 'module_v1',
     init: function() {
         console.log('init', this.moduleName);
@@ -10,8 +10,8 @@ var module_v1 = {
     }
 };
 
-var module_v2 = function() {
-    var moduleName = "module_v2";
+let module_v2 = function() {
+    let moduleName = "module_v2";
     function init() {
         console.log('init', moduleName);
     }
@@ -22,8 +22,8 @@ var module_v2 = function() {
     };
 }();
 
-var module_v3 = function() {
-    var moduleName = "module_v3";
+let module_v3 = function() {
+    let moduleName = "module_v3";
     function init() {
         console.log('init', moduleName);
     }
@@ -35,8 +35,8 @@ var module_v3 = function() {
     };
 }();
 
-var module_v4 = (function() {
-    var moduleName = "module_v4";
+let module_v4 = (function() {
+    let moduleName = "module_v4";
     function init() {
         console.log('init', moduleName);
     }

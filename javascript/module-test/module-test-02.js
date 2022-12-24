@@ -1,7 +1,7 @@
-var moduleName = "NO moduleName";
+let moduleName = "NO moduleName";
 
 (function() {
-    var moduleName = "module name";
+    let moduleName = "module name";
     function init() {
         console.log('init', moduleName);
     }
