@@ -1,28 +1,28 @@
 function step1() {
-    console.log('step1 processing');
+    console.log('step1 begin');
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            console.log('step1 processing done');
+            console.log('step1 end');
             resolve();
         }, 1000);
     });
 }
 
 function step2() {
-    console.log('step2 processing');
+    console.log('step2 begin');
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            console.log('step2 processing done');
+            console.log('step2 end');
             resolve();
         }, 1000);
     });
 }
 
 function step3() {
-    console.log('step3 processing');
+    console.log('step3 begin');
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            console.log('step3 processing done');
+            console.log('step3 end');
         }, 1000);
     });
 }
