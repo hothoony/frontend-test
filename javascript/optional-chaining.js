@@ -1,3 +1,5 @@
+// Optional chaining (?.)
+
 // obj?.prop
 // obj?.[prop]
 // obj.method?.()
