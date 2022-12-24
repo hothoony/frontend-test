@@ -40,6 +40,8 @@ function step3(success = true) {
     });
 }
 
+// -----------------------------------------
+
 // 비동기 처리를 하는 함수에서 Promise 를 리턴한다
 // 비동기 처리 함수를 호출할때 await 를 적어준다
 // await 구문을 사용하는 함수에 async 를 적어준다
@@ -59,9 +61,9 @@ async function failTest() {
         await step2(false);
         await step3();
     } catch (e) {
-        console.log('error', e);
+        console.log('catch', e);
     }
 }
 
-successAll();
-// failTest();
+// successAll();
+failTest();
