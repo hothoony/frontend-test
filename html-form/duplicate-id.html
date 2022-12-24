@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .formItem {
+            display: block;
+        }
+        .formItem span {
+            display: inline-block;
+            width: 180px;
+        }
+        .formItem2 span {
+            display: inline-block;
+            width: unset;
+        }
+        .inline-block {
+            display: inline-block;
+        }
+        .btnWrap {
+            margin: 10px;
+        }
+        .btn {
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            background-color: lightseagreen;
+            color: white;
+            user-select: none;
+            cursor: pointer;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script>
+    <script>
+        function checkDuplicatedId() {
+            let dupId = {};
+            for (let node of document.querySelectorAll('[id]')) {
+                if (dupId?.[node.id] === undefined) {
+                    dupId[node.id] = 1;
+                } else {
+                    dupId[node.id] += 1;
+                }
+            }
+            console.log('duplicatedId', dupId);
+            // 중복되지 않은 id 는 삭제
+            for (let prop in dupId) {
+                if (dupId[prop] === 1) {
+                    delete dupId[prop];
+                }
+            }
+            console.log('duplicatedId', dupId);
+        }
+
+        document.addEventListener('DOMContentLoaded', (e) => {
+            console.log('document ready');
+            console.log(checkDuplicatedId());
+        });
+    </script>
+</head>
+
+<body>
+
+    <h2>id 가 중복되는 경우 테스트</h2>
+
+    <form method="post" id="form1" action>
+        <div>
+            <label class="formItem">
+                <span>OS (id=ostypeWrap)</span>
+                <div class="inline-block" id="ostypeWrap" data-order="first">
+                    <label class="formItem2">
+                        <input type="radio" name="ostype" value="mac">
+                        <span>Mac</span>
+                    </label>
+                    <label class="formItem2">
+                        <input type="radio" name="ostype" value="linux">
+                        <span>Linux</span>
+                    </label>
+                    <label class="formItem2">
+                        <input type="radio" name="ostype" value="windows">
+                        <span>Windows</span>
+                    </label>
+                </div>
+            </label>
+        </div>
+        <div>
+            <label class="formItem">
+                <span>device (id=ostypeWrap)</span>
+                <div class="inline-block" id="ostypeWrap" data-order="second">
+                    <label class="formItem2">
+                        <input type="radio" name="device" value="macbookpro">
+                        <span>Mac Book Pro</span>
+                    </label>
+                    <label class="formItem2">
+                        <input type="radio" name="device" value="imac">
+                        <span>iMac</span>
+                    </label>
+                    <label class="formItem2">
+                        <input type="radio" name="device" value="windows-desktop">
+                        <span>Windows Desktop</span>
+                    </label>
+                    <label class="formItem2">
+                        <input type="radio" name="device" value="windows-laptop">
+                        <span>Windows Laptop</span>
+                    </label>
+                </div>
+            </label>
+        </div>
+    </form>
+
+</body>
+</html>

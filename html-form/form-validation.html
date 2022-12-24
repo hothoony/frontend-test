@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .formItem {
+            display: block;
+        }
+        .formItem span {
+            display: inline-block;
+            width: 140px;
+        }
+        .formItem2 span {
+            display: inline-block;
+            width: unset;
+        }
+        .inline-block {
+            display: inline-block;
+        }
+        .btnWrap {
+            margin: 10px;
+        }
+        .btn {
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            background-color: lightseagreen;
+            color: white;
+            user-select: none;
+            cursor: pointer;
+        }
+    </style>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script> -->
+    <script>
+
+        let data_ostype = [
+            {cmnCd: 'mac', cmnCdNm: 'Mac'},
+            {cmnCd: 'linux', cmnCdNm: 'Linux'},
+            {cmnCd: 'windows', cmnCdNm: 'Windows'},
+        ];
+        let data_device = [
+            {cmnCd: 'macbookpro', cmnCdNm: 'MacBook Pro'},
+            {cmnCd: 'imac', cmnCdNm: 'iMac'},
+            {cmnCd: 'windows-desktop', cmnCdNm: 'Windows desktop'},
+            {cmnCd: 'windows-laptop', cmnCdNm: 'Windows laptop'},
+        ];
+        let data_tools = [
+            {cmnCd: 'intellij', cmnCdNm: 'IntelliJ'},
+            {cmnCd: 'eclipse', cmnCdNm: 'Eclipse'},
+            {cmnCd: 'vscode', cmnCdNm: 'Visual Studio Code'},
+        ];
+        let data_database = [
+            {cmnCd: 'mysql', cmnCdNm: 'MySql'},
+            {cmnCd: 'oracle', cmnCdNm: 'Oracle'},
+            {cmnCd: 'postgresql', cmnCdNm: 'Postgresql'},
+        ];
+        let data_repotype = [
+            {cmnCd: 'git', cmnCdNm: 'Git'},
+            {cmnCd: 'svn', cmnCdNm: 'SVN'},
+        ];
+        let data_jdkver = [
+            {cmnCd: 'jdk11', cmnCdNm: 'java 11'},
+            {cmnCd: 'jdk8', cmnCdNm: 'java 8'},
+        ];
+
+        function renderFormElems(wrapId, elName, data, type) {
+            let elemList = document.querySelectorAll(`#${wrapId}`);
+            for (let elem of elemList) {
+                for (let child of Array.from(elem.children)) {
+                    child.remove();
+                }
+            }
+
+            let markup = '';
+
+            // select
+            if (type.toLowerCase() === 's') {
+                markup += `<select name="${elName}">`;
+                    markup += `<option value=""></option>`;
+                for (let item of data) {
+                    let name = item.cmnCdNm;
+                    let value = item.cmnCd;
+                    markup += `<option value="${value}">${name}</option>`;
+                }
+                markup += `</select>`;
+            }
+            // checkbox, radio
+            else {
+                let elType = (type.toLowerCase() === 'c') ? 'checkbox' : 'radio';
+                if (type.toLowerCase() === 'c') {
+                    markup += `
+                        <label class="formItem2">
+                            <input type="${elType}" name="${elName}All" value="">
+                            <span>전체</span>
+                        </label>
+                    `;
+                }
+                for (let item of data) {
+                    let name = item.cmnCdNm;
+                    let value = item.cmnCd;
+                    markup += `
+                        <label class="formItem2">
+                            <input type="${elType}" name="${elName}" value="${value}">
+                            <span>${name}</span>
+                        </label>
+                    `;
+                }
+            }
+
+            for (let elem of Array.from(elemList)) {
+                elem.innerHTML = markup;
+            }
+        }
+
+        function isBlank(value) {
+            return (value === null || value === undefined || String(value).trim() === '');
+        }
+        function hasValue(value) {
+            return !isBlank(value);
+        }
+        function checkElem(name, isCheck, value) {
+            if (hasValue(value)) {
+                let elemList = document.querySelectorAll(`[name=${name}][value=${value}]`);
+                if (elemList.length > 0) {
+                    let elem = elemList[0];
+                    elem.checked = (isCheck) ? 'checked' : '';
+                }
+            } else {
+                for (let elem of document.querySelectorAll(`[name=${name}]`)) {
+                    elem.checked = (isCheck) ? 'checked' : '';
+                }
+            }
+        }
+        function isChecked(name, value = '') {
+            let valueSelector = hasValue(value) ? `[value=${value}]` : '';
+            let elemList = document.querySelectorAll(`[name=${name}]${valueSelector}:checked`);
+            return elemList.length > 0;
+        }
+        function addEventListener(elSelector, eventName, callback) {
+            let elems = document.querySelectorAll(elSelector);
+            for (let elem of elems) {
+                if (callback) {
+                    elem.addEventListener(eventName, callback);
+                }
+            }
+        }
+        function checkedValue(name) {
+            let elemList = document.querySelectorAll(`[name=${name}]:checked`);
+            let elems = Array.from(elemList);
+            let result = elems.map(elem => {
+                return elem.value;
+            });
+            return result;
+        }
+        function checkedOption(name) {
+            let elemList = document.querySelectorAll(`[name=${name}] option:checked`);
+            let elems = Array.from(elemList);
+            let result = elems
+            .filter(elem => {
+                return String(elem.value).trim() != '';
+            })
+            .map(elem => {
+                return elem.value;
+            });
+            return result;
+        }
+
+        function save() {
+            let data = {
+                ostype: checkedValue('ostype'),
+                device: checkedValue('device'),
+                tools: checkedValue('tools'),
+                database: checkedValue('database'),
+                repotype: checkedOption('repotype'),
+                jdkver: checkedOption('jdkver'),
+            };
+
+            console.log('data', data);
+            console.log('jsonStr', JSON.stringify(data));
+        }
+
+        document.addEventListener('DOMContentLoaded', (e) => {
+            console.log('document ready');
+
+            renderFormElems('ostypeWrap', 'ostype', data_ostype, 'r');
+            renderFormElems('deviceWrap', 'device', data_device, 'r');
+            renderFormElems('toolsWrap', 'tools', data_tools, 'c');
+            renderFormElems('databaseWrap', 'database', data_database, 'c');
+            renderFormElems('repotypeWrap', 'repotype', data_repotype, 's');
+            renderFormElems('jdkverWrap', 'jdkver', data_jdkver, 's');
+
+            addEventListener('.btn_cancel', 'click', function(e) {
+                console.log('cancel');
+            });
+
+            addEventListener('.btn_save', 'click', function(e) {
+                console.log('save');
+
+                let form = document.querySelector('#form1');
+                console.log('form', form);
+                // form.submit();
+
+                save();
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <form method="post" id="form1" action>
+
+        <div>
+            <label class="formItem">
+                <span>OS</span>
+                <div class="inline-block" id="ostypeWrap">
+                </div>
+            </label>
+        </div>
+        <div>
+            <label class="formItem">
+                <span>device type</span>
+                <div class="inline-block" id="deviceWrap">
+                </div>
+            </label>
+        </div>
+        <div>
+            <label class="formItem">
+                <span>Tools</span>
+                <div class="inline-block" id="toolsWrap">
+                </div>
+            </label>
+        </div>
+        <div>
+            <label class="formItem">
+                <span>Database</span>
+                <div class="inline-block" id="databaseWrap">
+                </div>
+            </label>
+        </div>
+        <div>
+            <label class="formItem">
+                <span>git/svn</span>
+                <div class="inline-block" id="repotypeWrap">
+                </div>
+            </label>
+        </div>
+        <div>
+            <label class="formItem">
+                <span>java version</span>
+                <div class="inline-block" id="jdkverWrap">
+                </div>
+            </label>
+        </div>
+        <div>
+            <label class="formItem">
+                <span>제목</span>
+                <input type="text" name="title" required>
+            </label>
+        </div>
+        <div>
+            <label class="formItem">
+                <span>내용</span>
+                <textarea name="content"></textarea>
+            </label>
+        </div>
+        <div>
+            <label class="formItem">
+                <span>활성화 여부</span>
+                <div class="inline-block">
+                    <label class="formItem2">
+                        <input type="checkbox" name="useYn" value="">
+                        <span>활성화</span>
+                    </label>
+                </div>
+            </label>
+        </div>
+        <div>
+            <label class="formItem">
+                <span>적용 여부</span>
+                <div class="inline-block">
+                    <label class="formItem2">
+                        <input type="radio" name="applyYn" value="Y">
+                        <span>적용</span>
+                    </label>
+                    <label class="formItem2">
+                        <input type="radio" name="applyYn" value="N" checked>
+                        <span>미적용</span>
+                    </label>
+                </div>
+            </label>
+        </div>
+        <div class="btnWrap">
+            <a class="btn btn_cancel">Cancel</a>
+            <a class="btn btn_save">Save</a>
+        </div>
+    </form>
+
+</body>
+</html>
