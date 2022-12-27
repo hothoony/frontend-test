@@ -32,6 +32,10 @@
             user-select: none;
             cursor: pointer;
         }
+        .error {
+            color: red;
+            border: 1px solid red;
+        }
     </style>
 
     <!-- <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script> -->
@@ -68,8 +72,8 @@
         ];
 
         function renderFormElems(wrapId, elName, data, type) {
-            let elemList = document.querySelectorAll(`#${wrapId}`);
-            for (let elem of elemList) {
+            let nodeList = document.querySelectorAll(`#${wrapId}`);
+            for (let elem of nodeList) {
                 for (let child of Array.from(elem.children)) {
                     child.remove();
                 }
@@ -111,7 +115,7 @@
                 }
             }
 
-            for (let elem of Array.from(elemList)) {
+            for (let elem of Array.from(nodeList)) {
                 elem.innerHTML = markup;
             }
         }
@@ -124,9 +128,9 @@
         }
         function checkElem(name, isCheck, value) {
             if (hasValue(value)) {
-                let elemList = document.querySelectorAll(`[name=${name}][value=${value}]`);
-                if (elemList.length > 0) {
-                    let elem = elemList[0];
+                let nodeList = document.querySelectorAll(`[name=${name}][value=${value}]`);
+                if (nodeList.length > 0) {
+                    let elem = nodeList[0];
                     elem.checked = (isCheck) ? 'checked' : '';
                 }
             } else {
@@ -137,8 +141,8 @@
         }
         function isChecked(name, value = '') {
             let valueSelector = hasValue(value) ? `[value=${value}]` : '';
-            let elemList = document.querySelectorAll(`[name=${name}]${valueSelector}:checked`);
-            return elemList.length > 0;
+            let nodeList = document.querySelectorAll(`[name=${name}]${valueSelector}:checked`);
+            return nodeList.length > 0;
         }
         function addEventListener(elSelector, eventName, callback) {
             let elems = document.querySelectorAll(elSelector);
@@ -149,16 +153,16 @@
             }
         }
         function checkedValue(name) {
-            let elemList = document.querySelectorAll(`[name=${name}]:checked`);
-            let elems = Array.from(elemList);
+            let nodeList = document.querySelectorAll(`[name=${name}]:checked`);
+            let elems = Array.from(nodeList);
             let result = elems.map(elem => {
                 return elem.value;
             });
             return result;
         }
         function checkedOption(name) {
-            let elemList = document.querySelectorAll(`[name=${name}] option:checked`);
-            let elems = Array.from(elemList);
+            let nodeList = document.querySelectorAll(`[name=${name}] option:checked`);
+            let elems = Array.from(nodeList);
             let result = elems
             .filter(elem => {
                 return String(elem.value).trim() != '';
@@ -168,19 +172,32 @@
             });
             return result;
         }
+        function textValue(name) {
+            let nodeList = document.querySelectorAll(`[name=${name}]`);
+            let elems = Array.from(nodeList);
+            return elems.map(function(item) {
+                return item.value;
+            }).join('');
+        }
 
         function save() {
             let data = {
-                ostype: checkedValue('ostype'),
-                device: checkedValue('device'),
-                tools: checkedValue('tools'),
-                database: checkedValue('database'),
-                repotype: checkedOption('repotype'),
-                jdkver: checkedOption('jdkver'),
+                ostype   : checkedValue('ostype'),
+                device   : checkedValue('device'),
+                tools    : checkedValue('tools'),
+                database : checkedValue('database'),
+                repotype : checkedOption('repotype'),
+                jdkver   : checkedOption('jdkver'),
+                title    : textValue('title'),
+                content  : textValue('content'),
             };
 
             console.log('data', data);
             console.log('jsonStr', JSON.stringify(data));
+        }
+
+        function checkboxListener(name) {
+
         }
 
         document.addEventListener('DOMContentLoaded', (e) => {
@@ -192,6 +209,8 @@
             renderFormElems('databaseWrap', 'database', data_database, 'c');
             renderFormElems('repotypeWrap', 'repotype', data_repotype, 's');
             renderFormElems('jdkverWrap', 'jdkver', data_jdkver, 's');
+
+            checkboxListener('tools');
 
             addEventListener('.btn_cancel', 'click', function(e) {
                 console.log('cancel');
