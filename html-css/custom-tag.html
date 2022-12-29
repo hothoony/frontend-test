@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>custom-tag</title>
+
+    <script>
+        // 커스텀 태그 클래스를 정의한다
+        class MyCustomTag extends HTMLElement {
+            constructor(el) {
+                super();
+                console.log('MyCustomTag constructor');
+            }
+        }
+        
+        window.addEventListener('DOMContentLoaded', function(e) {
+            // 커스텀 태그를 등록한다
+            // 커스텀 태그는 하이픈(-)을 사용한다
+            window.customElements.define('my-custom-tag', MyCustomTag);
+        });
+    </script>
+
+</head>
+<body>
+
+    <h1>custom tag begin</h1>
+    <myTag1 style="color: red; font-size: 50px;">aaa</myTag1><!-- X 하이픈(-) 미사용 -->
+    <my-tag2 style="color: green; font-size: 50px;">bbb</my-tag2><!-- O 올바른 사용 -->
+    <my_tag3 style="color: blue; font-size: 50px;">ccc</my_tag3><!-- X 하이픈(-) 미사용 -->
+    <my-custom-tag style="color: orange; font-size: 50px;">ddd</my-custom-tag><!-- O 올바른 사용 -->
+    <h1>custom tag end</h1>                                                                                                                                                                                                                                                                                                 
+    
+</body>
+</html>
