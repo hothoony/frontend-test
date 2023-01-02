@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .modal {
+            border: 1px solid gray;
+            background-color: lightgoldenrodyellow;
+            padding: 20px;
+            width: 200px;
+        }
+        .modal h2 {
+            margin: 0 0 20px;
+        }
+        .form-item label span {
+            display: inline-block;
+            width: 40px;
+        }
+        .btnWrap {
+            margin-top: 10px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .hide {
+            display: none;
+        }
+        textarea {
+            width: 300px;
+            height: 100px;
+        }
+    </style>
+
+    <script>
+
+        const loginModal = {
+            init() {
+                this.setHandlers();
+            },
+
+            setHandlers() {
+                let self =  this;
+                let btnConfirm = document.querySelectorAll('#loginModal #btnConfirm')[0];
+                btnConfirm.removeEventListener('click', () => { self.btnOkClick(); });
+                btnConfirm.addEventListener('click', () => { self.btnOkClick(); });
+            },
+
+            btnOkClick() {
+                let event = new CustomEvent('btnOk', {
+                    detail: {
+                        loginId: document.querySelectorAll('#loginModal #loginId')[0].value,
+                        loginPw: document.querySelectorAll('#loginModal #loginPw')[0].value,
+                    },
+                });
+
+                let loginModal = document.getElementById('loginModal');
+                loginModal.dispatchEvent(event);
+            },
+        };
+
+        function setHandlers() {
+            let btnOpenModal = document.getElementById('btnOpenModal');
+            btnOpenModal.removeEventListener('click', openModal);
+            btnOpenModal.addEventListener('click', openModal);
+        }
+
+        function openModal(e) {
+            let loginModalPopup = document.getElementById('loginModal');
+            loginModalPopup.classList.remove('hide');
+            loginModalPopup.removeEventListener('btnOk', onModalOk);
+            loginModalPopup.addEventListener('btnOk', onModalOk);
+            loginModal.init();
+        }
+
+        function onModalOk(e) {
+            let ta = document.getElementById('ta');
+            let str = JSON.stringify(e.detail);
+            str = appendText(str, 'loginId=' + e.detail.loginId);
+            str = appendText(str, 'loginPw=' + e.detail.loginPw);
+            ta.value = str;
+        }
+
+        function appendText(str, newStr) {
+            return str + newStr + '\n';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('document ready');
+            setHandlers();
+        });
+
+    </script>
+
+</head>
+<body>
+
+    <div>
+        <h2>main page</h2>
+        <div>
+            <label>
+                <span>popup result</span>
+                <textarea id="ta"></textarea>
+            </label>
+        </div>
+        <div>
+            <button id="btnOpenModal">open login modal</button>
+        </div>
+    </div>
+
+    <p></p>
+
+    <div id="loginModal" class="modal hide">
+        <h2>Login Modal</h2>
+        <form id="form1">
+            <div class="form-item">
+                <label>
+                    <span>ID</span>
+                    <input type="text" name="loginId" id="loginId">
+                </label>
+            </div>
+            <div class="form-item">
+                <label>
+                    <span>PW</span>
+                    <input type="password" name="loginPw" id="loginPw">
+                </label>
+            </div>
+            <div class="btnWrap">
+                <button type="button" id="btnCancel">Cancel</button>
+                <button type="button" id="btnConfirm">OK</button>
+            </div>
+        </form>
+    </div>
+    
+</body>
+</html>
