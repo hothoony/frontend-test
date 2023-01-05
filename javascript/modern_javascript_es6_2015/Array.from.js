@@ -1,8 +1,8 @@
 // arguments
 function addMark1() {
     let result = [];
-    for (let i = 0; i < arguments.length; i++) {
-        result.push(arguments[i] + "!");
+    for (let arg of arguments) {
+        result.push(arg);
     }
     return result;
 }
@@ -11,7 +11,7 @@ function addMark1() {
 function addMark2() {
     // Array.from 가짜 배열 arguments 를 배열로 변환
     let ary = Array.from(arguments);
-    var result = ary.map(function(value) {
+    let result = ary.map(function(value) {
         return value + "!";
     });
     return result;
