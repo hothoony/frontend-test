@@ -44,19 +44,26 @@
             printInputFiles();
         }
 
+        function clickFiles() {
+            $('#files').trigger('click');
+        }
+
         $(document).ready(function() {
 
             $('#files').off().on('change', function(e) {
                 renderAttachFiles();
             });
-            
+
         });
     </script>
 
     <style>
-        .test {
-            display: inline-block;
-            width: 200px;
+        .btn {
+            border: 1px solid gray;
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
         }
     </style>
 
@@ -66,7 +73,8 @@
     <form method="post">
 
         <div>
-            <input type="file" id="files" accept="image/png" multiple>
+            <input type="file" id="files" accept="image/png" multiple hidden="true">
+            <a class="btn" onclick="javascript:clickFiles()">파일첨부</a>
         </div>
 
         <div>
