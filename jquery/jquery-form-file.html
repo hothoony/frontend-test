@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery-form</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+    <script>
+
+        function printInputFiles() {
+            for (let [index, file] of Array.from($('#files')[0].files).entries()) {
+                console.log(index, file.name);
+            }
+        }
+
+        function renderAttachFiles() {
+            let markup = '';
+            let files = Array.from($('#files')[0].files);
+            for (let file of files) {
+                console.log(file.name);
+                markup += `<div><a onclick="javascript:removeFile(this)">${file.name}</a></div>`;
+            }
+            $('#attachFiles').children().remove();
+            $('#attachFiles').append(markup);
+        }
+
+        function removeFile(e) {
+            console.log('removeFile', e, $(e).text());
+            let dataTransfer = new DataTransfer();
+            for (let [index, file] of Array.from($('#files')[0].files).entries()) {
+                if (file.name != $(e).text()) {
+                    dataTransfer.items.add(file);
+                }
+            }
+            $('#files')[0].files = dataTransfer.files;
+
+            renderAttachFiles();
+            printInputFiles();
+        }
+
+        $(document).ready(function() {
+
+            $('#files').off().on('change', function(e) {
+                renderAttachFiles();
+            });
+            
+        });
+    </script>
+
+    <style>
+        .test {
+            display: inline-block;
+            width: 200px;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <form method="post">
+
+        <div>
+            <input type="file" id="files" accept="image/png" multiple>
+        </div>
+
+        <div>
+            <input type="submit" value="submit">
+            <input type="reset" value="reset">
+        </div>
+
+        <div id="attachFiles"></div>
+
+    </form>
+
+</body>
+</html>
