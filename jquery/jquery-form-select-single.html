@@ -31,18 +31,18 @@
     <script>
         $(document).ready(function() {
             
+            // 선택
             $("button[type=button].ostype.mac").click(function() {
                 $.setSelect(this.className);
             });
-
             $("button[type=button].ostype.linux").click(function() {
                 $.setSelect(this.className);
             });
-
             $("button[type=button].ostype.windows").click(function() {
                 $.setSelect(this.className);
             });
 
+            // 선택된 값
             $("button[type=button].ostype.selected-value").click(function() {
                 console.log('selected val  :', $("select[name=ostype] > option:selected").val());
                 console.log('selected text :', $("select[name=ostype] > option:selected").text());
@@ -50,6 +50,7 @@
                 console.log('selected text :', $("select[name=ostype] option:selected").text());
             });
 
+            // 해제
             $("button[type=button].ostype.clear").click(function() {
                 $("select[name=ostype] option").prop("selected", false);
             });
@@ -63,6 +64,7 @@
 
         <select name="ostype">
             <option value=""></option>
+            <option value="----" selected>선택하세요</option>
             <option value="mac">macOS</option>
             <option value="linux">linux Ubuntu</option>
             <option value="windows">windows 10</option>
@@ -72,20 +74,20 @@
         <div>
             <div>선택</div>
             <button type="button" class="ostype mac">macOS</button>
-            <button type="button" class="ostype linux">linux Ubuntu</button>
-            <button type="button" class="ostype windows">windows 10</button>
-        </div>
-
-        <br>
-        <div>
-            <div>해제</div>
-            <button type="button" class="ostype clear">clear select</button>
+            <button type="button" class="ostype linux">linux</button>
+            <button type="button" class="ostype windows">windows</button>
         </div>
 
         <br>
         <div>
             <div>선택된 값</div>
             <button type="button" class="ostype selected-value">선택된 값</button>
+        </div>
+
+        <br>
+        <div>
+            <div>해제</div>
+            <button type="button" class="ostype clear">clear select</button>
         </div>
 
         <br>
