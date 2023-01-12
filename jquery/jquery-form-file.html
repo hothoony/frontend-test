@@ -41,7 +41,6 @@
             $('#files')[0].files = dataTransfer.files;
 
             renderAttachFiles();
-            printInputFiles();
         }
 
         function clickFiles() {
@@ -78,8 +77,7 @@
         </div>
 
         <div>
-            <input type="submit" value="submit">
-            <input type="reset" value="reset">
+            <button onclick="javascript:printInputFiles(); return false;">input file 첨부된 파일 리스트 보기</button>
         </div>
 
         <div id="attachFiles"></div>
