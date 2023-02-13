@@ -1,8 +1,12 @@
-function randomBetween(start, end) {
-    return parseInt((Math.random() * (end - start + 1)) + start);
-}
+// function randomBetween(start, end) {
+//     return parseInt((Math.random() * (end - start + 1)) + start);
+// }
 
 function shuffle(list) {
+    const randomBetween = (start, end) => {
+        return parseInt((Math.random() * (end - start + 1)) + start);
+    };
+
     for (let i = 0; i < list.length; i++) {
         let x = randomBetween(0, list.length - 1);
         let y = randomBetween(0, list.length - 1);
