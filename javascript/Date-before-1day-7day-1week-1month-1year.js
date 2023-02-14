@@ -1,5 +1,9 @@
 Date.prototype.format = function(f) {
 
+    if (f === null || f === undefined || String(f).trim() === '') {
+        f = 'yyyy-MM-dd';
+    }
+
     const lzp2 = (str) => {
         str = String(str??'');
         while (str.length < 2) {
@@ -23,30 +27,30 @@ let bgnDate;
 let endDate;
 
 console.log('');
-console.log('      today =', today.format('yyyy-MM-dd'));
+console.log('      today =', today.format());
 
 bgnDate = new Date(today);
 endDate = new Date(today);
 console.log('');
 console.log('오늘');
-console.log('    bgnDate =', bgnDate.format('yyyy-MM-dd'));
-console.log('    endDate =', endDate.format('yyyy-MM-dd'));
+console.log('    bgnDate =', bgnDate.format());
+console.log('    endDate =', endDate.format());
 
 bgnDate = new Date(today);
 endDate = new Date(today);
 bgnDate.setDate(bgnDate.getDate() - bgnDate.getDay()); // 이번주 일요일 구하기
 console.log('');
 console.log('이번주');
-console.log('    bgnDate =', bgnDate.format('yyyy-MM-dd'));
-console.log('    endDate =', endDate.format('yyyy-MM-dd'));
+console.log('    bgnDate =', bgnDate.format());
+console.log('    endDate =', endDate.format());
 
 bgnDate = new Date(today);
 endDate = new Date(today);
 bgnDate.setDate(1);
 console.log('');
 console.log('이번달');
-console.log('    bgnDate =', bgnDate.format('yyyy-MM-dd'));
-console.log('    endDate =', endDate.format('yyyy-MM-dd'));
+console.log('    bgnDate =', bgnDate.format());
+console.log('    endDate =', endDate.format());
 
 bgnDate = new Date(today);
 endDate = new Date(today);
@@ -54,5 +58,5 @@ bgnDate.setMonth(0);
 bgnDate.setDate(1);
 console.log('');
 console.log('이번연도');
-console.log('    bgnDate =', bgnDate.format('yyyy-MM-dd'));
-console.log('    endDate =', endDate.format('yyyy-MM-dd'));
+console.log('    bgnDate =', bgnDate.format());
+console.log('    endDate =', endDate.format());
