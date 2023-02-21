@@ -43,10 +43,10 @@ const changeData = (ary, key, value) => {
 
 printArray(data);
 checkValue('adminRole');
-console.log();
+console.log('');
 
 data = changeData(data, 'adminRole', '123');
 
 printArray(data);
 checkValue('adminRole');
-console.log();
+console.log('');
