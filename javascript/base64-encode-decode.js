@@ -23,6 +23,14 @@ const lpad = (str, len, padding = ' ') => {
     return str;
 }
 
+const printList = (list) => {
+    console.log('');
+    list.map(item => {
+        // console.log(lpad(item, 30), '', btoa(item));
+        console.log(item + '\t' + btoa(item));
+    });
+}
+
 const list1 = [
     'test_001@test.com',
     'test_001',
@@ -35,18 +43,8 @@ const list1 = [
 const list2 = [
     'test_003@test.com',
     'test_003',
-    '111111',
     'anonymous_test_003@test.com',
-    '01011112222',
-    '01033334444',
 ];
 
-console.log('');
-list1.map(item => {
-    console.log(lpad(item, 30), '=', btoa(item));
-});
-
-console.log('');
-list2.map(item => {
-    console.log(lpad(item, 30), '=', btoa(item));
-});
+printList(list1);
+printList(list2);
