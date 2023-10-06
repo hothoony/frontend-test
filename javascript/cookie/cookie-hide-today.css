@@ -1,0 +1,118 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.modal .body {
+    /* background-color: #fefefe; */
+    background-color: rgba(33, 33, 33, 0.5);
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    /* background-color: rgba(255, 255, 255, 0.5); */
+    width: 100%;
+    height: 100%;
+    /* min-width: 450px; */
+    margin :auto;
+    padding: 15px;
+    border: 1px solid red;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.modal .close {
+    color: #aaa;
+    /* float: right; */
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 4px;
+    right: 12px;
+}
+.modal .body .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto 0;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #000;
+    border-radius: 50%;
+}
+.modal .body .icon.info {
+    color: yellowgreen;
+    border-color: yellowgreen;
+}
+.modal .body .icon.warn {
+    color: orange;
+    border-color: orange;
+}
+.modal .body .icon.error {
+    color: red;
+    border-color: red;
+}
+.modal .body .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+}
+.modal .close:hover,
+.modal .close:focus {
+    cursor: pointer;
+    color: #000;
+    text-decoration: none;
+}
+.modal .footer {
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+    vertical-align: middle;
+    width: 215px;
+    margin: 10px auto;
+}
+.modal .footer form {
+    display: flex;
+    align-items: center;
+}
+/* .modal .footer button + button {
+    margin-left: 5px;
+} */
+.modal .footer a + a {
+    margin-left: 5px;
+}
+.modal .footer a,
+.modal .footer a:visited {
+    display: inline-block;
+    background-color: #447CED;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.modal .footer a:hover,
+.modal .footer a:active {
+    background-color: blue;
+}
+
+.modal .image-wrapper img {
+    /* width: 50%; */
+}
+.modal .image-wrapper {
+    /* width: 1600px; */
+    /* height: 1000px; */
+    border: 1px solid red;
+    width: 100%;
+    height: 50%;
+    background-image: url('./sonoma-wallpaper.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    /* background-size: 1600px 500px; */
+}
