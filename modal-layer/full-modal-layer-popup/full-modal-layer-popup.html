@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="full-modal-layer-popup.css">
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+</head>
+
+<body>
+
+
+    <!-- modal layer pupup -->
+    <div class="modal alert" style="display: none;">
+        <div class="body">
+
+            <!-- close icon -->
+            <span class="close">&times;</span>
+
+            <!-- 배경 이미지 -->
+            <div class="image-wrapper">
+                <!-- <img src="sonoma-wallpaper.jpg"> -->
+                <!-- <img > -->
+            </div>
+
+            <!-- body 아이콘, 내용 -->
+            <!-- <div class="icon info">
+                <i class="material-icons">priority_high</i>
+            </div> -->
+            <div class="content" style="display: none;">
+            </div>
+
+            <!-- 푸터 -->
+            <div class="footer">
+                <form>
+                    <label>
+                        <input type="checkbox" name="hideToday">
+                        <span>오늘 하루 그만 보기</span>
+                    </label>
+                </form>
+                <a class="btn btnOk">OK</a>
+            </div>
+
+        </div>
+    </div>
+    <!-- //modal layer pupup -->
+
+
+    <script>
+
+        function popupModal(modalSelector, message, callback) {
+            let modal = document.querySelector(modalSelector);
+
+            const closeModal = function() {
+                modal.style.display = 'none';
+            }
+
+            let close = document.querySelector(modalSelector + ' .close');
+            close.onclick = function() {
+                closeModal();
+            }
+
+            let btnCancel = document.querySelectorAll(modalSelector + ' .btnCancel');
+            if (btnCancel != null) {
+                btnCancel.forEach(function(btnCancel) {
+                    btnCancel.onclick = function() {
+                        closeModal();
+                    }
+                });
+            }
+
+            let btnOk = document.querySelectorAll(modalSelector + ' .btnOk');
+            btnOk.forEach(function(btnOk) {
+                btnOk.onclick = function() {
+                    if (callback) callback();
+                    closeModal();
+                }
+            });
+
+            let content = document.querySelector(modalSelector + ' .body .content');
+            content.innerHTML = message;
+
+            modal.style.display = 'flex';
+        }
+
+        function popupAlert(message, callback) {
+            let modalSelector = '.modal.alert';
+            popupModal(modalSelector, message, callback);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+
+            var btnAlert = document.getElementById("btnAlert");
+            btnAlert.onclick = function() {
+                popupAlert('모달 팝업창입니다. 123', function() {
+                    console.log('OK 를 클릭했습니다.');
+                });
+            }
+
+            btnAlert.click();
+        });
+
+    </script>
+
+<button id="btnAlert">open alert</button>
+
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+<p>body content</p>
+    
+</body>
+</html>

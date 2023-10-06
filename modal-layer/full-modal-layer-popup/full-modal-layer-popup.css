@@ -107,7 +107,7 @@
 .modal .image-wrapper {
     /* width: 1600px; */
     /* height: 1000px; */
-    /* border: 1px solid red; */
+    border: 1px solid red;
     width: 100%;
     height: 50%;
     background-image: url('./sonoma-wallpaper.jpg');
