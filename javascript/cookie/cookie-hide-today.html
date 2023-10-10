@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Document</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round" rel="stylesheet">
-    <link rel="stylesheet" href="cookie-hide-today.css">
+    <link href='https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round' rel='stylesheet'>
+    <link rel='stylesheet' href='cookie-hide-today.css'>
     
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src='https://code.jquery.com/jquery-3.7.1.js'></script>
 
-    <script type="text/javascript">
+    <script type='text/javascript'>
         const setCookieUntilToday = (name, value) => {
             let date = new Date();
             date.setDate(date.getDate() + 1);
@@ -40,7 +40,7 @@
         }
 
         const getCookie = (name) => {
-            let name = cname + "=";
+            let name = cname + '=';
 			let decodedCookie = decodeURIComponent(document.cookie);
 			let ca = decodedCookie.split(';');
 			for (let i = 0; i < ca.length; i++) {
@@ -52,7 +52,7 @@
 				    return c.substring(name.length, c.length);
 				}
 			}
-			return "";
+			return '';
         }
 
         const deleteCookie = (name) => {
@@ -67,34 +67,34 @@
 
 
     <!-- modal layer pupup -->
-    <div class="modal alert" style="display: none;">
-        <div class="body">
+    <div class='modal alert' style='display: none;'>
+        <div class='body'>
 
             <!-- close icon -->
-            <span class="close">&times;</span>
+            <span class='close'>&times;</span>
 
             <!-- 배경 이미지 -->
-            <div class="image-wrapper">
-                <!-- <img src="sonoma-wallpaper.jpg"> -->
+            <div class='image-wrapper'>
+                <!-- <img src='sonoma-wallpaper.jpg'> -->
                 <!-- <img > -->
             </div>
 
             <!-- body 아이콘, 내용 -->
-            <!-- <div class="icon info">
-                <i class="material-icons">priority_high</i>
+            <!-- <div class='icon info'>
+                <i class='material-icons'>priority_high</i>
             </div> -->
-            <div class="content" style="display: none;">
+            <div class='content' style='display: none;'>
             </div>
 
             <!-- 푸터 -->
-            <div class="footer">
+            <div class='footer'>
                 <form>
                     <label>
-                        <input type="checkbox" name="hideToday">
+                        <input type='checkbox' name='hideToday'>
                         <span>오늘 하루 그만 보기</span>
                     </label>
                 </form>
-                <a class="btn btnOk">OK</a>
+                <a class='btn btnOk'>OK</a>
             </div>
 
         </div>
@@ -145,9 +145,9 @@
             popupModal(modalSelector, message, callback);
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener('DOMContentLoaded', function() {
 
-            let btnAlert = document.getElementById("btnAlert");
+            let btnAlert = document.getElementById('btnAlert');
             btnAlert.onclick = function() {
                 popupAlert('모달 팝업창입니다. 123', function() {
                     const isChecked = $($('input[name=hideToday]')[0]).is(':checked');
@@ -162,8 +162,8 @@
             const isHideToday = getCookie('hideToday');
             console.log('isHideToday', isHideToday);
             console.log('(isHideToday == true)', (isHideToday == true));
-            console.log('(isHideToday === "true")', (isHideToday === "true"));
-            console.log('(isHideToday !== "true")', (isHideToday !== "true"));
+            console.log('(isHideToday === 'true')', (isHideToday === 'true'));
+            console.log('(isHideToday !== 'true')', (isHideToday !== 'true'));
             if (isHideToday === '') {
                 btnAlert.click();
             }
@@ -171,7 +171,7 @@
 
     </script>
 
-<button id="btnAlert">open alert</button>
+<button id='btnAlert'>open alert</button>
 
 <p>body content</p>
 <p>body content</p>
