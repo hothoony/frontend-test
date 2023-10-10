@@ -11,16 +11,16 @@
     
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
-    <script>
+    <script type="text/javascript">
         const setCookieUntilToday = (name, value) => {
             let date = new Date();
             date.setDate(date.getDate() + 1);
             date.setHours(0);
             date.setMinutes(0);
             date.setSeconds(0);
-            console.log('UTC : ', date.toGMTString());
+            console.log('UTC : ', date.toUTCString());
             console.log('KST : ', date.toLocaleString());
-            document.cookie = name + '=' + escape(value) + '; path=/; expires=' + date.toGMTString() + ';'
+            document.cookie = name + '=' + escape(value) + '; path=/; expires=' + date.toUTCString() + ';'
         }
 
         const setCookie = (name, value, days, midnight = false) => {
@@ -32,11 +32,11 @@
                 date.setMinutes(0);
                 date.setSeconds(0);
             }
-            document.cookie = name + '=' + escape(value) + '; path=/; expires=' + date.toGMTString() + ';'
+            document.cookie = name + '=' + escape(value) + '; path=/; expires=' + date.toUTCString() + ';'
         }
 
         const setCookieWithDate = (name, value, date) => {
-            document.cookie = name + '=' + escape(value) + '; path=/; expires=' + date.toGMTString() + ';'
+            document.cookie = name + '=' + escape(value) + '; path=/; expires=' + date.toUTCString() + ';'
         }
 
         const getCookie = (name) => {
@@ -55,7 +55,7 @@
 
         const deleteCookie = (name) => {
             let date = new Date();
-            document.cookie = name + '=; path=/; expires=' + date.toGMTString() + ';'
+            document.cookie = name + '=; path=/; expires=' + date.toUTCString() + ';'
         }
     </script>
 
