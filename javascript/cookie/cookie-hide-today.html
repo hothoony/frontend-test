@@ -18,6 +18,8 @@
             date.setHours(0);
             date.setMinutes(0);
             date.setSeconds(0);
+            console.log('UTC : ', date.toGMTString());
+            console.log('KST : ', date.toLocaleString());
             document.cookie = name + '=' + escape(value) + '; path=/; expires=' + date.toGMTString() + ';'
         }
 
@@ -137,6 +139,7 @@
 
         function popupAlert(message, callback) {
             let modalSelector = '.modal.alert';
+            $($('input[name=hideToday]')[0]).prop('checked', false);
             popupModal(modalSelector, message, callback);
         }
 
@@ -145,11 +148,23 @@
             let btnAlert = document.getElementById("btnAlert");
             btnAlert.onclick = function() {
                 popupAlert('모달 팝업창입니다. 123', function() {
+                    const isChecked = $($('input[name=hideToday]')[0]).is(':checked');
+                    console.log('isChecked', isChecked);
+                    if (isChecked) {
+                        setCookieUntilToday('hideToday', true);
+                    }
                     console.log('OK 를 클릭했습니다.');
                 });
             }
 
-            btnAlert.click();
+            const isHideToday = getCookie('hideToday');
+            console.log('isHideToday', isHideToday);
+            console.log('(isHideToday == true)', (isHideToday == true));
+            console.log('(isHideToday === "true")', (isHideToday === "true"));
+            console.log('(isHideToday !== "true")', (isHideToday !== "true"));
+            if (isHideToday === '') {
+                btnAlert.click();
+            }
         });
 
     </script>

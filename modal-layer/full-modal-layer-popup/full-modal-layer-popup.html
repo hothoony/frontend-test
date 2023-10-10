@@ -44,7 +44,8 @@
                         <span>오늘 하루 그만 보기</span>
                     </label>
                 </form>
-                <a class="btn btnOk">OK</a>
+                <!-- <a class="btn btnOk">OK</a> -->
+                <a class="btn btnClose">Close</a>
             </div>
 
         </div>
@@ -78,6 +79,14 @@
             let btnOk = document.querySelectorAll(modalSelector + ' .btnOk');
             btnOk.forEach(function(btnOk) {
                 btnOk.onclick = function() {
+                    if (callback) callback();
+                    closeModal();
+                }
+            });
+
+            let btnClose = document.querySelectorAll(modalSelector + ' .btnClose');
+            btnClose.forEach(function(btnClose) {
+                btnClose.onclick = function() {
                     if (callback) callback();
                     closeModal();
                 }
