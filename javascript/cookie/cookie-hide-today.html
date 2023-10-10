@@ -40,17 +40,19 @@
         }
 
         const getCookie = (name) => {
-            let obj = name + "=";
-            for (let i = 0; i < document.cookie.length; i++) {
-                let j = i + obj.length;
-                if (document.cookie.substring(i, j) == obj) {
-                    if ((endOfCookie = document.cookie.indexOf(";", j)) == -1)
-                        endOfCookie = document.cookie.length;
-                    return unescape(document.cookie.substring(j, endOfCookie));
-                }
-                i = document.cookie.indexOf(" ", i) + 1;
-            }
-            return "";
+            let name = cname + "=";
+			let decodedCookie = decodeURIComponent(document.cookie);
+			let ca = decodedCookie.split(';');
+			for(let i = 0; i <ca.length; i++) {
+				let c = ca[i];
+				while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+				}
+			}
+			return "";
         }
 
         const deleteCookie = (name) => {
