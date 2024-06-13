@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script>
+
+        function onChangeSelect(elem) {
+            console.log('');
+            console.log('onChangeSelect');
+            console.log('elem', elem);
+            console.log('options', elem.options);
+            console.log('selectedIndex', elem.selectedIndex);
+            console.log('selectedOption', elem.options[elem.selectedIndex]);
+            console.log('value', elem.value);
+            console.log('text', elem.options[elem.selectedIndex].text);
+
+            const selectedOption = elem.options[elem.selectedIndex];
+            if (!selectedOption) {
+                console.log('선택한 option 이 없음');
+            }
+
+            const select = document.querySelectorAll('select#sel01')[0];
+            const divout = document.querySelectorAll('div#out')[0];
+        }
+
+        function showSelected() {
+            console.log('');
+            console.log('showSelected');
+
+            const select = document.querySelectorAll('select#sel01')[0];
+            const divout = document.querySelectorAll('div#out')[0];
+        }
+
+    </script>
+
+</head>
+<body>
+    
+    <select id="sel01" title="선택하세요" name=managerSeq REQUIRED HNAME="포트폴리오 매니저" 
+        multiple
+        onchange="onChangeSelect(this)"
+        size="15"
+        style="width: 100px;"
+    >
+        <option value="">선택</option> 
+        <option value=01>숫자일</option> 
+        <option value=02>숫자이</option> 
+        <option value=03 selected>숫자삼</option> 
+        <option value=04>숫자사</option> 
+        <option value=05>숫자오</option> 
+        <option value=06>숫자육</option> 
+        <option value=07>숫자칠</option> 
+        <option value=08>숫자팔</option> 
+        <option value=09>숫자구</option> 
+        <option value=10>숫자십</option> 
+    </select>
+
+    <div id="out">
+
+    </div>
+
+</body>
+</html>

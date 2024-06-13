@@ -34,29 +34,82 @@
             const divout = document.querySelectorAll('div#out')[0];
         }
 
+        function checkForm() {
+            console.log('');
+            console.log('checkForm');
+
+            var isSelected = isManagerSelected();
+            if (!isSelected) {
+                console.log('선택된 select 없음 => X');
+                return false;
+            }
+
+            console.log('선택된 select 있음 => O');
+            return true;
+        }
+
+        function isManagerSelected() {
+            var selects = document.querySelectorAll('select[name=managerSeq]');
+            for (var i = 0; i < selects.length; i++) {
+                if (selects[i].value != '') {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     </script>
 
 </head>
 <body>
     
-    <select id="sel01" title="선택하세요" name=managerSeq REQUIRED HNAME="포트폴리오 매니저" 
-        multiple
-        onchange="onChangeSelect(this)"
-        size="15"
-        style="width: 100px;"
-    >
-        <option value="">선택</option> 
-        <option value=01>숫자일</option> 
-        <option value=02>숫자이</option> 
-        <option value=03 selected>숫자삼</option> 
-        <option value=04>숫자사</option> 
-        <option value=05>숫자오</option> 
-        <option value=06>숫자육</option> 
-        <option value=07>숫자칠</option> 
-        <option value=08>숫자팔</option> 
-        <option value=09>숫자구</option> 
-        <option value=10>숫자십</option> 
-    </select>
+    <form action="">
+        <h2>숫자를 선택하세요</h2>
+        <div>
+            <select title="선택하세요" name="managerSeq"
+                onchange="onChangeSelect(this)"
+                style="width: 100px;"
+            >
+                <option value="">선택</option>
+                <option value=01>숫자일</option>
+                <option value=02>숫자이</option>
+                <option value=03>숫자삼</option>
+                <option value=04>숫자사</option>
+                <option value=05>숫자오</option>
+            </select>
+        </div>
+    
+        <div>
+            <select title="선택하세요" name="managerSeq"
+                onchange="onChangeSelect(this)"
+                style="width: 100px;"
+            >
+                <option value="">선택</option>
+                <option value=01>숫자일</option>
+                <option value=02>숫자이</option>
+                <option value=03>숫자삼</option>
+                <option value=04>숫자사</option>
+                <option value=05>숫자오</option>
+            </select>
+        </div>
+    
+        <div>
+            <select title="선택하세요" name="managerSeq"
+                onchange="onChangeSelect(this)"
+                style="width: 100px;"
+            >
+                <option value="">선택</option>
+                <option value=01>숫자일</option>
+                <option value=02>숫자이</option>
+                <option value=03>숫자삼</option>
+                <option value=04>숫자사</option>
+                <option value=05>숫자오</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" onclick="return checkForm()">submit</button>
+        </div>
+    </form>
 
     <div id="out">
 
