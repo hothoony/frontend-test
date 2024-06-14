@@ -48,6 +48,22 @@
             return true;
         }
 
+        function checkForm2() {
+            console.log('');
+            console.log('checkForm2');
+
+            console.log('document.frm.elements', document.frm.elements);
+            for (var i = 0; i < document.frm.elements.length; i++) {
+                var el = document.frm.elements[i];
+                if (el.tagName == 'SELECT' && el.name == 'managerSeq') {
+                    // console.log('el', el);
+                    console.log(i, 'el', el.tagName, el.name, el.value);
+                }
+            }
+
+            return false;
+        }
+
         function isManagerSelected() {
             var selects = document.querySelectorAll('select[name=managerSeq]');
             for (var i = 0; i < selects.length; i++) {
@@ -63,7 +79,7 @@
 </head>
 <body>
     
-    <form action="">
+    <form name="frm" action="">
         <h2>숫자를 선택하세요</h2>
         <div>
             <select title="선택하세요" name="managerSeq"
@@ -107,7 +123,7 @@
             </select>
         </div>
         <div>
-            <button type="submit" onclick="return checkForm()">submit</button>
+            <button type="submit" onclick="return checkForm2()">submit</button>
         </div>
     </form>
 
