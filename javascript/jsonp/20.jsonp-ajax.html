@@ -18,6 +18,7 @@
             success: function(data) {
                 console.log('success');
                 console.log('data', data);
+                console.log('ssotoken', data.json.message);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.error('error');
@@ -26,7 +27,7 @@
                 console.error('errorThrown', errorThrown);
             },
             complete: function() {
-                console.log('complete');
+                // console.log('complete');
             },
         });
 
