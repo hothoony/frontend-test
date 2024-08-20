@@ -9,21 +9,48 @@
     <script>
 
         // JSONP 응답의 기본 형식인 callback({...}) 
-        const url = 'http://localhost:17007/getToken?callback=handleResponse';
+        const url = 'http://localhost:17007/getToken';
 
-        function handleResponse(data) {
-            console.log('handleResponse, data =', data);
-            console.log('ssotoken', data.json.message);
-        }
+        // function handleResponse(data) {
+        //     console.log('handleResponse, data =', data);
+        //     console.log('ssotoken', data.json.message);
+        // }
 
-        function loadJSONP() {
+        // function loadJSONP() {
+        //     var script = document.createElement('script');
+        //     // 서버 URL과 콜백 함수 이름을 쿼리 파라미터로 전달
+        //     script.src = url;
+        //     document.head.appendChild(script);
+        // }
+
+        // loadJSONP();
+
+        function loadJSONP(url) {
             var script = document.createElement('script');
-            // 서버 URL과 콜백 함수 이름을 쿼리 파라미터로 전달
+            var callbackName = 'jsonpCallback';
+            var url = url + '?callback=' + callbackName;
+
+            // 콜백 함수 정의
+            window[callbackName] = function(response) {
+                console.log('Received response as JSONP:', response);
+                document.getElementById('output').innerText = 'Response received';
+            };
+
+            console.log('url', url);
+
+            // 요청 보낼 URL에 콜백 함수 이름 추가
             script.src = url;
             document.head.appendChild(script);
-        }
 
-        loadJSONP();
+            // 삭제할 때, 콜백 함수와 script 태그 제거
+            script.onload = function(data) {
+                console.log('onload');
+                console.log('data', data);
+                delete window[callbackName];
+                document.head.removeChild(script);
+            };
+        }
+        loadJSONP(url);
     </script>
 
 </head>
