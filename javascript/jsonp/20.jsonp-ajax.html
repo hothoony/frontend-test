@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+
+        // JSONP 응답의 기본 형식인 callbackFunction({...}) 
+        const url = 'http://localhost:17007/getToken?callback=handleResponse';
+
+        function handleResponse(data) {
+            console.log('handleResponse, data =', data);
+        }
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "jsonp",
+            success: function(data) {
+                console.log('success');
+                console.log('data', data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('error');
+                console.error('jqXHR', jqXHR);
+                console.error('textStatus', textStatus);
+                console.error('errorThrown', errorThrown);
+            },
+            complete: function() {
+                console.log('complete');
+            },
+        });
+
+        console.log('url', url);
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
