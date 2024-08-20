@@ -8,33 +8,21 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
 
-        // JSONP 응답의 기본 형식인 callbackFunction({...}) 
+        // JSONP 응답의 기본 형식인 callback({...}) 
         const url = 'http://localhost:17007/getToken?callback=handleResponse';
 
         function handleResponse(data) {
             console.log('handleResponse, data =', data);
         }
 
-        $.ajax({
-            url: url,
-            type: "GET",
-            dataType: "jsonp",
-            success: function(data) {
-                console.log('success');
-                console.log('data', data);
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.error('error');
-                console.error('jqXHR', jqXHR);
-                console.error('textStatus', textStatus);
-                console.error('errorThrown', errorThrown);
-            },
-            complete: function() {
-                console.log('complete');
-            },
-        });
+        function loadJSONP() {
+            var script = document.createElement('script');
+            // 서버 URL과 콜백 함수 이름을 쿼리 파라미터로 전달
+            script.src = url;
+            document.head.appendChild(script);
+        }
 
-        console.log('url', url);
+        loadJSONP();
     </script>
 
 </head>
