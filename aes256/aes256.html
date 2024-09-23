@@ -10,10 +10,13 @@
 
         // const secretKey = CryptoJS.enc.Base64.parse('YOUR_BASE64_ENCODED_32BYTE_KEY');
         // const iv = CryptoJS.enc.Base64.parse('YOUR_BASE64_ENCODED_16BYTE_IV');
-        const secretKey = "nwjnt3gm4tjQXGd9w0hngSDBXXsAT9U8GcBObVA8NsY=";
-        const iv = "ZSnm22ERRX7rbT4FtYwfdQ==";
+        const secretKey_base64 = "nwjnt3gm4tjQXGd9w0hngSDBXXsAT9U8GcBObVA8NsY=";
+        const iv_base64 = "ZSnm22ERRX7rbT4FtYwfdQ==";
 
         function encrypt(text) {
+            const secretKey = CryptoJS.enc.Base64.parse(secretKey_base64);
+            const iv = CryptoJS.enc.Base64.parse(iv_base64);
+            
             const encrypted = CryptoJS.AES.encrypt(text, secretKey, {
                 iv: iv,
                 mode: CryptoJS.mode.CBC,
@@ -23,6 +26,9 @@
         }
 
         function decrypt(encryptedText) {
+            const secretKey = CryptoJS.enc.Base64.parse(secretKey_base64);
+            const iv = CryptoJS.enc.Base64.parse(iv_base64);
+
             const decrypted = CryptoJS.AES.decrypt(encryptedText, secretKey, {
                 iv: iv,
                 mode: CryptoJS.mode.CBC,
@@ -35,7 +41,7 @@
             console.log('DOMContentLoaded');
 
             const plainText = 'Hello World';
-            console.log('plainText:', encrypted);
+            console.log('plainText:', plainText);
 
             const encrypted = encrypt(plainText);
             console.log('encrypted:', encrypted);
