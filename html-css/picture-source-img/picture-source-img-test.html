@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>custom-tag</title>
+
+
+</head>
+<body>
+
+    <picture id="img01">
+        
+        <!-- width 가 0 px ~ 1024 px 까지 인 경우 표시된다 -->
+        <source srcset="./img/circle3-m.png" media="(max-width:640px)">
+        
+        <!-- width 가 1024 px 보다 큰 경우 표시된다 -->
+        <img src="./img/circle3.png" alt="원 3개 그림 표시" aria-describedby="imgBlind01">
+
+    </picture>
+
+</body>
+</html>
