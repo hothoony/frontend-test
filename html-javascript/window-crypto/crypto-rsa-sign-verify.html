@@ -6,6 +6,16 @@
     <title>Document</title>
 
     <script>
+        function base64ToArrayBuffer(inputData) {
+            return new Uint8Array(atob(inputData).split('').map(char => char.charCodeAt(0))).buffer;
+        }
+
+        function arrayBufferToBase64(inputData) {
+            return btoa(String.fromCharCode(...new Uint8Array(inputData)));
+        }
+    </script>
+
+    <script>
     </script>
 
     <script>
