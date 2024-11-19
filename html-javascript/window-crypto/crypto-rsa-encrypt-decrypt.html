@@ -44,7 +44,23 @@
                 encodedData,
             );
 
-            return encrypted;
+            return arrayBufferToBase64(encrypted);
+        }
+
+        async function decryptWithPrivateKey(encrypted, privateKey) {
+            encrypted = base64ToArrayBuffer(encrypted);
+
+            // 개인키로 복호화
+            const decrypted = await window.crypto.subtle.decrypt(
+                {
+                    name: 'RSA-OAEP',
+                },
+                privateKey,
+                encrypted,
+            );
+
+            const decoder = new TextDecoder();
+            return decoder.decode(decrypted);
         }
     </script>
 
@@ -75,7 +91,10 @@
             // 암호화
             const encrypted = await encryptWithPublicKey(plainText, keyPair.publicKey);
             console.log(`encrypted = ${encrypted}`);
-            console.log(`encrypted = ${arrayBufferToBase64(encrypted)}`);
+
+            // 복호화
+            const decrypted = await decryptWithPrivateKey(encrypted, keyPair.privateKey);
+            console.log(`decrypted = ${decrypted}`);
         });
     </script>
 
