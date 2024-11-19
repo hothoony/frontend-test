@@ -6,6 +6,16 @@
     <title>Document</title>
 
     <script>
+        function base64ToArrayBuffer(inputData) {
+            return new Uint8Array(atob(inputData).split('').map(char => char.charCodeAt(0))).buffer;
+        }
+
+        function arrayBufferToBase64(inputData) {
+            return btoa(String.fromCharCode(...new Uint8Array(inputData)));
+        }
+    </script>
+
+    <script>
         async function generateSecretKey() {
             try {
                 const key = await crypto.subtle.generateKey(
@@ -59,14 +69,6 @@
             } catch (error) {
                 console.error(`decryptData error = ${error}`);
             }
-        }
-
-        function base64ToArrayBuffer(inputData) {
-            return new Uint8Array(atob(inputData).split('').map(char => char.charCodeAt(0))).buffer;
-        }
-
-        function arrayBufferToBase64(inputData) {
-            return btoa(String.fromCharCode(...new Uint8Array(inputData)));
         }
     </script>
 

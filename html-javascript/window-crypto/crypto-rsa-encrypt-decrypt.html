@@ -6,11 +6,76 @@
     <title>Document</title>
 
     <script>
+        function base64ToArrayBuffer(inputData) {
+            return new Uint8Array(atob(inputData).split('').map(char => char.charCodeAt(0))).buffer;
+        }
+
+        function arrayBufferToBase64(inputData) {
+            return btoa(String.fromCharCode(...new Uint8Array(inputData)));
+        }
+    </script>
+
+    <script>
+        async function generateRSAKeyPair() {
+            const keyPair = await window.crypto.subtle.generateKey(
+                {
+                    name: 'RSA-OAEP',
+                    modulusLength: 2048, // 키 길이
+                    publicExponent: new Uint8Array([0x01, 0x00, 0x01]), // e = 65537
+                    hash: { name: 'SHA-256' }, // 해시 알고리즘
+                },
+                true, // 키를 내보낼 수 있음
+                ['encrypt', 'decrypt'], // 공개키: encrypt, 개인키: decrypt
+            );
+            return keyPair;
+        }
+
+        async function encryptWithPublicKey(plainText, publicKey) {
+            // 데이터를 arrayBuffer 로 변환
+            const encoder = new TextEncoder();
+            const encodedData = encoder.encode(plainText);
+
+            // 공개키로 암호화
+            const encrypted = await window.crypto.subtle.encrypt(
+                {
+                    name: 'RSA-OAEP',
+                },
+                publicKey,
+                encodedData,
+            );
+
+            return encrypted;
+        }
     </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             console.log('document ready');
+
+            // RSA 키 쌍 생성
+            const keyPair = await generateRSAKeyPair();
+            console.log(`keyPair = ${keyPair}`);
+            console.log(`keyPair.privateKey = ${keyPair.privateKey}`);
+            console.log(`keyPair.publicKey = ${keyPair.publicKey}`);
+            
+            console.log(`keyPair.privateKey.algorithm = ${keyPair.privateKey.algorithm}`);
+            console.log(`keyPair.privateKey.extractable = ${keyPair.privateKey.extractable}`);
+            console.log(`keyPair.privateKey.type = ${keyPair.privateKey.type}`);
+            console.log(`keyPair.privateKey.usages = ${keyPair.privateKey.usages}`);
+
+            console.log(`keyPair.publicKey.algorithm = ${keyPair.publicKey.algorithm}`);
+            console.log(`keyPair.publicKey.extractable = ${keyPair.publicKey.extractable}`);
+            console.log(`keyPair.publicKey.type = ${keyPair.publicKey.type}`);
+            console.log(`keyPair.publicKey.usages = ${keyPair.publicKey.usages}`);
+
+            // 평문 데이터
+            const plainText = 'hello window crypto !!';
+            console.log(`plainText = ${plainText}`);
+
+            // 암호화
+            const encrypted = await encryptWithPublicKey(plainText, keyPair.publicKey);
+            console.log(`encrypted = ${encrypted}`);
+            console.log(`encrypted = ${arrayBufferToBase64(encrypted)}`);
         });
     </script>
 
