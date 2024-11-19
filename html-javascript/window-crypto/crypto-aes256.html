@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        async function generateSecretKey() {
+            try {
+                const key = await crypto.subtle.generateKey(
+                    {
+                        name: 'AES-GCM',
+                        length: 256,
+                    },
+                    true,
+                    ['encrypt', 'decrypt']
+                );
+                return key;
+            } catch (error) {
+                console.error(`generateAES256Key error = ${error}`);
+            }
+        }
+
+        async function encryptData(plainText, secretKey, iv) {
+            const encoder = new TextEncoder();
+            const plainData = encoder.encode(plainText); // 텍스트 데이터를 바이너리로 변환
+
+            try {
+                const encrypted = await crypto.subtle.encrypt(
+                    {
+                        name: 'AES-GCM',
+                        iv: iv
+                    },
+                    secretKey,
+                    plainData // 암호화 할 데이터
+                );
+                return arrayBufferToBase64(encrypted);
+            } catch (error) {
+                console.error(`encryptData error = ${error}`);
+            }
+        }
+
+        async function decryptData(encrypted, secretKey, iv) {
+            encrypted = new Uint8Array(atob(encrypted).split('').map(char => char.charCodeAt(0))).buffer;
+
+            try {
+                const decrypted = await crypto.subtle.decrypt(
+                    {
+                        name: 'AES-GCM',
+                        iv: iv // 동일한 iv 를 사용해야 함
+                    },
+                    secretKey,
+                    encrypted // 암호화 된 데이터
+                );
+
+                const decoder = new TextDecoder();
+                return decoder.decode(decrypted);
+            } catch (error) {
+                console.error(`decryptData error = ${error}`);
+            }
+        }
+
+        function base64ToArrayBuffer(inputData) {
+            return new Uint8Array(atob(inputData).split('').map(char => char.charCodeAt(0))).buffer;
+        }
+
+        function arrayBufferToBase64(inputData) {
+            return btoa(String.fromCharCode(...new Uint8Array(inputData)));
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('document ready');
+
+            // secretKey 생성
+            const secretKey = await generateSecretKey();
+            console.log(`secretKey = ${secretKey}`);
+
+            // 12바이트 IV 생성 (GCM 모드에서 권장)
+            const iv = crypto.getRandomValues(new Uint8Array(12));
+            // console.log(`iv = ${iv}`);
+            console.log(`iv = ${arrayBufferToBase64(iv)}`);
+
+            // 암호화 할 텍스트
+            const plainText = 'hello window crypto !!';
+            console.log(`plainText = ${plainText}`);
+
+            // 암호화
+            const encrypted = await encryptData(plainText, secretKey, iv);
+            console.log(`encrypted = ${encrypted}`);
+
+            // 복호화
+            const decrypted = await decryptData(encrypted, secretKey, iv);
+            console.log(`decrypted = ${decrypted}`);
+        });
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
