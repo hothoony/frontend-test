@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind with HTML</title>
+    <!-- Tailwind CDN (개발 전용) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        h1 {
+            font-size: 30px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="flex">
+        <div class="w-1/2">
+            <h1>
+                flex-col items (start, center, end)
+            </h1>
+            <div class="border w-[200px] h-[150px] m-4 flex flex-col items-start">
+                <div>box1</div>
+                <div>box2</div>
+                <div>box3</div>
+            </div>
+            <div class="border w-[200px] h-[150px] m-4 flex flex-col items-center">
+                <div>box1</div>
+                <div>box2</div>
+                <div>box3</div>
+            </div>
+            <div class="border w-[200px] h-[150px] m-4 flex flex-col items-end">
+                <div>box1</div>
+                <div>box2</div>
+                <div>box3</div>
+            </div>
+        </div>
+        <div class="w-1/2">
+            <h1>
+                flex-col justify (start, center, end)
+            </h1>
+            <div class="border w-[200px] h-[150px] m-4 flex flex-col justify-start">
+                <div>box1</div>
+                <div>box2</div>
+                <div>box3</div>
+            </div>
+            <div class="border w-[200px] h-[150px] m-4 flex flex-col justify-center">
+                <div>box1</div>
+                <div>box2</div>
+                <div>box3</div>
+            </div>
+            <div class="border w-[200px] h-[150px] m-4 flex flex-col justify-end">
+                <div>box1</div>
+                <div>box2</div>
+                <div>box3</div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="flex">
+        <div class="w-1/2">
+            <h1>
+                flex row items (start, center, end)
+            </h1>
+            <div class="border w-[200px] h-[150px] m-4 flex flex-row items-start">
+                <div>box1</div>
+                <div>box2</div>
+                <div>box3</div>
+            </div>
+            <div class="border w-[200px] h-[150px] m-4 flex flex-row items-center">
+                <div>box1</div>
+                <div>box2</div>
+                <div>box3</div>
+            </div>
+            <div class="border w-[200px] h-[150px] m-4 flex flex-row items-end">
+                <div>box1</div>
+                <div>box2</div>
+                <div>box3</div>
+            </div>
+        </div>
+        <div class="w-1/2">
+            <h1>
+                flex row justify (start, center, end)
+            </h1>
+            <div class="border w-[200px] h-[150px] m-4 flex flex-row justify-start">
+                <div>box1</div>
+                <div>box2</div>
+                <div>box3</div>
+            </div>
+            <div class="border w-[200px] h-[150px] m-4 flex flex-row justify-center">
+                <div>box1</div>
+                <div>box2</div>
+                <div>box3</div>
+            </div>
+            <div class="border w-[200px] h-[150px] m-4 flex flex-row justify-end">
+                <div>box1</div>
+                <div>box2</div>
+                <div>box3</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
