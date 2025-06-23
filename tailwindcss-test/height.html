@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tailwind Height Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-full bg-gray-50 p-10">
+    <h1 class="text-2xl font-bold mb-6">Tailwind CSS Height Test</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- h-32 -->
+      <div class="bg-blue-200 h-32 flex items-center justify-center">
+        <code>h-32 (8rem)</code>
+      </div>
+
+      <!-- h-full inside fixed-height parent -->
+      <div class="h-48 bg-gray-200 p-2">
+        <div class="h-full bg-blue-300 flex items-center justify-center">
+          <code>h-full inside h-48 parent</code>
+        </div>
+      </div>
+
+      <!-- min-h-screen -->
+      <div class="min-h-screen bg-green-200 flex items-center justify-center">
+        <code>min-h-screen (100vh)</code>
+      </div>
+
+      <!-- max-h-32 with overflow -->
+      <div class="max-h-32 overflow-y-auto bg-yellow-200 p-2">
+        <p>
+          <code>max-h-32 + overflow</code><br />
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae
+          justo sit amet nisi fermentum bibendum. Vestibulum a est eget nisi
+          volutpat fermentum.
+        </p>
+      </div>
+
+      <!-- auto height -->
+      <div class="bg-purple-200 p-4">
+        <code>auto height (default)</code><br />
+        <p>This box adapts to its content.</p>
+      </div>
+
+      <!-- h-screen -->
+      <div class="h-screen bg-red-200 flex items-center justify-center">
+        <code>h-screen (100vh)</code>
+      </div>
+    </div>
+  </body>
+</html>
