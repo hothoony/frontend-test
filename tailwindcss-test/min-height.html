@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8" />
+    <title>Tailwind Min Height Example</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="h-full">
+
+    <!-- Wrapper: parent with fixed height -->
+    <div class="h-96 bg-gray-100 p-4">
+        <h1 class="text-xl font-bold mb-2">min-h-full</h1>
+        <div class="min-h-full bg-blue-300">
+        This box has <code>min-h-full</code><br />
+        Its height depends on the parent container (h-96).
+        </div>
+    </div>
+
+    <div class="mt-10">
+        <h1 class="text-xl font-bold mb-2">min-h-screen</h1>
+        <div class="min-h-screen bg-green-300">
+        This box has <code>min-h-screen</code><br />
+        It will always be at least as tall as the entire screen (100vh).
+        </div>
+    </div>
+
+</body>
+</html>
