@@ -11,7 +11,7 @@ function validateNumberInput(input) {
     var min = getAttrNum(input, 'data-min-value');
     var max = getAttrNum(input, 'data-max-value');
     var maxLen = getAttrNum(input, 'data-max-length');
-    var required = input.hasAttribute('required')
+    var required = input.hasAttribute('required');
 
     if (required && value === '') {
         return '필수 입력 항목입니다';
@@ -35,7 +35,7 @@ function validateNumberInput(input) {
 
 function applyNumberInput(input, errorMessageEl) {
 
-    var validateNumber = function() {
+    var validateNumber = function(e) {
         var value = input.value;
         var min = getAttrNum(input, 'data-min-value');
         var max = getAttrNum(input, 'data-max-value');
