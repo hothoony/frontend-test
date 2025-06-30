@@ -14,7 +14,6 @@ function validateInputNumber(value, min, max, maxLen) {
 }
 
 function applyInputNumber(input) {
-    var errorMessage = input.closest('.form-group')?.querySelector('.error-message');
     input.addEventListener('input', function () {
         var min = getAttrNum(input, 'data-min');
         var max = getAttrNum(input, 'data-max');
@@ -23,6 +22,7 @@ function applyInputNumber(input) {
         if (maxLen !== null) value = value.slice(0, maxLen);
         input.value = value;
         var error = validateInputNumber(value, min, max, maxLen);
+        var errorMessage = document.querySelector('.error-message');
         if (errorMessage) errorMessage.textContent = error;
     });
     input.addEventListener('blur', function () {
@@ -31,6 +31,7 @@ function applyInputNumber(input) {
         var maxLen = getAttrNum(input, 'data-maxLen');
         var value = input.value;
         var error = validateInputNumber(value, min, max, maxLen);
+        var errorMessage = document.querySelector('.error-message');
         if (errorMessage) errorMessage.textContent = error;
     });
 }
