@@ -20,11 +20,12 @@ function validateNumberInput(value, min, max, maxLen) {
 function applyNumberInput(input) {
 
     var validateNumber = () => {
+        var value = input.value;
         var min = getAttrNum(input, 'data-min');
         var max = getAttrNum(input, 'data-max');
         var maxLen = getAttrNum(input, 'data-maxLen');
-        var value = input.value;
         
+        // 숫자 외 입력 제한
         value = value.replace(/[^0-9]/g, '');
         
         if (maxLen !== null) value = value.slice(0, maxLen);
@@ -32,8 +33,8 @@ function applyNumberInput(input) {
         input.value = value;
         
         var error = validateNumberInput(value, min, max, maxLen);
-        var errorMessage = document.querySelector('.error-message');
-        if (errorMessage) errorMessage.textContent = error;
+        var errorMessageEl = document.querySelector('.error-message');
+        if (errorMessageEl) errorMessageEl.textContent = error;
     };
 
     input.addEventListener('input', validateNumber);
