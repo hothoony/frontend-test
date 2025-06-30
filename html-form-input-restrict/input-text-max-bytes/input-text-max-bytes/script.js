@@ -40,7 +40,7 @@ function initApp() {
   applyTextInput(document.querySelector('input[name=contentInput]'),
                  document.querySelector('input[name=contentInput] ~ .byteInfo'));
 
-  const form = document.getElementById('textForm');
+  const form = document.getElementById('form1');
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     alert(`입력값: ${titleInput.value}`);
