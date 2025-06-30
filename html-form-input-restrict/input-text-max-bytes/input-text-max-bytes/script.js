@@ -37,11 +37,11 @@ function initApp() {
   const titleInput = document.querySelector('input[name=titleInput]');
   const contentInput = document.querySelector('textarea[name=contentInput]');
 
-  applyTextInput(titleInput,
-                 document.querySelector('input[name=titleInput] ~ .byteInfo'));
+  // applyTextInput(titleInput, document.querySelector('input[name=titleInput] ~ .byteInfo'));
+  applyTextInput(titleInput, titleInput.parentElement.querySelector('.byteInfo'));
 
-  applyTextInput(contentInput,
-                 document.querySelector('textarea[name=contentInput] ~ .byteInfo'));
+  // applyTextInput(contentInput, document.querySelector('textarea[name=contentInput] ~ .byteInfo'));
+  applyTextInput(contentInput, contentInput.parentElement.querySelector('.byteInfo'));
 
   const form = document.getElementById('form1');
   form.addEventListener('submit', function(e) {
