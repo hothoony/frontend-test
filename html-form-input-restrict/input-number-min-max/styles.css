@@ -36,4 +36,23 @@ input[type="text"]:focus {
     font-size: 14px;
     margin-top: 6px;
     min-height: 18px;
+}
+
+.submit-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+    background: #0056b3;
+}
+
+.submit-btn:active {
+    background: #004085;
 } 
