@@ -4,13 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <script>
+        function handleInput(event) {
+            const input = event.target;
+            const value = input.value;
+            console.log('value', value);
+            const pattern = input.pattern;
+            console.log('pattern', pattern);
+            const regex = new RegExp(pattern);
+            console.log('regex.test(value)', regex.test(value));
+            if (!regex.test(value)) {
+                input.value = value.slice(0, -1);
+            }
+        }
+    </script>
+
 </head>
 <body>
 
     <form action="">
         <label>
             <span>Number</span>
-            <input type="text" pattern="[0-9]*">
+            <input type="text" pattern="[0-9]*" oninput="handleInput(event)">
         </label>
     </form>
 
