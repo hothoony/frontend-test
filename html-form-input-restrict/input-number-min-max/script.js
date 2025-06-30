@@ -87,7 +87,7 @@ function onFormSubmit(form) {
         };
         
         console.log('✅ validation 통과');
-        console.log('폼 제출 데이터:', formData);
+        console.log('formData', formData);
 
         return true;
     });
