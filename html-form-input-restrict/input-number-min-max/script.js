@@ -48,6 +48,10 @@ function applyNumberInput(input, errorMessageEl) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    applyNumberInput(document.querySelector('input[type="text"][name="age"]'), document.querySelector('.error-age'));
-    applyNumberInput(document.querySelector('input[type="text"][name="score"]'), document.querySelector('.error-score'));
+    
+    applyNumberInput(document.querySelector('input[type="text"][name="age"]'), 
+                     document.querySelector('.form-group:has(input[name="age"]) .error'));
+    
+    applyNumberInput(document.querySelector('input[type="text"][name="score"]'), 
+                     document.querySelector('.form-group:has(input[name="score"]) .error'));
 });
