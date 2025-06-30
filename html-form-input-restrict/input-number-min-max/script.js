@@ -1,6 +1,9 @@
 function getAttrNum(el, attr) {
     var val = el.getAttribute(attr);
-    return val !== null && val !== '' ? Number(val) : null;
+    if (val === null) return null;
+    if (val === '') return null;
+    var num = Number(val);
+    return isNaN(num) ? null : num;
 }
 
 function validateNumberInput(value, min, max, maxLen) {
@@ -9,7 +12,10 @@ function validateNumberInput(value, min, max, maxLen) {
     }
     
     if (!/^[0-9]+$/.test(value)) return '숫자만 입력 가능합니다.';
-    if (maxLen !== null && value.length > maxLen) return `최대 ${maxLen}자리까지 입력 가능합니다.`;
+    
+    if (maxLen !== null && maxLen > 0 && value.length > maxLen) {
+        return `최대 ${maxLen}자리까지 입력 가능합니다.`;
+    }
     
     var num = Number(value);
     if (min !== null && num < min) return `${min} 이상 입력하세요.`;
@@ -21,14 +27,15 @@ function applyNumberInput(input, errorMessageEl) {
 
     var validateNumber = () => {
         var value = input.value;
-        var min = getAttrNum(input, 'data-min');
-        var max = getAttrNum(input, 'data-max');
-        var maxLen = getAttrNum(input, 'data-maxLen');
+        var min = getAttrNum(input, 'data-min-value');
+        var max = getAttrNum(input, 'data-max-value');
+        var maxLen = getAttrNum(input, 'data-max-length');
         
-        // 숫자 외 입력 제한
         value = value.replace(/[^0-9]/g, '');
         
-        if (maxLen !== null) value = value.slice(0, maxLen);
+        if (maxLen !== null && maxLen > 0) {
+            value = value.slice(0, maxLen);
+        }
         
         input.value = value;
         
