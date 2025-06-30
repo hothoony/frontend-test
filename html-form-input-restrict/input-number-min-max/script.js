@@ -30,6 +30,8 @@ function applyNumberInput(input) {
         var max = getAttrNum(input, 'data-max');
         var maxLen = getAttrNum(input, 'data-maxLen');
         var value = input.value;
+        if (maxLen !== null) value = value.slice(0, maxLen);
+        input.value = value;
         var error = validateNumberInput(value, min, max, maxLen);
         var errorMessage = document.querySelector('.error-message');
         if (errorMessage) errorMessage.textContent = error;
