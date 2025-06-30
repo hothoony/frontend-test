@@ -15,30 +15,37 @@ function truncateToMaxBytes(str, maxBytes) {
   return result;
 }
 
-function initApp() {
-  const titleInput = document.getElementById('titleInput');
-  const byteInfo = document.getElementById('byteInfo');
-  const maxBytes = parseInt(titleInput.getAttribute('data-max-bytes'), 10);
+function applyTextInput(textInput, byteInfo) {
+  const maxBytes = parseInt(textInput.getAttribute('data-max-bytes'), 10);
 
-  titleInput.addEventListener('input', function (e) {
-    let value = titleInput.value;
+  textInput.addEventListener('input', function (e) {
+    let value = textInput.value;
     let bytes = getUtf8Bytes(value);
     if (bytes > maxBytes) {
       value = truncateToMaxBytes(value, maxBytes);
-      titleInput.value = value;
+      textInput.value = value;
       bytes = getUtf8Bytes(value);
     }
     byteInfo.textContent = `${bytes} / ${maxBytes} bytes`;
   });
 
-  // 초기화
   byteInfo.textContent = `0 / ${maxBytes} bytes`;
+}
+
+function initApp() {
+
+  applyTextInput(document.querySelector('input[name=titleInput]'),
+                 document.querySelector('input[name=titleInput] ~ .byteInfo'));
+
+  applyTextInput(document.querySelector('input[name=contentInput]'),
+                 document.querySelector('input[name=contentInput] ~ .byteInfo'));
 
   const form = document.getElementById('textForm');
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     alert(`입력값: ${titleInput.value}`);
   });
+
 }
 
 document.addEventListener('DOMContentLoaded', function () {
