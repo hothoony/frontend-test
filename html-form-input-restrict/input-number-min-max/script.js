@@ -71,7 +71,7 @@ function onFormSubmit(form) {
 
         // validation 실패
         if (ageValidation !== '' || scoreValidation !== '') {
-            console.warn('❌ validation 실패 - 폼 제출 불가');
+            console.warn('❌ validation 실패');
             if (ageValidation !== '') {
                 console.warn('나이 입력 오류:', ageValidation);
             }
@@ -87,7 +87,7 @@ function onFormSubmit(form) {
             score: scoreInput.value
         };
         
-        console.log('✅ validation 통과 - 폼 제출 성공!');
+        console.log('✅ validation 통과');
         console.log('폼 제출 데이터:', formData);
 
         return true;
