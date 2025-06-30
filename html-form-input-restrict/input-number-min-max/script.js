@@ -18,7 +18,8 @@ function applyNumberInput(input) {
         var min = getAttrNum(input, 'data-min');
         var max = getAttrNum(input, 'data-max');
         var maxLen = getAttrNum(input, 'data-maxLen');
-        var value = input.value.replace(/[^0-9]/g, '');
+        var value = input.value;
+        value = input.value.replace(/[^0-9]/g, '');
         if (maxLen !== null) value = value.slice(0, maxLen);
         input.value = value;
         var error = validateNumberInput(value, min, max, maxLen);
@@ -30,6 +31,7 @@ function applyNumberInput(input) {
         var max = getAttrNum(input, 'data-max');
         var maxLen = getAttrNum(input, 'data-maxLen');
         var value = input.value;
+        value = input.value.replace(/[^0-9]/g, '');
         if (maxLen !== null) value = value.slice(0, maxLen);
         input.value = value;
         var error = validateNumberInput(value, min, max, maxLen);
