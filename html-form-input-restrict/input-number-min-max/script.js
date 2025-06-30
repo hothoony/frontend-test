@@ -87,8 +87,8 @@ function onFormSubmit(form) {
             score: scoreInput.value
         };
         
+        console.log('✅ validation 통과 - 폼 제출 성공!');
         console.log('폼 제출 데이터:', formData);
-        console.log('✅ 모든 validation 통과 - 폼 제출 성공!');
     });
 }
 
