@@ -6,13 +6,9 @@
     <title>Document</title>
 
     <script>
-        /*
-            oninput="handleInput(this) 보다는
-            oninput="handleInput(event) 가 권장 패턴임
-        */
         function handleInput(event) {
             const input = event.target;
-            const value = input.value;
+            let value = input.value;
 
             console.log('value', value);
             
@@ -20,10 +16,13 @@
                 return;
             }
             
-            const regex = /^[0-9]*$/;
-            if (!regex.test(value)) {
-                input.value = input.value.replace(/[^0-9]/g, '');
+            value = value.replace(/[^0-9]/g, '');
+            
+            if (value !== '' && parseInt(value, 10) < 0) {
+                value = '0';
             }
+            
+            input.value = value;
         }
     </script>
 
