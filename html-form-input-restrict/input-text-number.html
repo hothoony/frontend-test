@@ -9,13 +9,16 @@
         function handleInput(event) {
             const input = event.target;
             const value = input.value;
+
             console.log('value', value);
-            const pattern = input.pattern;
-            console.log('pattern', pattern);
-            const regex = new RegExp(pattern);
-            console.log('regex.test(value)', regex.test(value));
+            
+            if (value === '') {
+                return;
+            }
+            
+            const regex = /^[0-9]*$/;
             if (!regex.test(value)) {
-                input.value = value.slice(0, -1);
+                input.value = input.value.replace(/[^0-9]/g, '');
             }
         }
     </script>
@@ -26,7 +29,7 @@
     <form action="">
         <label>
             <span>Number</span>
-            <input type="text" pattern="[0-9]*" oninput="handleInput(event)">
+            <input type="text" oninput="handleInput(event)">
         </label>
     </form>
 
