@@ -36,8 +36,8 @@ function initApp() {
   applyTextInput(document.querySelector('input[name=titleInput]'),
                  document.querySelector('input[name=titleInput] ~ .byteInfo'));
 
-  applyTextInput(document.querySelector('input[name=contentInput]'),
-                 document.querySelector('input[name=contentInput] ~ .byteInfo'));
+  applyTextInput(document.querySelector('textarea[name=contentInput]'),
+                 document.querySelector('textarea[name=contentInput] ~ .byteInfo'));
 
   const form = document.getElementById('form1');
   form.addEventListener('submit', function(e) {
