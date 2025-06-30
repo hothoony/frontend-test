@@ -16,21 +16,39 @@
         <form action="">
 
             <div class="form-group">
+                <label for="ageInput">
+                    <span>Age (10~80)</span>
+                </label>
+                <div class="input-wrapper">
+                    <input type="text" 
+                           id="ageInput"
+                           name="age"
+                           placeholder="Enter a age"
+                           data-min="10"
+                           data-max="80"
+                           data-maxLen="2"
+                           inputmode="numeric"
+                    >
+                </div>
+                <div class="error error-age"></div>
+            </div>
+
+            <div class="form-group">
                 <label for="scoreInput">
-                    <span>Score</span>
+                    <span>Score (101~200)</span>
                 </label>
                 <div class="input-wrapper">
                     <input type="text" 
                            id="scoreInput"
                            name="score"
-                           placeholder="Enter a number"
+                           placeholder="Enter a score"
                            data-min="101"
                            data-max="200"
                            data-maxLen="3"
                            inputmode="numeric"
                     >
                 </div>
-                <div class="error-message" id="errorMessage"></div>
+                <div class="error error-score"></div>
             </div>
 
         </form>

@@ -17,7 +17,7 @@ function validateNumberInput(value, min, max, maxLen) {
     return '';
 }
 
-function applyNumberInput(input) {
+function applyNumberInput(input, errorMessageEl) {
 
     var validateNumber = () => {
         var value = input.value;
@@ -33,7 +33,6 @@ function applyNumberInput(input) {
         input.value = value;
         
         var error = validateNumberInput(value, min, max, maxLen);
-        var errorMessageEl = document.querySelector('.error-message');
         if (errorMessageEl) errorMessageEl.textContent = error;
     };
 
@@ -42,5 +41,6 @@ function applyNumberInput(input) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    applyNumberInput(document.querySelector('input[type="text"][name="score"]'));
+    applyNumberInput(document.querySelector('input[type="text"][name="age"]'), document.querySelector('.error-age'));
+    applyNumberInput(document.querySelector('input[type="text"][name="score"]'), document.querySelector('.error-score'));
 });
