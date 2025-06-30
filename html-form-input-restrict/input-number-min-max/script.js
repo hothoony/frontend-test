@@ -68,18 +68,9 @@ function onFormSubmit(form) {
         // 에러 메시지 표시
         ageError.textContent = ageValidation;
         scoreError.textContent = scoreValidation;
-        
+
         // validation 통과 여부 확인
-        if (ageValidation === '' && scoreValidation === '') {
-            // 모든 validation 통과
-            const formData = {
-                age: ageInput.value,
-                score: scoreInput.value
-            };
-            
-            console.log('폼 제출 데이터:', formData);
-            console.log('✅ 모든 validation 통과 - 폼 제출 성공!');
-        } else {
+        if (ageValidation !== '' || scoreValidation !== '') {
             // validation 실패
             console.log('❌ validation 실패 - 폼 제출 불가');
             if (ageValidation !== '') {
@@ -89,6 +80,15 @@ function onFormSubmit(form) {
                 console.log('점수 입력 오류:', scoreValidation);
             }
         }
+        
+        // 모든 validation 통과
+        const formData = {
+            age: ageInput.value,
+            score: scoreInput.value
+        };
+        
+        console.log('폼 제출 데이터:', formData);
+        console.log('✅ 모든 validation 통과 - 폼 제출 성공!');
     });
 }
 
