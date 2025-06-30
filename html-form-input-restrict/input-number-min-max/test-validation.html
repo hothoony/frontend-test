@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min/Max Validation Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-case { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .test-input { margin: 5px 0; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Min/Max Validation Test (11-20, max 3 digits)</h1>
+    
+    <div class="test-case">
+        <h3>Test Cases:</h3>
+        <div class="test-input">
+            <label>Empty input: <input type="text" data-min="11" data-max="20" data-maxLen="3" placeholder="빈 값 테스트"></label>
+            <div class="error-message"></div>
+        </div>
+        <div class="test-input">
+            <label>Valid number (15): <input type="text" data-min="11" data-max="20" data-maxLen="3" value="15"></label>
+            <div class="error-message"></div>
+        </div>
+        <div class="test-input">
+            <label>Below min (10): <input type="text" data-min="11" data-max="20" data-maxLen="3" value="10"></label>
+            <div class="error-message"></div>
+        </div>
+        <div class="test-input">
+            <label>Above max (21): <input type="text" data-min="11" data-max="20" data-maxLen="3" value="21"></label>
+            <div class="error-message"></div>
+        </div>
+        <div class="test-input">
+            <label>Min boundary (11): <input type="text" data-min="11" data-max="20" data-maxLen="3" value="11"></label>
+            <div class="error-message"></div>
+        </div>
+        <div class="test-input">
+            <label>Max boundary (20): <input type="text" data-min="11" data-max="20" data-maxLen="3" value="20"></label>
+            <div class="error-message"></div>
+        </div>
+        <div class="test-input">
+            <label>Too long (1234): <input type="text" data-min="11" data-max="20" data-maxLen="3" value="1234"></label>
+            <div class="error-message"></div>
+        </div>
+        <div class="test-input">
+            <label>Non-numeric (abc): <input type="text" data-min="11" data-max="20" data-maxLen="3" value="abc"></label>
+            <div class="error-message"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
