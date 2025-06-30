@@ -17,6 +17,7 @@ function truncateToMaxBytes(str, maxBytes) {
 
 function applyTextInput(textInput, byteInfo) {
   const maxBytes = parseInt(textInput.getAttribute('data-max-bytes'), 10);
+  byteInfo.textContent = `0 / ${maxBytes} bytes`;
 
   textInput.addEventListener('input', function (e) {
     let value = textInput.value;
@@ -28,8 +29,6 @@ function applyTextInput(textInput, byteInfo) {
     }
     byteInfo.textContent = `${bytes} / ${maxBytes} bytes`;
   });
-
-  byteInfo.textContent = `0 / ${maxBytes} bytes`;
 }
 
 function initApp() {
