@@ -3,39 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Number Input with Range Restriction</title>
+    <style>
+        input:invalid {
+            border-color: #ff4444;
+            box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+        }
+        .error-message {
+            color: #ff4444;
+            font-size: 0.8em;
+            margin-top: 5px;
+            display: none;
+        }
+        input:invalid + .error-message {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <form action="" onsubmit="return validateForm()">
+        <label>
+            <span>Enter a number (1-100):</span>
+            <input 
+                type="number" 
+                id="numberInput" 
+                min="1" 
+                max="100" 
+                step="1"
+                required
+                oninput="validateNumberInput(this)"
+                onkeydown="preventNonNumericalInput(event)"
+                onpaste="return false;"
+                ondrop="return false;"
+                autocomplete="off"
+                pattern="\d*"
+            >
+            <div class="error-message" id="errorMessage">
+                Please enter a number between 1 and 100
+            </div>
+        </label>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
 
     <script>
-        /*
-            oninput="handleInput(this) 보다는
-            oninput="handleInput(event) 가 권장 패턴임
-        */
-        function handleInput(event) {
-            const input = event.target;
-            const value = input.value;
-
-            console.log('value', value);
-            
-            if (value === '') {
+        function preventNonNumericalInput(e) {
+            // Allow: backspace, delete, tab, escape, enter
+            if ([8, 9, 13, 27, 46].includes(e.keyCode) ||
+                // Allow: Ctrl+A, Command+A
+                (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: Ctrl+C, Command+C
+                (e.keyCode === 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: Ctrl+X, Command+X
+                (e.keyCode === 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: home, end, left, right, delete
+                (e.keyCode >= 35 && e.keyCode <= 40) ||
+                // Allow: numbers on keyboard (both main and numpad)
+                (e.keyCode >= 48 && e.keyCode <= 57) ||
+                (e.keyCode >= 96 && e.keyCode <= 105)) {
+                // Let it happen, don't do anything
                 return;
             }
             
-            const regex = /^[0-9]*$/;
-            if (!regex.test(value)) {
-                input.value = input.value.replace(/[^0-9]/g, '');
+            // Prevent any other key press that's not in the allowed list
+            e.preventDefault();
+        }
+
+        function validateNumberInput(input) {
+            // Get min and max values from input attributes
+            const min = parseInt(input.min) || -Infinity;
+            const max = parseInt(input.max) || Infinity;
+            
+            // Ensure value is within range
+            if (input.value !== '') {
+                let value = parseInt(input.value);
+                if (value < min) input.value = min;
+                if (value > max) input.value = max;
             }
         }
+
+        function validateForm() {
+            const input = document.getElementById('numberInput');
+            if (!input.checkValidity()) {
+                input.focus();
+                return false;
+            }
+            alert('Form submitted with value: ' + input.value);
+            return false; // Prevent actual form submission for demo
+        }
     </script>
-
-</head>
-<body>
-
-    <form action="">
-        <label>
-            <span>Number</span>
-            <input type="text" oninput="handleInput(event)">
-        </label>
-    </form>
-
 </body>
 </html>
