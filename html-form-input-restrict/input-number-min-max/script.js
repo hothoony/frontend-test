@@ -42,6 +42,5 @@ function applyNumberInput(input) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    var inputs = document.querySelectorAll('input[type="text"][name="score"]');
-    inputs.forEach(applyNumberInput);
+    applyNumberInput('input[type="text"][name="score"]');
 });
