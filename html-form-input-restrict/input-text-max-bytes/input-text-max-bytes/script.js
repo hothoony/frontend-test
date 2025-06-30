@@ -16,16 +16,16 @@ function truncateToMaxBytes(str, maxBytes) {
 }
 
 function initApp() {
-  const textInput = document.getElementById('textInput');
+  const titleInput = document.getElementById('titleInput');
   const byteInfo = document.getElementById('byteInfo');
-  const maxBytes = parseInt(textInput.getAttribute('data-max-bytes'), 10);
+  const maxBytes = parseInt(titleInput.getAttribute('data-max-bytes'), 10);
 
-  textInput.addEventListener('input', function (e) {
-    let value = textInput.value;
+  titleInput.addEventListener('input', function (e) {
+    let value = titleInput.value;
     let bytes = getUtf8Bytes(value);
     if (bytes > maxBytes) {
       value = truncateToMaxBytes(value, maxBytes);
-      textInput.value = value;
+      titleInput.value = value;
       bytes = getUtf8Bytes(value);
     }
     byteInfo.textContent = `${bytes} / ${maxBytes} bytes`;
@@ -37,7 +37,7 @@ function initApp() {
   const form = document.getElementById('textForm');
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    alert(`입력값: ${textInput.value}`);
+    alert(`입력값: ${titleInput.value}`);
   });
 }
 
