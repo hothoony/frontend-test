@@ -1,15 +1,14 @@
-document.addEventListener('DOMContentLoaded', function () {
-
+var initApp = function() {
     function getAttrNum(el, attr) {
         var val = el.getAttribute(attr);
         return valueToNum(val);
     }
-
+    
     function valueToNum(val) {
         var isValid = (val !== null && val !== '');
         return isValid ? Number(val) : null;
     }
-
+    
     function validateInput(value, min, max, maxLen) {
         if (value === '') return '';
         if (!/^[0-9]+$/.test(value)) return '숫자만 입력 가능합니다.';
@@ -19,28 +18,34 @@ document.addEventListener('DOMContentLoaded', function () {
         if (max !== null && num > max) return `${max} 이하 입력하세요.`;
         return '';
     }
-
-    var input = document.getElementById('numberInput');
-    var errorMessage = document.getElementById('errorMessage');
-
-    input.addEventListener('input', function () {
-        var min = getAttrNum(input, 'data-min');
-        var max = getAttrNum(input, 'data-max');
-        var maxLen = getAttrNum(input, 'data-maxLen');
-        var value = input.value.replace(/[^0-9]/g, '');
+    
+    var numberInput = document.getElementById('numberInput');
+    
+    numberInput.addEventListener('input', function () {
+        var min = getAttrNum(numberInput, 'data-min');
+        var max = getAttrNum(numberInput, 'data-max');
+        var maxLen = getAttrNum(numberInput, 'data-maxLen');
+        var value = numberInput.value.replace(/[^0-9]/g, '');
         if (maxLen !== null) value = value.slice(0, maxLen);
-        input.value = value;
+        numberInput.value = value;
         var error = validateInput(value, min, max, maxLen);
+        var errorMessage = document.getElementById('errorMessage');
         errorMessage.textContent = error;
     });
+    
+    numberInput.addEventListener('blur', function () {
+        var min = getAttrNum(numberInput, 'data-min');
+        var max = getAttrNum(numberInput, 'data-max');
+        var maxLen = getAttrNum(numberInput, 'data-maxLen');
+        var value = numberInput.value;
+        var error = validateInput(value, min, max, maxLen);
+        var errorMessage = document.getElementById('errorMessage');
+        errorMessage.textContent = error;
+    });
+}
 
-    input.addEventListener('blur', function () {
-        var min = getAttrNum(input, 'data-min');
-        var max = getAttrNum(input, 'data-max');
-        var maxLen = getAttrNum(input, 'data-maxLen');
-        var value = input.value;
-        var error = validateInput(value, min, max, maxLen);
-        errorMessage.textContent = error;
-    });
+document.addEventListener('DOMContentLoaded', function () {
+
+    initApp();
 
 });
