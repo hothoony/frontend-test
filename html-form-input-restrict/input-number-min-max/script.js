@@ -72,19 +72,13 @@ function onFormSubmit(form) {
         // validation 실패
         if (ageValidation !== '' || scoreValidation !== '') {
             console.warn('❌ validation 실패');
-            if (ageValidation !== '') {
-                console.warn('나이 입력 오류:', ageValidation);
-            }
-            if (scoreValidation !== '') {
-                console.warn('점수 입력 오류:', scoreValidation);
-            }
             return false;
         }
         
         // validation 통과
         const formData = {
             age: ageInput.value,
-            score: scoreInput.value
+            score: scoreInput.value,
         };
         
         console.log('✅ validation 통과');
