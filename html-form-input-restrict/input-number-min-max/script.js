@@ -30,7 +30,7 @@ function validateNumberInput(input) {
 
 function applyNumberInput(input, errorMessageEl) {
 
-    var validateNumber = () => {
+    var validateNumber = function() {
         var value = input.value;
         var min = getAttrNum(input, 'data-min-value');
         var max = getAttrNum(input, 'data-max-value');
