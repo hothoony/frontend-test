@@ -38,7 +38,7 @@ function initApp() {
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     alert(`입력값: ${input.value}`);
-  }); 
+  });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
