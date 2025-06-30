@@ -18,21 +18,21 @@ function truncateToMaxBytes(str, maxBytes) {
 function initApp() {
   const input = document.getElementById('textInput');
   const byteInfo = document.getElementById('byteInfo');
-  const MAX_BYTES = 40;
+  const maxBytes = parseInt(input.getAttribute('data-max-bytes'), 10);
 
   input.addEventListener('input', function (e) {
     let value = input.value;
     let bytes = getUtf8Bytes(value);
-    if (bytes > MAX_BYTES) {
-      value = truncateToMaxBytes(value, MAX_BYTES);
+    if (bytes > maxBytes) {
+      value = truncateToMaxBytes(value, maxBytes);
       input.value = value;
       bytes = getUtf8Bytes(value);
     }
-    byteInfo.textContent = `${bytes} / ${MAX_BYTES} bytes`;
+    byteInfo.textContent = `${bytes} / ${maxBytes} bytes`;
   });
 
   // 초기화
-  byteInfo.textContent = `0 / ${MAX_BYTES} bytes`;
+  byteInfo.textContent = `0 / ${maxBytes} bytes`;
 
   const form = document.getElementById('textForm');
   form.addEventListener('submit', function(e) {
