@@ -1,10 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var input = document.getElementById('numberInput');
-    var errorMessage = document.getElementById('errorMessage');
 
     function getAttrNum(el, attr) {
         var val = el.getAttribute(attr);
-        return val !== null && val !== '' ? Number(val) : null;
+        return valueToNum(val);
+    }
+
+    function valueToNum(val) {
+        var isValid = (val !== null && val !== '');
+        return isValid ? Number(val) : null;
     }
 
     function validateInput(value, min, max, maxLen) {
@@ -17,7 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
         return '';
     }
 
-    input.addEventListener('input', function (e) {
+    var input = document.getElementById('numberInput');
+    var errorMessage = document.getElementById('errorMessage');
+
+    input.addEventListener('input', function () {
         var min = getAttrNum(input, 'data-min');
         var max = getAttrNum(input, 'data-max');
         var maxLen = getAttrNum(input, 'data-maxLen');
@@ -36,4 +42,5 @@ document.addEventListener('DOMContentLoaded', function () {
         var error = validateInput(value, min, max, maxLen);
         errorMessage.textContent = error;
     });
-}); 
+
+});
