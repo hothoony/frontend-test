@@ -34,16 +34,29 @@ function applyTextInput(textInput, byteInfo) {
 
 function initApp() {
 
-  applyTextInput(document.querySelector('input[name=titleInput]'),
+  const titleInput = document.querySelector('input[name=titleInput]');
+  const contentInput = document.querySelector('textarea[name=contentInput]');
+
+  applyTextInput(titleInput,
                  document.querySelector('input[name=titleInput] ~ .byteInfo'));
 
-  applyTextInput(document.querySelector('textarea[name=contentInput]'),
+  applyTextInput(contentInput,
                  document.querySelector('textarea[name=contentInput] ~ .byteInfo'));
 
   const form = document.getElementById('form1');
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    alert(`입력값: ${titleInput.value}`);
+    if (!titleInput.value.trim()) {
+      alert('제목을 입력해 주세요.');
+      titleInput.focus();
+      return;
+    }
+    if (!contentInput.value.trim()) {
+      alert('내용을 입력해 주세요.');
+      contentInput.focus();
+      return;
+    }
+    alert(`입력값: 제목: ${titleInput.value}, 내용: ${contentInput.value}`);
   });
 
 }
