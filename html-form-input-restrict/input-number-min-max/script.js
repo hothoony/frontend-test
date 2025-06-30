@@ -3,7 +3,7 @@ function getAttrNum(el, attr) {
     return val !== null && val !== '' ? Number(val) : null;
 }
 
-function validateInput(value, min, max, maxLen) {
+function validateInputNumber(value, min, max, maxLen) {
     if (value === '') return '';
     if (!/^[0-9]+$/.test(value)) return '숫자만 입력 가능합니다.';
     if (maxLen !== null && value.length > maxLen) return `최대 ${maxLen}자리까지 입력 가능합니다.`;
@@ -22,7 +22,7 @@ function applyInputNumber(input) {
         var value = input.value.replace(/[^0-9]/g, '');
         if (maxLen !== null) value = value.slice(0, maxLen);
         input.value = value;
-        var error = validateInput(value, min, max, maxLen);
+        var error = validateInputNumber(value, min, max, maxLen);
         if (errorMessage) errorMessage.textContent = error;
     });
     input.addEventListener('blur', function () {
@@ -30,7 +30,7 @@ function applyInputNumber(input) {
         var max = getAttrNum(input, 'data-max');
         var maxLen = getAttrNum(input, 'data-maxLen');
         var value = input.value;
-        var error = validateInput(value, min, max, maxLen);
+        var error = validateInputNumber(value, min, max, maxLen);
         if (errorMessage) errorMessage.textContent = error;
     });
 }
