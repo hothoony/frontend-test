@@ -27,4 +27,11 @@ label {
 }
 label:first-of-type {
   margin-top: 0;
+}
+.event-list {
+  display: block;
+  margin: 0.3em 0 0.3em 0;
+  color: #888;
+  font-size: 0.95em;
+  word-break: break-all;
 } 
