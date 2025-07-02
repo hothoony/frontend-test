@@ -3,64 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Input with Min/Max Validation</title>
+    <title>test</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-
-    <div class="container">
-
-        <h1>Number Input with Min/Max Validation</h1>
-        
-        <form action="" novalidate>
-
-            <div class="form-group">
-                <label for="ageInput">
-                    <span>Age (10~80)</span>
-                </label>
-                <div class="input-wrapper">
-                    <input type="text" 
-                           id="ageInput"
-                           name="age"
-                           placeholder="Enter a age"
-                           data-min-value="10"
-                           data-max-value="80"
-                           data-max-length="2"
-                           inputmode="numeric"
-                           required
-                    >
-                </div>
-                <div class="error error-age"></div>
-            </div>
-
-            <div class="form-group">
-                <label for="scoreInput">
-                    <span>Score (101~200)</span>
-                </label>
-                <div class="input-wrapper">
-                    <input type="text" 
-                           id="scoreInput"
-                           name="score"
-                           placeholder="Enter a score"
-                           data-min-value="101"
-                           data-max-value="200"
-                           data-max-length="3"
-                           inputmode="numeric"
-                    >
-                </div>
-                <div class="error error-score"></div>
-            </div>
-
-            <div class="form-group">
-                <button type="submit" class="submit-btn">Submit</button>
-            </div>
-
-        </form>
-
-    </div>
-
+    <form id="numberForm">
+        <input type="text" id="numberInput" autocomplete="off" placeholder="숫자만 입력" />
+        <button type="submit">제출</button>
+    </form>
+    <div id="errorMsg"></div>
     <script src="script.js"></script>
-
 </body>
 </html>
