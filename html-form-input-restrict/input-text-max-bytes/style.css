@@ -1,0 +1,36 @@
+.container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fafafa;
+  font-family: Arial, sans-serif;
+}
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+input {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin-bottom: -5px;
+}
+.byteInfo {
+  margin-top: 2px;
+  font-size: 14px;
+  color: #666;
+}
+.formItem {
+  margin-bottom: 20px;
+}
