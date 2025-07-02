@@ -4,19 +4,20 @@ function initApp() {
 
     // 숫자만 입력 가능하도록 keydown 이벤트 처리
     input.addEventListener('input', function (e) {
+        console.log('input', this.value);
         // 숫자가 아닌 문자는 모두 제거
         this.value = this.value.replace(/[^0-9]/g, '');
     });
 
     input.addEventListener('change', function (e) {
         console.log('change', this.value);
-        if (this.value === '') {
-            this.value = '0';
-        }
     });
 
     input.addEventListener('blur', function (e) {
         console.log('blur', this.value);
+        if (this.value === '') {
+            this.value = '0';
+        }
     });
 
     input.addEventListener('focusout', function (e) {
