@@ -10,6 +10,9 @@ function initApp() {
 
     input.addEventListener('change', function (e) {
         console.log('change', this.value);
+        if (this.value === '') {
+            this.value = '0';
+        }
     });
 
     input.addEventListener('blur', function (e) {
