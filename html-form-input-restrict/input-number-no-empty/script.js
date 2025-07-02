@@ -1,13 +1,27 @@
 function initApp() {
-    const form = document.getElementById('numberForm');
+
     const input = document.getElementById('numberInput');
-    const errorMsg = document.getElementById('errorMsg');
 
     // 숫자만 입력 가능하도록 keydown 이벤트 처리
     input.addEventListener('input', function (e) {
         // 숫자가 아닌 문자는 모두 제거
         this.value = this.value.replace(/[^0-9]/g, '');
     });
+
+    input.addEventListener('change', function (e) {
+        console.log('change', this.value);
+    });
+
+    input.addEventListener('blur', function (e) {
+        console.log('blur', this.value);
+    });
+
+    input.addEventListener('focusout', function (e) {
+        console.log('focusout', this.value);
+    });
+
+    const form = document.getElementById('numberForm');
+    const errorMsg = document.getElementById('errorMsg');
 
     form.addEventListener('submit', function (e) {
         e.preventDefault();
