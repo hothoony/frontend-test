@@ -36,4 +36,12 @@ function initApp() {
 
 document.addEventListener('DOMContentLoaded', () => {
   initApp();
+
+  const submitBtn = document.getElementById('submit-btn');
+  submitBtn.addEventListener('click', () => {
+    const fruitChecked = Array.from(document.querySelectorAll('input[name="fruit"]:checked')).map(cb => cb.value);
+    const animalChecked = Array.from(document.querySelectorAll('input[name="animal"]:checked')).map(cb => cb.value);
+    console.log('선택한 과일:', fruitChecked);
+    console.log('선택한 동물:', animalChecked);
+  });
 }); 
