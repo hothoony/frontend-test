@@ -21,7 +21,6 @@ function renderRadioGroup(container, data, name) {
     radio.type = 'radio';
     radio.name = name;
     radio.value = item.value;
-    // if (idx === 0) radio.checked = true;
     label.appendChild(radio);
     label.appendChild(document.createTextNode(item.label));
     container.appendChild(label);
