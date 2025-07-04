@@ -37,7 +37,9 @@ function handleSubmit() {
   const animalSelect = document.querySelector('#animal-group select');
   const fruitValue = fruitSelect ? fruitSelect.value : '';
   const animalValue = animalSelect ? animalSelect.value : '';
-  console.log(`선택한 과일: ${fruitValue || '없음'}\n선택한 동물: ${animalValue || '없음'}`);
+  console.log('');
+  console.log(`선택한 과일: ${fruitValue || '없음'}`);
+  console.log(`선택한 동물: ${animalValue || '없음'}`);
 }
 
 function initApp() {
