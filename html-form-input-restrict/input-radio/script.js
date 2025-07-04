@@ -32,6 +32,15 @@ function initApp() {
   const animalGroup = document.getElementById('animal-group');
   renderRadioGroup(fruitGroup, dataList1, 'fruit');
   renderRadioGroup(animalGroup, dataList2, 'animal');
+
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.addEventListener('click', () => {
+    const fruit = document.querySelector('input[name="fruit"]:checked');
+    const animal = document.querySelector('input[name="animal"]:checked');
+    console.log('');
+    console.log('선택한 과일:', fruit ? fruit.value : null);
+    console.log('선택한 동물:', animal ? animal.value : null);
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
