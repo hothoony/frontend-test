@@ -28,9 +28,13 @@ function renderRadioGroup(container, data, name) {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
   const fruitGroup = document.getElementById('fruit-group');
   const animalGroup = document.getElementById('animal-group');
   renderRadioGroup(fruitGroup, dataList1, 'fruit');
   renderRadioGroup(animalGroup, dataList2, 'animal');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initApp();
 }); 
