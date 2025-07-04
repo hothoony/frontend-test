@@ -33,7 +33,7 @@ function initApp() {
   renderRadioGroup(fruitGroup, dataList1, 'fruit');
   renderRadioGroup(animalGroup, dataList2, 'animal');
 
-  const submitBtn = document.getElementById('submitBtn');
+  const submitBtn = document.getElementById('submit-btn');
   submitBtn.addEventListener('click', () => {
     const fruit = document.querySelector('input[name="fruit"]:checked');
     const animal = document.querySelector('input[name="animal"]:checked');
