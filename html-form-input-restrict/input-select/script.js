@@ -18,13 +18,11 @@ function renderSelectGroup(container, data, name) {
   select.name = name;
   // select.multiple = true;
   select.style.minWidth = '120px';
-
-  // // Add empty option at the top
-  // const emptyOption = document.createElement('option');
-  // emptyOption.value = '';
-  // emptyOption.textContent = '';
-  // select.appendChild(emptyOption);
-
+  // Add '전체' option at the top
+  const allOption = document.createElement('option');
+  allOption.value = '';
+  allOption.textContent = '전체';
+  select.appendChild(allOption);
   data.forEach((item) => {
     const option = document.createElement('option');
     option.value = item.value;
