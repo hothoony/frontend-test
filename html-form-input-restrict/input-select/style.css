@@ -64,4 +64,20 @@ select {
 
 select[multiple] {
   height: 90px;
+}
+
+.checkmark {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  font-size: 1.1rem;
+  color: #2ecc40;
+  transition: opacity 0.2s;
+}
+.checkmark::before {
+  content: '';
+}
+.checkmark.checked::before {
+  content: '✔';
 } 
