@@ -80,4 +80,23 @@ select[multiple] {
 }
 .checkmark.checked::before {
   content: '✔';
+}
+
+#submit-btn {
+  display: block;
+  width: 100%;
+  padding: 12px 0;
+  background: #2355d6;
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(79,140,255,0.08);
+  cursor: pointer;
+  margin-top: 16px;
+}
+#submit-btn:hover, #submit-btn:focus {
+  background: #4f8cff;
+  box-shadow: 0 4px 16px rgba(79,140,255,0.15);
 } 

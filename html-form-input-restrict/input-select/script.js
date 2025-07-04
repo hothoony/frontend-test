@@ -32,6 +32,14 @@ function renderSelectGroup(container, data, name) {
   container.appendChild(select);
 }
 
+function handleSubmit() {
+  const fruitSelect = document.querySelector('#fruit-group select');
+  const animalSelect = document.querySelector('#animal-group select');
+  const fruitValue = fruitSelect ? fruitSelect.value : '';
+  const animalValue = animalSelect ? animalSelect.value : '';
+  console.log(`선택한 과일: ${fruitValue || '없음'}\n선택한 동물: ${animalValue || '없음'}`);
+}
+
 function initApp() {
   const fruitGroup = document.getElementById('fruit-group');
   const animalGroup = document.getElementById('animal-group');
@@ -41,4 +49,5 @@ function initApp() {
 
 document.addEventListener('DOMContentLoaded', () => {
   initApp();
+  document.getElementById('submit-btn').addEventListener('click', handleSubmit);
 }); 
