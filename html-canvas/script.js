@@ -97,6 +97,7 @@ function isRectHit(shape, x, y) {
 // 이벤트 핸들러 분리
 function handleMouseDown(e) {
   const { x, y } = getMousePos(e);
+  console.log('mousePost x=', x, 'y=', y);
   draggingShape = null;
 
   shapes.forEach(shape => {
