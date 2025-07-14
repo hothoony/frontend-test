@@ -17,7 +17,7 @@ const shapes = [
 ];
 
 const canvas = document.getElementById("myCanvas");
-const ctx = canvas.getContext("2d");
+const context = canvas.getContext("2d");
 
 // 각 shape별 이미지 객체를 저장
 const shapeImages = shapes.map(shape => {
@@ -40,32 +40,32 @@ let offsetX, offsetY;
 let draggingShape = null;
 
 function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  context.clearRect(0, 0, canvas.width, canvas.height);
   shapes.forEach((shape, idx) => {
-    ctx.save();
+    context.save();
     const img = shapeImages[idx];
     if (shape.type === 'circle') {
-      ctx.beginPath();
-      ctx.arc(shape.x, shape.y, shape.radius, 0, Math.PI * 2);
-      ctx.clip();
-      ctx.drawImage(img, shape.x - shape.radius, shape.y - shape.radius, shape.radius * 2, shape.radius * 2);
+      context.beginPath();
+      context.arc(shape.x, shape.y, shape.radius, 0, Math.PI * 2);
+      context.clip();
+      context.drawImage(img, shape.x - shape.radius, shape.y - shape.radius, shape.radius * 2, shape.radius * 2);
     } else if (shape.type === 'rect') {
-      ctx.beginPath();
-      ctx.rect(shape.x, shape.y, shape.width, shape.height);
-      ctx.clip();
-      ctx.drawImage(img, shape.x, shape.y, shape.width, shape.height);
+      context.beginPath();
+      context.rect(shape.x, shape.y, shape.width, shape.height);
+      context.clip();
+      context.drawImage(img, shape.x, shape.y, shape.width, shape.height);
     }
-    ctx.restore();
+    context.restore();
 
     // 테두리
-    ctx.strokeStyle = STROKE_STYLE;
-    ctx.lineWidth = LINE_WIDTH;
+    context.strokeStyle = STROKE_STYLE;
+    context.lineWidth = LINE_WIDTH;
     if (shape.type === 'circle') {
-      ctx.beginPath();
-      ctx.arc(shape.x, shape.y, shape.radius, 0, Math.PI * 2);
-      ctx.stroke();
+      context.beginPath();
+      context.arc(shape.x, shape.y, shape.radius, 0, Math.PI * 2);
+      context.stroke();
     } else if (shape.type === 'rect') {
-      ctx.strokeRect(shape.x, shape.y, shape.width, shape.height);
+      context.strokeRect(shape.x, shape.y, shape.width, shape.height);
     }
   });
 }
