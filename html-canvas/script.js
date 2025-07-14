@@ -181,6 +181,7 @@ const canvasUtil = {
           this.resizingShape = shape;
           this.resizingHandle = handle.pos;
           this.selectedShape = shape;
+          this.draw(shapes);
           return;
         }
       } else if (shape.type === 'ellipse') {
@@ -189,6 +190,7 @@ const canvasUtil = {
           this.resizingShape = shape;
           this.resizingHandle = handle.pos;
           this.selectedShape = shape;
+          this.draw(shapes);
           return;
         }
       }
@@ -202,12 +204,14 @@ const canvasUtil = {
         this.offsetX = x - shape.x;
         this.offsetY = y - shape.y;
         this.selectedShape = shape;
+        this.draw(shapes);
         return;
       } else if (shape.type === 'rect' && this.isRectHit(shape, x, y)) {
         this.draggingShape = shape;
         this.offsetX = x - shape.x;
         this.offsetY = y - shape.y;
         this.selectedShape = shape;
+        this.draw(shapes);
         return;
       }
     }
