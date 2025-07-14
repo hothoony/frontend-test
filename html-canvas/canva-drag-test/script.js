@@ -6,7 +6,7 @@ const shapes = [
     radiusX: 50,
     radiusY: 50,
     rotation: 0,
-    imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/June_odd-eyed-cat.jpg/320px-June_odd-eyed-cat.jpg',
+    imageSrc: './resources/cat.jpg',
   },
   {
     type: 'rect',
@@ -15,7 +15,7 @@ const shapes = [
     width: 100,
     height: 100,
     rotation: 0,
-    imageSrc: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=facearea&w=320&h=320',
+    imageSrc: './resources/dog.jpg',
   }
 ];
 
@@ -584,3 +584,11 @@ const canvasUtil = {
     this.addEventListeners(shapes);
   }
 };
+
+document.getElementById('saveImageBtn').addEventListener('click', function() {
+  const canvas = document.getElementById('myCanvas');
+  const link = document.createElement('a');
+  link.download = 'canvas-image.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+});
