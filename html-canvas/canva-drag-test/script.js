@@ -19,6 +19,8 @@ const shapes = [
   }
 ];
 
+let aspectRatioLocked = false;
+
 const HANDLE_SIZE = 8;
 const ROTATE_HANDLE_OFFSET = 16;
 const ROTATE_HANDLE_RADIUS = 7;
@@ -491,35 +493,74 @@ const canvasUtil = {
     let { x, y, width, height } = rect;
     const x2 = x + width;
     const y2 = y + height;
+    const aspect = width / height;
     switch (handlePos) {
       case 'tl':
-        rect.x = Math.min(mx, x2 - minSize);
-        rect.y = Math.min(my, y2 - minSize);
-        rect.width = x2 - rect.x;
-        rect.height = y2 - rect.y;
-        break;
-      case 'tm':
-        rect.y = Math.min(my, y2 - minSize);
-        rect.height = y2 - rect.y;
+        if (aspectRatioLocked) {
+          // 비율 유지: dx, dy 중 작은 변화량을 기준
+          let dx = Math.min(mx, x2 - minSize) - x;
+          let dy = Math.min(my, y2 - minSize) - y;
+          let delta = Math.max(dx, dy);
+          rect.x = x2 - Math.max(minSize, aspect * (y2 - (y + delta)));
+          rect.y = y2 - Math.max(minSize, (x2 - (x + delta)) / aspect);
+          rect.width = x2 - rect.x;
+          rect.height = y2 - rect.y;
+        } else {
+          rect.x = Math.min(mx, x2 - minSize);
+          rect.y = Math.min(my, y2 - minSize);
+          rect.width = x2 - rect.x;
+          rect.height = y2 - rect.y;
+        }
         break;
       case 'tr':
+        if (aspectRatioLocked) {
+          let dx = Math.max(mx - x, minSize) - width;
+          let dy = Math.min(my, y2 - minSize) - y;
+          let delta = Math.max(dx, y - Math.min(my, y2 - minSize));
+          rect.y = y2 - Math.max(minSize, (width + delta) / aspect);
+          rect.width = Math.max(mx - x, minSize);
+          rect.height = y2 - rect.y;
+        } else {
+          rect.y = Math.min(my, y2 - minSize);
+          rect.width = Math.max(mx - x, minSize);
+          rect.height = y2 - rect.y;
+        }
+        break;
+      case 'br':
+        if (aspectRatioLocked) {
+          let dx = Math.max(mx - x, minSize) - width;
+          let dy = Math.max(my - y, minSize) - height;
+          let delta = Math.max(dx, dy);
+          rect.width = Math.max(width + delta, minSize);
+          rect.height = rect.width / aspect;
+        } else {
+          rect.width = Math.max(mx - x, minSize);
+          rect.height = Math.max(my - y, minSize);
+        }
+        break;
+      case 'bl':
+        if (aspectRatioLocked) {
+          let dx = Math.min(mx, x2 - minSize) - x;
+          let dy = Math.max(my - y, minSize) - height;
+          let delta = Math.max(x - Math.min(mx, x2 - minSize), dy);
+          rect.x = x2 - Math.max(minSize, aspect * (height + delta));
+          rect.width = x2 - rect.x;
+          rect.height = rect.width / aspect;
+        } else {
+          rect.x = Math.min(mx, x2 - minSize);
+          rect.width = x2 - rect.x;
+          rect.height = Math.max(my - y, minSize);
+        }
+        break;
+      // 중앙 핸들은 기존대로 동작
+      case 'tm':
         rect.y = Math.min(my, y2 - minSize);
-        rect.width = Math.max(mx - x, minSize);
         rect.height = y2 - rect.y;
         break;
       case 'mr':
         rect.width = Math.max(mx - x, minSize);
         break;
-      case 'br':
-        rect.width = Math.max(mx - x, minSize);
-        rect.height = Math.max(my - y, minSize);
-        break;
       case 'bm':
-        rect.height = Math.max(my - y, minSize);
-        break;
-      case 'bl':
-        rect.x = Math.min(mx, x2 - minSize);
-        rect.width = x2 - rect.x;
         rect.height = Math.max(my - y, minSize);
         break;
       case 'ml':
@@ -533,17 +574,31 @@ const canvasUtil = {
     const minRadius = 10;
     let dx = mx - ellipse.x;
     let dy = my - ellipse.y;
+    const aspect = ellipse.radiusX / ellipse.radiusY;
     switch (handlePos) {
       case 'tl':
       case 'br':
-        ellipse.radiusX = Math.max(Math.abs(dx), minRadius);
-        ellipse.radiusY = Math.max(Math.abs(dy), minRadius);
+        if (aspectRatioLocked) {
+          let delta = Math.max(Math.abs(dx), Math.abs(dy));
+          ellipse.radiusX = Math.max(delta, minRadius);
+          ellipse.radiusY = ellipse.radiusX / aspect;
+        } else {
+          ellipse.radiusX = Math.max(Math.abs(dx), minRadius);
+          ellipse.radiusY = Math.max(Math.abs(dy), minRadius);
+        }
         break;
       case 'tr':
       case 'bl':
-        ellipse.radiusX = Math.max(Math.abs(dx), minRadius);
-        ellipse.radiusY = Math.max(Math.abs(dy), minRadius);
+        if (aspectRatioLocked) {
+          let delta = Math.max(Math.abs(dx), Math.abs(dy));
+          ellipse.radiusX = Math.max(delta, minRadius);
+          ellipse.radiusY = ellipse.radiusX / aspect;
+        } else {
+          ellipse.radiusX = Math.max(Math.abs(dx), minRadius);
+          ellipse.radiusY = Math.max(Math.abs(dy), minRadius);
+        }
         break;
+      // 중앙 핸들은 기존대로 동작
       case 'tm':
       case 'bm':
         ellipse.radiusY = Math.max(Math.abs(dy), minRadius);
