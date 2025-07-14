@@ -3,15 +3,15 @@ const shapes = [
     type: 'ellipse',
     x: 200,
     y: 200,
-    radiusX: 60,
-    radiusY: 60,
+    radiusX: 50,
+    radiusY: 50,
     imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/June_odd-eyed-cat.jpg/320px-June_odd-eyed-cat.jpg',
   },
   {
     type: 'rect',
     x: 400,
     y: 150,
-    width: 120,
+    width: 100,
     height: 100,
     imageSrc: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=facearea&w=320&h=320',
   }
