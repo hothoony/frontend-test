@@ -1,16 +1,9 @@
-const canvas = document.getElementById("myCanvas");
-const ctx = canvas.getContext("2d");
-
-const image = new Image();
-image.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/June_odd-eyed-cat.jpg/320px-June_odd-eyed-cat.jpg';
-
 const shapes = [
   {
     type: 'circle',
     x: 200,
     y: 200,
     radius: 60,
-    isDragging: false,
   },
   {
     type: 'rect',
@@ -18,16 +11,20 @@ const shapes = [
     y: 150,
     width: 120,
     height: 100,
-    isDragging: false,
   }
 ];
 
-let offsetX, offsetY;
-let draggingShape = null;
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
 
+const image = new Image();
+image.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/June_odd-eyed-cat.jpg/320px-June_odd-eyed-cat.jpg';
 image.onload = () => {
   draw();
 };
+
+let offsetX, offsetY;
+let draggingShape = null;
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -47,8 +44,8 @@ function draw() {
     ctx.restore();
 
     // 테두리
-    ctx.strokeStyle = 'gray';
-    ctx.lineWidth = 2;
+    ctx.strokeStyle = STROKE_STYLE;
+    ctx.lineWidth = LINE_WIDTH;
     if (shape.type === 'circle') {
       ctx.beginPath();
       ctx.arc(shape.x, shape.y, shape.radius, 0, Math.PI * 2);
@@ -67,30 +64,45 @@ function getMousePos(e) {
   };
 }
 
-canvas.addEventListener('mousedown', (e) => {
+// 상수 선언
+const STROKE_STYLE = 'gray';
+const LINE_WIDTH = 2;
+
+// shape 타입별 메서드화 예시
+function isCircleHit(shape, x, y) {
+  const dx = x - shape.x;
+  const dy = y - shape.y;
+  return Math.sqrt(dx * dx + dy * dy) <= shape.radius;
+}
+
+function isRectHit(shape, x, y) {
+  return x >= shape.x && x <= shape.x + shape.width &&
+         y >= shape.y && y <= shape.y + shape.height;
+}
+
+// 이벤트 핸들러 분리
+function handleMouseDown(e) {
   const { x, y } = getMousePos(e);
   draggingShape = null;
 
   shapes.forEach(shape => {
     if (shape.type === 'circle') {
-      const dx = x - shape.x;
-      const dy = y - shape.y;
-      if (Math.sqrt(dx*dx + dy*dy) <= shape.radius) {
+      if (isCircleHit(shape, x, y)) {
         draggingShape = shape;
-        offsetX = dx;
-        offsetY = dy;
+        offsetX = x - shape.x;
+        offsetY = y - shape.y;
       }
     } else if (shape.type === 'rect') {
-      if (x >= shape.x && x <= shape.x + shape.width && y >= shape.y && y <= shape.y + shape.height) {
+      if (isRectHit(shape, x, y)) {
         draggingShape = shape;
         offsetX = x - shape.x;
         offsetY = y - shape.y;
       }
     }
   });
-});
+}
 
-canvas.addEventListener('mousemove', (e) => {
+function handleMouseMove(e) {
   if (draggingShape) {
     const { x, y } = getMousePos(e);
     if (draggingShape.type === 'circle') {
@@ -102,11 +114,17 @@ canvas.addEventListener('mousemove', (e) => {
     }
     draw();
   }
-});
+}
 
-canvas.addEventListener('mouseup', () => {
+function handleMouseUp() {
   draggingShape = null;
-});
-canvas.addEventListener('mouseleave', () => {
+}
+
+function handleMouseLeave() {
   draggingShape = null;
-}); 
+}
+
+canvas.addEventListener('mousedown', handleMouseDown);
+canvas.addEventListener('mousemove', handleMouseMove);
+canvas.addEventListener('mouseup', handleMouseUp);
+canvas.addEventListener('mouseleave', handleMouseLeave);
