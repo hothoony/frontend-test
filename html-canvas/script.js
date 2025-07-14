@@ -382,6 +382,6 @@ const canvasUtil = {
   }
 };
 
-window.addEventListener('DOMContentLoaded', function() {
-  canvasUtil.init(shapes);
-});
+// window.addEventListener('DOMContentLoaded', function() {
+//   canvasUtil.init(shapes);
+// });
