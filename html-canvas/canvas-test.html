@@ -23,13 +23,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             canvasUtil.init(shapes);
-            document.getElementById('saveImageBtn').addEventListener('click', function() {
-              const canvas = document.getElementById('myCanvas');
-              const link = document.createElement('a');
-              link.download = 'canvas-image.png';
-              link.href = canvas.toDataURL('image/png');
-              link.click();
-            });
         });
     </script>
 

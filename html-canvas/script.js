@@ -289,6 +289,14 @@ const canvasUtil = {
     this.resizingHandle = null;
   },
 
+  handleDownload() {
+    const canvas = document.getElementById('myCanvas');
+    const link = document.createElement('a');
+    link.download = 'canvas-image.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  },
+
   resizeRect(rect, handlePos, mx, my) {
     const minSize = 20;
     let { x, y, width, height } = rect;
@@ -385,6 +393,8 @@ const canvasUtil = {
     this.imagesLoaded = 0;
     this.loadImagesAndDraw(shapes);
     this.addEventListeners(shapes);
+
+    document.getElementById('saveImageBtn').addEventListener('click', (e) => this.handleDownload(e));
   }
 };
 
