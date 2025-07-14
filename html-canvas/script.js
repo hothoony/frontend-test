@@ -2,7 +2,6 @@ const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
 const image = new Image();
-// ✅ 실제 존재하는 이미지 URL
 image.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/June_odd-eyed-cat.jpg/320px-June_odd-eyed-cat.jpg';
 
 const shapes = [
