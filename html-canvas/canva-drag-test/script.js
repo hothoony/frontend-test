@@ -307,18 +307,20 @@ const canvasUtil = {
     this.resizingHandle = null;
     this.rotatingShape = null;
     this.rotatingHandleIndex = null;
-    this.selectedShape = null;
+    // this.selectedShape = null; // 이 줄은 주석처리 또는 삭제
 
     // 회전 핸들 hit test (우선순위)
     for (let i = shapes.length - 1; i >= 0; i--) {
       const shape = shapes[i];
+      // shape가 선택된 상태에서만 회전 핸들 동작
+      if (this.selectedShape !== shape) continue;
       const center = this.getShapeCenter(shape);
       // 마우스 좌표를 shape의 회전 좌표계로 변환
       const local = this.getLocalCoords(x, y, center, -(shape.rotation || 0));
       const rotateHandle = this.getRotateHandleUnderMouse(shape, local.x, local.y);
       if (rotateHandle) {
         this.rotatingShape = shape;
-        this.selectedShape = shape;
+        // this.selectedShape = shape; // 이미 선택됨
         this.startAngle = Math.atan2(local.y - center.y, local.x - center.x);
         this.startRotation = shape.rotation || 0;
         this.draw(shapes);
