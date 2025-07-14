@@ -118,8 +118,19 @@ function handleMouseDown(e) {
 }
 
 function handleMouseMove(e) {
+  const { x, y } = getMousePos(e);
+  let overShape = false;
+  for (let i = shapes.length - 1; i >= 0; i--) {
+    const shape = shapes[i];
+    if ((shape.type === 'circle' && isCircleHit(shape, x, y)) ||
+        (shape.type === 'rect' && isRectHit(shape, x, y))) {
+      overShape = true;
+      break;
+    }
+  }
+  canvas.style.cursor = overShape ? 'move' : 'default';
+
   if (draggingShape) {
-    const { x, y } = getMousePos(e);
     if (draggingShape.type === 'circle') {
       draggingShape.x = x - offsetX;
       draggingShape.y = y - offsetY;
