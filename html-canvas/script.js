@@ -1,23 +1,22 @@
-const canvasUtil = {
+const shapes = [
+  {
+    type: 'circle',
+    x: 200,
+    y: 200,
+    radius: 60,
+    imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/June_odd-eyed-cat.jpg/320px-June_odd-eyed-cat.jpg',
+  },
+  {
+    type: 'rect',
+    x: 400,
+    y: 150,
+    width: 120,
+    height: 100,
+    imageSrc: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=facearea&w=320&h=320',
+  }
+];
 
-  shapes: [
-    {
-      type: 'circle',
-      x: 200,
-      y: 200,
-      radius: 60,
-      imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/June_odd-eyed-cat.jpg/320px-June_odd-eyed-cat.jpg',
-    },
-    {
-      type: 'rect',
-      x: 400,
-      y: 150,
-      width: 120,
-      height: 100,
-      imageSrc: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=facearea&w=320&h=320',
-    }
-  ],
-  
+const canvasUtil = {
   canvas: null,
   context: null,
   shapeImages: [],
@@ -28,10 +27,10 @@ const canvasUtil = {
   STROKE_STYLE: 'gray',
   LINE_WIDTH: 2,
 
-  draw() {
+  draw(shapes) {
     const ctx = this.context;
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.shapes.forEach((shape, idx) => {
+    shapes.forEach((shape, idx) => {
       ctx.save();
       const img = this.shapeImages[idx];
       if (shape.type === 'circle') {
@@ -79,10 +78,10 @@ const canvasUtil = {
            y >= shape.y && y <= shape.y + shape.height;
   },
 
-  handleMouseDown(e) {
+  handleMouseDown(e, shapes) {
     const { x, y } = this.getMousePos(e);
     this.draggingShape = null;
-    this.shapes.forEach(shape => {
+    shapes.forEach(shape => {
       if (shape.type === 'circle') {
         if (this.isCircleHit(shape, x, y)) {
           this.draggingShape = shape;
@@ -99,11 +98,11 @@ const canvasUtil = {
     });
   },
 
-  handleMouseMove(e) {
+  handleMouseMove(e, shapes) {
     const { x, y } = this.getMousePos(e);
     let overShape = false;
-    for (let i = this.shapes.length - 1; i >= 0; i--) {
-      const shape = this.shapes[i];
+    for (let i = shapes.length - 1; i >= 0; i--) {
+      const shape = shapes[i];
       if ((shape.type === 'circle' && this.isCircleHit(shape, x, y)) ||
           (shape.type === 'rect' && this.isRectHit(shape, x, y))) {
         overShape = true;
@@ -120,7 +119,7 @@ const canvasUtil = {
         this.draggingShape.x = x - this.offsetX;
         this.draggingShape.y = y - this.offsetY;
       }
-      this.draw();
+      this.draw(shapes);
     }
   },
 
@@ -132,32 +131,32 @@ const canvasUtil = {
     this.draggingShape = null;
   },
 
-  loadImagesAndDraw() {
-    this.shapeImages = this.shapes.map(shape => {
+  loadImagesAndDraw(shapes) {
+    this.shapeImages = shapes.map(shape => {
       const img = new Image();
       img.src = shape.imageSrc;
       img.onload = () => {
         this.imagesLoaded++;
-        if (this.imagesLoaded === this.shapes.length) {
-          this.draw();
+        if (this.imagesLoaded === shapes.length) {
+          this.draw(shapes);
         }
       };
       return img;
     });
   },
 
-  addEventListeners() {
-    this.canvas.addEventListener('mousedown', this.handleMouseDown.bind(this));
-    this.canvas.addEventListener('mousemove', this.handleMouseMove.bind(this));
+  addEventListeners(shapes) {
+    this.canvas.addEventListener('mousedown', (e) => this.handleMouseDown(e, shapes));
+    this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e, shapes));
     this.canvas.addEventListener('mouseup', this.handleMouseUp.bind(this));
     this.canvas.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
   },
 
-  init() {
+  init(shapes) {
     this.canvas = document.getElementById('myCanvas');
     this.context = this.canvas.getContext('2d');
     this.imagesLoaded = 0;
-    this.loadImagesAndDraw();
-    this.addEventListeners();
+    this.loadImagesAndDraw(shapes);
+    this.addEventListeners(shapes);
   }
 };
