@@ -5,8 +5,8 @@ const shapes = [
     y: 200,
     radiusX: 50,
     radiusY: 50,
-    // imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/June_odd-eyed-cat.jpg/320px-June_odd-eyed-cat.jpg',
-    imageSrc: './resources/cat.jpg',
+    rotation: 0,
+    imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/June_odd-eyed-cat.jpg/320px-June_odd-eyed-cat.jpg',
   },
   {
     type: 'rect',
@@ -14,12 +14,14 @@ const shapes = [
     y: 150,
     width: 100,
     height: 100,
-    // imageSrc: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=facearea&w=320&h=320',
-    imageSrc: './resources/dog.jpg',
+    rotation: 0,
+    imageSrc: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=facearea&w=320&h=320',
   }
 ];
 
 const HANDLE_SIZE = 8;
+const ROTATE_HANDLE_OFFSET = 30;
+const ROTATE_HANDLE_RADIUS = 7;
 
 const canvasUtil = {
   canvas: null,
@@ -31,7 +33,11 @@ const canvasUtil = {
   draggingShape: null,
   resizingShape: null,
   resizingHandle: null,
+  rotatingShape: null,
+  rotatingHandleIndex: null,
   selectedShape: null,
+  startAngle: 0,
+  startRotation: 0,
   STROKE_STYLE: 'gray',
   LINE_WIDTH: 2,
 
@@ -40,6 +46,11 @@ const canvasUtil = {
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     shapes.forEach((shape, idx) => {
       ctx.save();
+      // 중심 기준 회전 적용
+      const center = this.getShapeCenter(shape);
+      ctx.translate(center.x, center.y);
+      ctx.rotate(shape.rotation || 0);
+      ctx.translate(-center.x, -center.y);
       const img = this.shapeImages[idx];
       if (shape.type === 'ellipse') {
         ctx.beginPath();
@@ -54,7 +65,11 @@ const canvasUtil = {
       }
       ctx.restore();
 
-      // 테두리
+      // 테두리 및 핸들/회전핸들
+      ctx.save();
+      ctx.translate(center.x, center.y);
+      ctx.rotate(shape.rotation || 0);
+      ctx.translate(-center.x, -center.y);
       ctx.strokeStyle = this.STROKE_STYLE;
       ctx.lineWidth = this.LINE_WIDTH;
       if (shape.type === 'ellipse') {
@@ -63,14 +78,25 @@ const canvasUtil = {
         ctx.stroke();
         if (this.selectedShape === shape) {
           this.drawEllipseHandles(shape);
+          this.drawRotateHandles(shape);
         }
       } else if (shape.type === 'rect') {
         ctx.strokeRect(shape.x, shape.y, shape.width, shape.height);
         if (this.selectedShape === shape) {
           this.drawHandles(shape);
+          this.drawRotateHandles(shape);
         }
       }
+      ctx.restore();
     });
+  },
+
+  getShapeCenter(shape) {
+    if (shape.type === 'rect') {
+      return { x: shape.x + shape.width / 2, y: shape.y + shape.height / 2 };
+    } else if (shape.type === 'ellipse') {
+      return { x: shape.x, y: shape.y };
+    }
   },
 
   // 사각형 핸들
@@ -103,6 +129,39 @@ const canvasUtil = {
     ];
   },
 
+  // 회전 핸들 (모서리 바깥쪽)
+  getRotateHandles(shape) {
+    const center = this.getShapeCenter(shape);
+    let corners;
+    if (shape.type === 'rect') {
+      corners = [
+        { x: shape.x, y: shape.y },
+        { x: shape.x + shape.width, y: shape.y },
+        { x: shape.x + shape.width, y: shape.y + shape.height },
+        { x: shape.x, y: shape.y + shape.height },
+      ];
+    } else if (shape.type === 'ellipse') {
+      corners = [
+        { x: shape.x - shape.radiusX, y: shape.y - shape.radiusY },
+        { x: shape.x + shape.radiusX, y: shape.y - shape.radiusY },
+        { x: shape.x + shape.radiusX, y: shape.y + shape.radiusY },
+        { x: shape.x - shape.radiusX, y: shape.y + shape.radiusY },
+      ];
+    }
+    // 각 코너에서 중심 방향으로 벡터를 구해 바깥쪽으로 연장
+    return corners.map(corner => {
+      const dx = corner.x - center.x;
+      const dy = corner.y - center.y;
+      const len = Math.sqrt(dx*dx + dy*dy);
+      return {
+        x: center.x + (dx / len) * (len + ROTATE_HANDLE_OFFSET),
+        y: center.y + (dy / len) * (len + ROTATE_HANDLE_OFFSET),
+        cursor: 'grab',
+        pos: 'rotate'
+      };
+    });
+  },
+
   drawHandles(rect) {
     const ctx = this.context;
     this.getRectHandles(rect).forEach(handle => {
@@ -133,6 +192,68 @@ const canvasUtil = {
     });
   },
 
+  drawRotateHandles(shape) {
+    const ctx = this.context;
+    const handles = this.getRotateHandles(shape);
+    // 각 핸들별 각도(라디안): 좌상, 우상, 우하, 좌하
+    const angles = [Math.PI * 1.25, Math.PI * 1.75, Math.PI * 0.25, Math.PI * 0.75];
+    // 곡선이 아이템을 감싸도록 (시계방향)
+    handles.forEach((handle, idx) => {
+      this.drawArrowHandle(ctx, handle.x, handle.y, angles[idx], 'green', true);
+    });
+  },
+
+  drawArrowHandle(ctx, x, y, angle, color = 'green', wrap = true) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+
+    // 아이템을 감싸는 곡선: 1/4원, 시계방향
+    const r = 18;
+    let startAngle = Math.PI * 0.75;
+    let endAngle = Math.PI * 1.25;
+    if (wrap) {
+      // 시계방향으로 감싸는 형태 (아크가 바깥쪽)
+      startAngle = Math.PI * 0.75;
+      endAngle = Math.PI * 1.25;
+    }
+
+    // 1/4원 곡선만
+    ctx.beginPath();
+    ctx.arc(0, 0, r, startAngle, endAngle, false);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    // 화살촉 그리기 함수 (곡선 접선 방향)
+    function drawArrowHead(px, py, theta) {
+      const size = 8;
+      ctx.save();
+      ctx.translate(px, py);
+      ctx.rotate(theta);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(-size, -size * 0.5);
+      ctx.lineTo(-size, size * 0.5);
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // 시작점, 끝점 좌표 및 접선 각도
+    const sx = r * Math.cos(startAngle);
+    const sy = r * Math.sin(startAngle);
+    const ex = r * Math.cos(endAngle);
+    const ey = r * Math.sin(endAngle);
+
+    // 접선 각도: θ+π/2 (시계방향), θ-π/2 (반시계방향)
+    drawArrowHead(sx, sy, startAngle + Math.PI / 2);
+    drawArrowHead(ex, ey, endAngle - Math.PI / 2);
+
+    ctx.restore();
+  },
+
   getHandleUnderMouseRect(rect, mx, my) {
     return this.getRectHandles(rect).find(handle =>
       Math.abs(mx - handle.x) < HANDLE_SIZE &&
@@ -147,6 +268,12 @@ const canvasUtil = {
     );
   },
 
+  getRotateHandleUnderMouse(shape, mx, my) {
+    return this.getRotateHandles(shape).find((handle, idx) =>
+      Math.sqrt((mx - handle.x) ** 2 + (my - handle.y) ** 2) < ROTATE_HANDLE_RADIUS + 2
+    );
+  },
+
   getMousePos(e) {
     const rect = this.canvas.getBoundingClientRect();
     return {
@@ -156,7 +283,6 @@ const canvasUtil = {
   },
 
   isEllipseHit(shape, x, y) {
-    // 타원 hit test: ((x-x0)/rx)^2 + ((y-y0)/ry)^2 <= 1
     const dx = x - shape.x;
     const dy = y - shape.y;
     return (dx * dx) / (shape.radiusX * shape.radiusX) + (dy * dy) / (shape.radiusY * shape.radiusY) <= 1;
@@ -172,13 +298,34 @@ const canvasUtil = {
     this.draggingShape = null;
     this.resizingShape = null;
     this.resizingHandle = null;
+    this.rotatingShape = null;
+    this.rotatingHandleIndex = null;
     this.selectedShape = null;
 
-    // 핸들 hit test (ellipse, rect 모두)
+    // 회전 핸들 hit test (우선순위)
     for (let i = shapes.length - 1; i >= 0; i--) {
       const shape = shapes[i];
+      const center = this.getShapeCenter(shape);
+      // 마우스 좌표를 shape의 회전 좌표계로 변환
+      const local = this.getLocalCoords(x, y, center, -(shape.rotation || 0));
+      const rotateHandle = this.getRotateHandleUnderMouse(shape, local.x, local.y);
+      if (rotateHandle) {
+        this.rotatingShape = shape;
+        this.selectedShape = shape;
+        this.startAngle = Math.atan2(local.y - center.y, local.x - center.x);
+        this.startRotation = shape.rotation || 0;
+        this.draw(shapes);
+        return;
+      }
+    }
+
+    // 크기조절 핸들 hit test
+    for (let i = shapes.length - 1; i >= 0; i--) {
+      const shape = shapes[i];
+      const center = this.getShapeCenter(shape);
+      const local = this.getLocalCoords(x, y, center, -(shape.rotation || 0));
       if (shape.type === 'rect') {
-        const handle = this.getHandleUnderMouseRect(shape, x, y);
+        const handle = this.getHandleUnderMouseRect(shape, local.x, local.y);
         if (handle) {
           this.resizingShape = shape;
           this.resizingHandle = handle.pos;
@@ -187,7 +334,7 @@ const canvasUtil = {
           return;
         }
       } else if (shape.type === 'ellipse') {
-        const handle = this.getHandleUnderMouseEllipse(shape, x, y);
+        const handle = this.getHandleUnderMouseEllipse(shape, local.x, local.y);
         if (handle) {
           this.resizingShape = shape;
           this.resizingHandle = handle.pos;
@@ -201,17 +348,19 @@ const canvasUtil = {
     // shape hit test
     for (let i = shapes.length - 1; i >= 0; i--) {
       const shape = shapes[i];
-      if (shape.type === 'ellipse' && this.isEllipseHit(shape, x, y)) {
+      const center = this.getShapeCenter(shape);
+      const local = this.getLocalCoords(x, y, center, -(shape.rotation || 0));
+      if (shape.type === 'ellipse' && this.isEllipseHit(shape, local.x, local.y)) {
         this.draggingShape = shape;
-        this.offsetX = x - shape.x;
-        this.offsetY = y - shape.y;
+        this.offsetX = local.x - shape.x;
+        this.offsetY = local.y - shape.y;
         this.selectedShape = shape;
         this.draw(shapes);
         return;
-      } else if (shape.type === 'rect' && this.isRectHit(shape, x, y)) {
+      } else if (shape.type === 'rect' && this.isRectHit(shape, local.x, local.y)) {
         this.draggingShape = shape;
-        this.offsetX = x - shape.x;
-        this.offsetY = y - shape.y;
+        this.offsetX = local.x - (shape.x);
+        this.offsetY = local.y - (shape.y);
         this.selectedShape = shape;
         this.draw(shapes);
         return;
@@ -225,27 +374,45 @@ const canvasUtil = {
     const { x, y } = this.getMousePos(e);
     let cursor = 'default';
     let overHandle = false;
-    // 핸들 위 커서 변경 (ellipse, rect 모두)
+    // 회전 핸들 커서
     for (let i = shapes.length - 1; i >= 0; i--) {
       const shape = shapes[i];
-      let handle = null;
-      if (shape.type === 'rect') {
-        handle = this.getHandleUnderMouseRect(shape, x, y);
-      } else if (shape.type === 'ellipse') {
-        handle = this.getHandleUnderMouseEllipse(shape, x, y);
-      }
-      if (handle) {
-        cursor = handle.cursor;
+      const center = this.getShapeCenter(shape);
+      const local = this.getLocalCoords(x, y, center, -(shape.rotation || 0));
+      const rotateHandle = this.getRotateHandleUnderMouse(shape, local.x, local.y);
+      if (rotateHandle) {
+        cursor = 'grab';
         overHandle = true;
         break;
       }
     }
+    // 크기조절 핸들 커서
     if (!overHandle) {
-      // shape 위면 move, 아니면 default
       for (let i = shapes.length - 1; i >= 0; i--) {
         const shape = shapes[i];
-        if ((shape.type === 'ellipse' && this.isEllipseHit(shape, x, y)) ||
-            (shape.type === 'rect' && this.isRectHit(shape, x, y))) {
+        const center = this.getShapeCenter(shape);
+        const local = this.getLocalCoords(x, y, center, -(shape.rotation || 0));
+        let handle = null;
+        if (shape.type === 'rect') {
+          handle = this.getHandleUnderMouseRect(shape, local.x, local.y);
+        } else if (shape.type === 'ellipse') {
+          handle = this.getHandleUnderMouseEllipse(shape, local.x, local.y);
+        }
+        if (handle) {
+          cursor = handle.cursor;
+          overHandle = true;
+          break;
+        }
+      }
+    }
+    // shape move 커서
+    if (!overHandle) {
+      for (let i = shapes.length - 1; i >= 0; i--) {
+        const shape = shapes[i];
+        const center = this.getShapeCenter(shape);
+        const local = this.getLocalCoords(x, y, center, -(shape.rotation || 0));
+        if ((shape.type === 'ellipse' && this.isEllipseHit(shape, local.x, local.y)) ||
+            (shape.type === 'rect' && this.isRectHit(shape, local.x, local.y))) {
           cursor = 'move';
           break;
         }
@@ -253,12 +420,26 @@ const canvasUtil = {
     }
     this.canvas.style.cursor = cursor;
 
-    // 핸들 드래그 중이면 크기 조절
+    // 회전 핸들 드래그
+    if (this.rotatingShape) {
+      const shape = this.rotatingShape;
+      const center = this.getShapeCenter(shape);
+      const local = this.getLocalCoords(x, y, center, 0);
+      const angle = Math.atan2(local.y - center.y, local.x - center.x);
+      shape.rotation = this.startRotation + (angle - this.startAngle);
+      this.draw(shapes);
+      return;
+    }
+
+    // 크기조절 핸들 드래그
     if (this.resizingShape && this.resizingHandle) {
-      if (this.resizingShape.type === 'rect') {
-        this.resizeRect(this.resizingShape, this.resizingHandle, x, y);
-      } else if (this.resizingShape.type === 'ellipse') {
-        this.resizeEllipse(this.resizingShape, this.resizingHandle, x, y);
+      const shape = this.resizingShape;
+      const center = this.getShapeCenter(shape);
+      const local = this.getLocalCoords(x, y, center, -(shape.rotation || 0));
+      if (shape.type === 'rect') {
+        this.resizeRect(shape, this.resizingHandle, local.x, local.y);
+      } else if (shape.type === 'ellipse') {
+        this.resizeEllipse(shape, this.resizingHandle, local.x, local.y);
       }
       this.draw(shapes);
       return;
@@ -266,12 +447,15 @@ const canvasUtil = {
 
     // shape 드래그
     if (this.draggingShape) {
-      if (this.draggingShape.type === 'ellipse') {
-        this.draggingShape.x = x - this.offsetX;
-        this.draggingShape.y = y - this.offsetY;
-      } else if (this.draggingShape.type === 'rect') {
-        this.draggingShape.x = x - this.offsetX;
-        this.draggingShape.y = y - this.offsetY;
+      const shape = this.draggingShape;
+      const center = this.getShapeCenter(shape);
+      const local = this.getLocalCoords(x, y, center, -(shape.rotation || 0));
+      if (shape.type === 'ellipse') {
+        shape.x = local.x - this.offsetX;
+        shape.y = local.y - this.offsetY;
+      } else if (shape.type === 'rect') {
+        shape.x = local.x - this.offsetX;
+        shape.y = local.y - this.offsetY;
       }
       this.draw(shapes);
     }
@@ -281,20 +465,20 @@ const canvasUtil = {
     this.draggingShape = null;
     this.resizingShape = null;
     this.resizingHandle = null;
+    this.rotatingShape = null;
+    this.rotatingHandleIndex = null;
   },
 
-  handleMouseLeave() {
-    this.draggingShape = null;
-    this.resizingShape = null;
-    this.resizingHandle = null;
-  },
-
-  handleDownload() {
-    const canvas = document.getElementById('myCanvas');
-    const link = document.createElement('a');
-    link.download = 'canvas-image.png';
-    link.href = canvas.toDataURL('image/png');
-    link.click();
+  getLocalCoords(x, y, center, angle) {
+    // (x, y)를 center 기준 angle만큼 반시계 회전한 좌표로 변환
+    const dx = x - center.x;
+    const dy = y - center.y;
+    const cos = Math.cos(angle);
+    const sin = Math.sin(angle);
+    return {
+      x: center.x + dx * cos - dy * sin,
+      y: center.y + dx * sin + dy * cos
+    };
   },
 
   resizeRect(rect, handlePos, mx, my) {
@@ -384,7 +568,7 @@ const canvasUtil = {
     this.canvas.addEventListener('mousedown', (e) => this.handleMouseDown(e, shapes));
     this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e, shapes));
     this.canvas.addEventListener('mouseup', this.handleMouseUp.bind(this));
-    this.canvas.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
+    this.canvas.addEventListener('mouseleave', this.handleMouseUp.bind(this));
   },
 
   init(shapes) {
@@ -393,11 +577,5 @@ const canvasUtil = {
     this.imagesLoaded = 0;
     this.loadImagesAndDraw(shapes);
     this.addEventListeners(shapes);
-
-    document.getElementById('saveImageBtn').addEventListener('click', (e) => this.handleDownload(e));
   }
 };
-
-// window.addEventListener('DOMContentLoaded', function() {
-//   canvasUtil.init(shapes);
-// });
