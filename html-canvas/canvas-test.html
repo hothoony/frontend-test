@@ -10,12 +10,27 @@
 </head>
 <body>
     
-    <canvas id="myCanvas" width="800" height="600"></canvas>
+    <div>
+        <div>
+            <canvas id="myCanvas" width="800" height="600"></canvas>
+        </div>
+        <div>
+            <button id="saveImageBtn" style="margin:10px 0;">이미지로 저장</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             canvasUtil.init(shapes);
+        });
+
+        document.getElementById('saveImageBtn').addEventListener('click', function() {
+          const canvas = document.getElementById('myCanvas');
+          const link = document.createElement('a');
+          link.download = 'canvas-image.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
         });
     </script>
 
