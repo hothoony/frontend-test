@@ -196,20 +196,25 @@ const canvasUtil = {
     const ctx = this.context;
     const handles = this.getRotateHandles(shape);
     // 각 핸들별 각도(라디안): 좌상, 우상, 우하, 좌하
-    const angles = [Math.PI * 1.25, Math.PI * 1.75, Math.PI * 0.25, Math.PI * 0.75];
+    const angles = [
+      Math.PI * 0.25, 
+      Math.PI * 0.75,
+      Math.PI * 1.25, 
+      Math.PI * 1.75, 
+    ];
     // 곡선이 아이템을 감싸도록 (시계방향)
     handles.forEach((handle, idx) => {
-      this.drawArrowHandle(ctx, handle.x, handle.y, angles[idx], 'green', true);
+      this.drawArrowHandle(ctx, handle.x, handle.y, angles[idx], '#2196f3', true);
     });
   },
 
-  drawArrowHandle(ctx, x, y, angle, color = 'green', wrap = true) {
+  drawArrowHandle(ctx, x, y, angle, color, wrap = true) {
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate(angle);
 
     // 아이템을 감싸는 곡선: 1/4원, 시계방향
-    const r = 18;
+    const r = 8;
     let startAngle = Math.PI * 0.75;
     let endAngle = Math.PI * 1.25;
     if (wrap) {
