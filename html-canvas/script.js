@@ -20,7 +20,7 @@ const shapes = [
 ];
 
 const HANDLE_SIZE = 8;
-const ROTATE_HANDLE_OFFSET = 30;
+const ROTATE_HANDLE_OFFSET = 16;
 const ROTATE_HANDLE_RADIUS = 7;
 
 const canvasUtil = {
