@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phonics Game - 영어 파닉스 학습</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- 시작 화면 -->
+    <section id="start-screen" class="active">
+      <h1>Phonics Game</h1>
+      <p>영어 알파벳과 소리를 재미있게 배워요!</p>
+      <button id="start-btn">시작</button>
+      <button id="settings-btn" class="icon-btn" title="설정">⚙️</button>
+    </section>
+    <!-- 설정 모달 -->
+    <div id="settings-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>설정</h2>
+        <label><input type="checkbox" id="bgm-toggle" checked> 배경음악</label><br>
+        <label><input type="checkbox" id="voice-toggle" checked> 음성 안내</label><br>
+        <button id="close-settings">닫기</button>
+      </div>
+    </div>
+    <!-- 모드 선택 화면 -->
+    <section id="mode-select" class="hidden">
+      <h2>학습 모드 선택</h2>
+      <button class="mode-btn" data-mode="alphabet">알파벳 소리 학습</button>
+      <button class="mode-btn" data-mode="cvc">CVC 단어 학습</button>
+      <button class="mode-btn" data-mode="digraph">이중 자음/모음 학습</button>
+      <button class="mode-btn" data-mode="game">게임 모드</button>
+      <button id="back-to-start">← 뒤로</button>
+    </section>
+    <!-- 학습 카드 화면 -->
+    <section id="card-learning" class="hidden">
+      <div id="card">
+        <div id="card-letter"></div>
+        <button id="play-sound" class="icon-btn" title="소리 재생">🔊</button>
+        <div id="card-example">
+          <span id="example-word"></span>
+          <span id="example-img"></span>
+          <button id="play-word-sound" class="icon-btn" title="단어 소리 재생">🔊</button>
+        </div>
+      </div>
+      <div class="card-controls">
+        <button id="prev-card">이전</button>
+        <button id="next-card">다음</button>
+        <button id="random-card">랜덤</button>
+        <button id="exit-learning">종료</button>
+      </div>
+    </section>
+    <!-- 게임 모드 화면 -->
+    <section id="game-mode" class="hidden">
+      <div id="game-container">
+        <!-- 동적으로 게임 UI가 생성됨 -->
+      </div>
+      <button id="exit-game">종료</button>
+    </section>
+    <!-- 통계 화면 -->
+    <section id="stats-screen" class="hidden">
+      <h2>학습 통계</h2>
+      <div id="stats-content">
+        <!-- 동적으로 통계 표시 -->
+      </div>
+      <button id="back-to-mode">← 모드 선택으로</button>
+    </section>
+  </div>
+  <audio id="bgm" src="assets/bgm.mp3" loop></audio>
+  <script src="app.js"></script>
+</body>
+</html> 
