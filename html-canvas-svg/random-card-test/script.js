@@ -20,6 +20,7 @@ const lowerCheck = document.getElementById('lower-check');
 const mixedCheck = document.getElementById('mixed-check');
 const optionForm = document.getElementById('option-form');
 const cardCounter = document.getElementById('card-counter');
+const speakerBtn = document.getElementById('speaker-btn');
 
 function shuffle(array) {
   const arr = array.slice();
@@ -101,6 +102,18 @@ function nextCard() {
   }
 }
 
+function speakCurrentCard() {
+  if (history.length === 0 || currentIdx < 0) return;
+  let text = history[currentIdx];
+  // 혼합카드(Ab)면 첫 글자만 발음
+  if (text.length > 1) text = text[0];
+  const utter = new window.SpeechSynthesisUtterance(text);
+  utter.lang = /[A-Z]/.test(text) ? 'en-US' : 'en-US';
+  utter.rate = 0.8;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utter);
+}
+
 optionForm.addEventListener('submit', function(e) {
   e.preventDefault();
   startGame();
@@ -108,6 +121,7 @@ optionForm.addEventListener('submit', function(e) {
 endBtn.addEventListener('click', endGame);
 prevBtn.addEventListener('click', prevCard);
 nextBtn.addEventListener('click', nextCard);
+speakerBtn.addEventListener('click', speakCurrentCard);
 
 // 초기화
 window.onload = () => {

@@ -33,7 +33,27 @@ body {
   display: none !important;
 }
 
+.speaker-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.2rem auto;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(79,140,255,0.10);
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 2;
+  position: static;
+}
+.speaker-btn:hover {
+  background: #e0e7ff;
+}
 .card-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
