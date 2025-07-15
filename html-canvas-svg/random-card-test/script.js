@@ -108,7 +108,7 @@ function speakCurrentCard() {
   // 혼합카드(Ab)면 첫 글자만 발음
   if (text.length > 1) text = text[0];
   // 알파벳 문자만 발음 (영어 이름)
-  console.log('text', text);
+  // console.log('text', text);
   console.log('text', text.toLowerCase());
   const utter = new window.SpeechSynthesisUtterance(text.toLowerCase());
   utter.lang = 'en-US';
