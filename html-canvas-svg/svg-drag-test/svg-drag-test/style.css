@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  background: #f7f7f7;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+h1 {
+  margin-top: 32px;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+.stage-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 24px 0 24px 0;
+  margin-bottom: 32px;
+}
+
+#stage {
+  display: block;
+  background: #eaeaea;
+  border-radius: 12px;
+}
+
+/* shapes-bar, #shapes 관련 스타일 제거 */
+
+.draggable-shape {
+  cursor: grab;
+  transition: filter 0.2s;
+}
+
+.draggable-shape:active {
+  cursor: grabbing;
+  filter: brightness(0.9);
+}
+
+.fixed {
+  filter: drop-shadow(0 0 8px #4caf50);
+} 

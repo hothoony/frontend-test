@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>도형 맞추기 게임</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>도형 맞추기 게임</h1>
+    <div class="stage-wrapper">
+      <svg id="stage" width="400" height="300">
+        <!-- 중앙 회색 삼각형 (목표 도형) -->
+        <polygon id="target-shape" points="200,80 160,200 240,200" fill="#ccc" stroke="#888" stroke-width="2" />
+        <!-- 하단 도형 3개 -->
+        <circle id="draggable-circle" class="draggable-shape" cx="70" cy="270" r="30" fill="#4FC3F7" stroke="#0288D1" stroke-width="2" />
+        <rect id="draggable-rect" class="draggable-shape" x="170" y="230" width="60" height="60" fill="#81C784" stroke="#388E3C" stroke-width="2" />
+        <polygon id="draggable-triangle" class="draggable-shape" points="330,230 300,290 360,290" fill="#FFD54F" stroke="#FFA000" stroke-width="2" />
+      </svg>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html> 
