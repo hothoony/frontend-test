@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>알파벳 카드 플래시카드</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- 시작 화면 -->
+    <div id="start-screen" class="centered">
+      <form id="option-form">
+        <div style="margin-bottom:2rem; text-align:left;">
+          <label><input type="checkbox" id="upper-check" checked> 대문자</label><br>
+          <label><input type="checkbox" id="lower-check" checked> 소문자</label><br>
+          <label><input type="checkbox" id="mixed-check" checked> 대,소문자</label>
+        </div>
+        <button id="start-btn" type="submit">시작하기</button>
+      </form>
+    </div>
+    <!-- 게임 화면 -->
+    <div id="game-screen" class="hidden">
+      <div class="card-container">
+        <div id="card" class="card"></div>
+      </div>
+      <div id="card-counter" class="card-counter"></div>
+      <div class="button-row">
+        <button id="prev-btn">이전</button>
+        <button id="next-btn">다음</button>
+        <button id="end-btn">종료</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html> 
