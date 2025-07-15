@@ -40,19 +40,29 @@ function onDragStart(e) {
   const svg = target.ownerSVGElement;
   svg.appendChild(target); // z-order 최상위
   const mouse = getMousePosition(e, svg);
+  // 도형의 중심이 마우스 포인터와 일치하도록 offset을 0으로
+  offset.x = 0;
+  offset.y = 0;
   if (dragging.tagName === 'circle') {
-    offset.x = mouse.x - parseFloat(dragging.getAttribute('cx'));
-    offset.y = mouse.y - parseFloat(dragging.getAttribute('cy'));
     startPos = { cx: parseFloat(dragging.getAttribute('cx')), cy: parseFloat(dragging.getAttribute('cy')) };
+    // 드래그 시작 시 중심을 마우스 위치로 이동
+    dragging.setAttribute('cx', mouse.x);
+    dragging.setAttribute('cy', mouse.y);
   } else if (dragging.tagName === 'rect') {
-    offset.x = mouse.x - parseFloat(dragging.getAttribute('x'));
-    offset.y = mouse.y - parseFloat(dragging.getAttribute('y'));
+    const w = parseFloat(dragging.getAttribute('width'));
+    const h = parseFloat(dragging.getAttribute('height'));
     startPos = { x: parseFloat(dragging.getAttribute('x')), y: parseFloat(dragging.getAttribute('y')) };
+    dragging.setAttribute('x', mouse.x - w/2);
+    dragging.setAttribute('y', mouse.y - h/2);
   } else if (dragging.tagName === 'polygon') {
-    const points = dragging.getAttribute('points').split(' ')[0].split(',');
-    offset.x = mouse.x - parseFloat(points[0]);
-    offset.y = mouse.y - parseFloat(points[1]);
+    const pts = dragging.getAttribute('points').split(' ').map(pt => pt.split(',').map(Number));
+    const cx = (pts[0][0] + pts[1][0] + pts[2][0]) / 3;
+    const cy = (pts[0][1] + pts[1][1] + pts[2][1]) / 3;
     startPos = dragging.getAttribute('points');
+    const dx = mouse.x - cx;
+    const dy = mouse.y - cy;
+    const newPoints = pts.map(([x, y]) => [x + dx, y + dy]);
+    dragging.setAttribute('points', newPoints.map(pt => pt.join(',')).join(' '));
   }
   startMouse = { x: e.clientX, y: e.clientY };
   document.addEventListener('mousemove', onDragMove);
@@ -64,17 +74,20 @@ function onDragMove(e) {
   const svg = dragging.ownerSVGElement;
   const mouse = getMousePosition(e, svg);
   if (dragging.tagName === 'circle') {
-    dragging.setAttribute('cx', mouse.x - offset.x);
-    dragging.setAttribute('cy', mouse.y - offset.y);
+    dragging.setAttribute('cx', mouse.x);
+    dragging.setAttribute('cy', mouse.y);
   } else if (dragging.tagName === 'rect') {
-    dragging.setAttribute('x', mouse.x - offset.x);
-    dragging.setAttribute('y', mouse.y - offset.y);
+    const w = parseFloat(dragging.getAttribute('width'));
+    const h = parseFloat(dragging.getAttribute('height'));
+    dragging.setAttribute('x', mouse.x - w/2);
+    dragging.setAttribute('y', mouse.y - h/2);
   } else if (dragging.tagName === 'polygon') {
-    // 삼각형: 모든 점을 이동
-    const origPoints = dragging.getAttribute('points').split(' ').map(pt => pt.split(',').map(Number));
-    const dx = mouse.x - offset.x - origPoints[0][0];
-    const dy = mouse.y - offset.y - origPoints[0][1];
-    const newPoints = origPoints.map(([x, y]) => [x + dx, y + dy]);
+    const pts = dragging.getAttribute('points').split(' ').map(pt => pt.split(',').map(Number));
+    const cx = (pts[0][0] + pts[1][0] + pts[2][0]) / 3;
+    const cy = (pts[0][1] + pts[1][1] + pts[2][1]) / 3;
+    const dx = mouse.x - cx;
+    const dy = mouse.y - cy;
+    const newPoints = pts.map(([x, y]) => [x + dx, y + dy]);
     dragging.setAttribute('points', newPoints.map(pt => pt.join(',')).join(' '));
   }
 }
