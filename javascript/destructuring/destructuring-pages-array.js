@@ -20,3 +20,16 @@ let pages = [{
 
 console.log();
 console.log('pages=', pages);
+
+pages = pages.map(page => ({
+    segments: page.segments.map(item => ({
+        ...item,
+        background: item.background.map(background => ({
+            ...background,
+            insertTime: 0,
+        })),
+    })),
+}));
+
+console.log();
+console.log('pages=', pages);
