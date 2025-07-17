@@ -21,6 +21,8 @@ let pages = [{
 console.log();
 console.log('pages=', pages);
 
+
+// background.insertTime 을 모두 0 으로 변경
 const result1 = pages.map(page => ({
     segments: page.segments.map(item => ({
         ...item,
@@ -33,3 +35,18 @@ const result1 = pages.map(page => ({
 
 console.log();
 console.log('result1=', result1);
+
+
+// background.insertTime 이 음수인 것만 0 으로 젼경
+const result2 = pages.map(page => ({
+    segments: page.segments.map(item => ({
+        ...item,
+        background: item.background.map(background => ({
+            ...background,
+            insertTime: 0,
+        })),
+    })),
+}));
+
+console.log();
+console.log('result2=', result2);
