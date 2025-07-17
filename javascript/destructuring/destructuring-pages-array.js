@@ -53,11 +53,13 @@ console.log('result2=', result2);
 
 
 // background.insertTime 이 음수가 있으면 alert
-const existMinus = pages.some(page =>
-    page.segments.some(segment =>
-        segment.background.some(background => background.insertTime < 0)
-    )
-);
+const existMinus = pages.some(segments => (
+    segments.some(item => (
+        item.background.some(background => (
+            background.insertTime < 0
+        ))
+    ))
+));
 
 console.log();
 console.log('existMinus=', existMinus);
