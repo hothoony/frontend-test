@@ -1,4 +1,4 @@
-const pages = {
+let pages1 = {
     "segments": {
         "segment": [
             {"id": 1, "insertTime": -10, "duration": 10},
@@ -23,4 +23,17 @@ const pages = {
     },
 };
 
-console.log('pages', pages);
+console.log('pages1=', pages1);
+
+pages1 = {
+    ...pages1,
+    segments: {
+        ...pages1.segments,
+        background: pages1.segments.background.map(background => ({
+            ...background,
+            insertTime: 0,
+        })),
+    },
+};
+
+console.log('pages1=', pages1);
