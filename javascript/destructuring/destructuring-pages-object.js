@@ -1,4 +1,4 @@
-let pages1 = {
+let pages = {
     "segments": {
         "segment": [
             {"id": 1, "insertTime": -10, "duration": 10},
@@ -15,25 +15,22 @@ let pages1 = {
             {"id": 2, "insertTime": 0, "duration": 20},
             {"id": 3, "insertTime": 20, "duration": 30},
         ],
-        "title": [
-            {"id": 1, "insertTime": -10, "duration": 10},
-            {"id": 2, "insertTime": 0, "duration": 20},
-            {"id": 3, "insertTime": 20, "duration": 30},
-        ],
     },
 };
 
-console.log('pages1=', pages1);
+console.log();
+console.log('pages=', pages);
 
-pages1 = {
-    ...pages1,
+pages = {
+    ...pages,
     segments: {
-        ...pages1.segments,
-        background: pages1.segments.background.map(background => ({
+        ...pages.segments,
+        background: pages.segments.background.map(background => ({
             ...background,
             insertTime: 0,
         })),
     },
 };
 
-console.log('pages1=', pages1);
+console.log();
+console.log('pages=', pages);
