@@ -52,3 +52,12 @@ const result2 = {
 
 console.log();
 console.log('result2=', result2);
+
+
+// background.insertTime 이 음수가 있으면 alert
+const existMinus = pages.segments.background.some(background => (
+    background.insertTime < 0
+));
+
+console.log();
+console.log('existMinus=', existMinus);

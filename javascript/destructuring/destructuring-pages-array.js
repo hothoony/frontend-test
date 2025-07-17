@@ -50,3 +50,12 @@ const result2 = pages.map(page => ({
 
 console.log();
 console.log('result2=', result2);
+
+
+// background.insertTime 이 음수가 있으면 alert
+const existMinus = pages.some(page => ({
+
+}));
+
+console.log();
+console.log('existMinus=', existMinus);
