@@ -43,7 +43,7 @@ const result2 = pages.map(page => ({
         ...item,
         background: item.background.map(background => ({
             ...background,
-            insertTime: 0,
+            insertTime: background.insertTime < 0 ? 0 : background.insertTime,
         })),
     })),
 }));
