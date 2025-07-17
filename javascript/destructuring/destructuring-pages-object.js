@@ -21,7 +21,7 @@ let pages = {
 console.log();
 console.log('pages=', pages);
 
-pages = {
+const result1 = {
     ...pages,
     segments: {
         ...pages.segments,
@@ -33,4 +33,4 @@ pages = {
 };
 
 console.log();
-console.log('pages=', pages);
+console.log('result1=', result1);

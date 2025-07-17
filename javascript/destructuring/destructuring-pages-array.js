@@ -21,7 +21,7 @@ let pages = [{
 console.log();
 console.log('pages=', pages);
 
-pages = pages.map(page => ({
+const result1 = pages.map(page => ({
     segments: page.segments.map(item => ({
         ...item,
         background: item.background.map(background => ({
@@ -32,4 +32,4 @@ pages = pages.map(page => ({
 }));
 
 console.log();
-console.log('pages=', pages);
+console.log('result1=', result1);
