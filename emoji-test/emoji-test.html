@@ -27,14 +27,15 @@
       console.log('onReady');
 
       const handleTitleInput = (e) => {
-        console.log('handleTitleInput', titleEl.value);
+        console.log('handleTitleInput before :', titleEl.value);
         titleEl.value = remove4ByteChars(titleEl.value);
+        console.log('handleTitleInput after  :', titleEl.value);
       };
 
       const titleEl = document.querySelector('input[name=title]');
       titleEl.addEventListener('input', handleTitleInput);
 
-      titleEl.value = '😃😂😍😢😎🐱‍👤❤️💯🚀🌟 abc 123, 3bytes: ©☀☕☎♥, 4bytes: 😀😂😎🐶🚀';
+      titleEl.value = '안녕하세요 😃😂😍😢😎🐱‍👤❤️💯🚀🌟 abc 123, 3bytes: ©☀☕☎♥, 4bytes: 😀😂😎🐶🚀';
     }
 
     document.addEventListener('DOMContentLoaded', onReady);
