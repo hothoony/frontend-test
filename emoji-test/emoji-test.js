@@ -1,3 +1,4 @@
+// 4바이트 이모지 제거
 function remove4ByteChars(str) {
   // UTF-16 surrogate pair (U+10000 ~ U+10FFFF)
   return str.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '');
