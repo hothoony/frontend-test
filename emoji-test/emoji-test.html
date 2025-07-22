@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <form>
+    <label>
+      <span>이모지 4바이트 제거</span>
+      <input type="text" name="title" style="width: 600px;">
+    </label>
+  </form>
+
+  <script>
+
+    // 4바이트 이모지 제거
+    function remove4ByteChars(str) {
+      // UTF-16 surrogate pair (U+10000 ~ U+10FFFF)
+      return str.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '');
+    }
+
+    const onReady = (e) => {
+      console.log('onReady');
+
+      const handleTitleInput = (e) => {
+        console.log('handleTitleInput', titleEl.value);
+        titleEl.value = remove4ByteChars(titleEl.value);
+      };
+
+      const titleEl = document.querySelector('input[name=title]');
+      titleEl.addEventListener('input', handleTitleInput);
+
+      titleEl.value = '😃😂😍😢😎🐱‍👤❤️💯🚀🌟 abc 123, 3bytes: ©☀☕☎♥, 4bytes: 😀😂😎🐶🚀';
+    }
+
+    document.addEventListener('DOMContentLoaded', onReady);
+  </script>
+  
+</body>
+</html>
