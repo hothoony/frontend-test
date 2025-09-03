@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리스트 페이지네이션</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .list-container {
+            margin-bottom: 20px;
+        }
+
+        .list-item {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .list-item:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-title {
+            font-weight: 600;
+            color: #495057;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .item-description {
+            color: #6c757d;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .load-more-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+        }
+
+        .load-more-btn:hover {
+            background: linear-gradient(45deg, #0056b3, #003d82);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+        }
+
+        .load-more-btn:active {
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .loading-indicator {
+            text-align: center;
+            color: #6c757d;
+            font-style: italic;
+            margin: 20px 0;
+        }
+
+        .stats {
+            text-align: center;
+            color: #6c757d;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .list-item {
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 아이템 리스트</h1>
+        
+        <div class="stats">
+            <span id="displayedCount">0</span> / <span id="totalCount">0</span> 개의 아이템
+        </div>
+        
+        <div id="listContainer" class="list-container">
+            <!-- 동적으로 생성되는 리스트 아이템들 -->
+        </div>
+        
+        <div id="loadingIndicator" class="loading-indicator hidden">
+            데이터를 불러오는 중...
+        </div>
+        
+        <button id="loadMoreBtn" class="load-more-btn hidden">
+            더보기 ⬇️
+        </button>
+    </div>
+
+    <script>
+        class ListPagination {
+            constructor() {
+                this.allItems = []; // 전체 데이터
+                this.displayedItems = []; // 현재 화면에 표시된 데이터
+                this.itemsPerPage = 5; // 한 번에 보여줄 아이템 수
+                this.currentPage = 0; // 현재 페이지 (0부터 시작)
+                
+                // DOM 요소들
+                this.listContainer = document.getElementById('listContainer');
+                this.loadMoreBtn = document.getElementById('loadMoreBtn');
+                this.loadingIndicator = document.getElementById('loadingIndicator');
+                this.displayedCountEl = document.getElementById('displayedCount');
+                this.totalCountEl = document.getElementById('totalCount');
+                
+                this.init();
+            }
+            
+            async init() {
+                // 더보기 버튼 이벤트 리스너
+                this.loadMoreBtn.addEventListener('click', () => {
+                    this.loadMoreItems();
+                });
+                
+                // 데이터 fetch 및 초기 렌더링
+                await this.fetchData();
+                this.renderInitialItems();
+            }
+            
+            // API에서 데이터를 가져오는 함수 (실제로는 fetch를 사용)
+            async fetchData() {
+                // 로딩 표시
+                this.showLoading();
+                
+                try {
+                    // 실제 API 호출을 시뮬레이션 (13개 아이템)
+                    await this.simulateApiDelay();
+                    
+                    this.allItems = [
+                        { id: 1, title: "첫 번째 아이템", description: "이것은 첫 번째 아이템의 상세 설명입니다. 중요한 정보가 포함되어 있습니다." },
+                        { id: 2, title: "두 번째 아이템", description: "두 번째 아이템에 대한 설명으로, 다양한 기능을 제공합니다." },
+                        { id: 3, title: "세 번째 아이템", description: "세 번째 아이템은 특별한 속성을 가지고 있으며 사용자에게 유용합니다." },
+                        { id: 4, title: "네 번째 아이템", description: "네 번째 아이템의 상세한 정보와 사용 방법에 대한 안내입니다." },
+                        { id: 5, title: "다섯 번째 아이템", description: "다섯 번째 아이템은 고급 기능을 제공하며 전문가용입니다." },
+                        { id: 6, title: "여섯 번째 아이템", description: "여섯 번째 아이템에 대한 자세한 설명과 활용 방안입니다." },
+                        { id: 7, title: "일곱 번째 아이템", description: "일곱 번째 아이템의 특징과 장점에 대한 상세 정보입니다." },
+                        { id: 8, title: "여덟 번째 아이템", description: "여덟 번째 아이템은 혁신적인 기술을 적용한 제품입니다." },
+                        { id: 9, title: "아홉 번째 아이템", description: "아홉 번째 아이템의 독특한 특성과 사용 사례입니다." },
+                        { id: 10, title: "열 번째 아이템", description: "열 번째 아이템에 대한 포괄적인 정보와 가이드라인입니다." },
+                        { id: 11, title: "열한 번째 아이템", description: "열한 번째 아이템의 고유한 기능과 성능에 대한 설명입니다." },
+                        { id: 12, title: "열두 번째 아이템", description: "열두 번째 아이템은 최신 기술이 적용된 혁신적인 솔루션입니다." },
+                        { id: 13, title: "열세 번째 아이템", description: "마지막 아이템으로, 모든 기능을 종합한 완성형 제품입니다." }
+                    ];
+                    
+                    // 전체 개수 업데이트
+                    this.totalCountEl.textContent = this.allItems.length;
+                    
+                } catch (error) {
+                    console.error('데이터를 가져오는데 실패했습니다:', error);
+                    this.showError();
+                } finally {
+                    this.hideLoading();
+                }
+            }
+            
+            // API 지연 시뮬레이션
+            simulateApiDelay() {
+                return new Promise(resolve => {
+                    setTimeout(resolve, 1000); // 1초 지연
+                });
+            }
+            
+            // 초기 아이템들 렌더링 (처음 5개)
+            renderInitialItems() {
+                if (this.allItems.length === 0) return;
+                
+                // 처음 5개 아이템 추출
+                const initialItems = this.allItems.slice(0, this.itemsPerPage);
+                this.displayedItems = [...initialItems];
+                this.currentPage = 1;
+                
+                // 화면에 렌더링
+                this.renderItems(initialItems);
+                this.updateStats();
+                
+                // 더보기 버튼 표시 여부 결정
+                if (this.allItems.length > this.itemsPerPage) {
+                    this.loadMoreBtn.classList.remove('hidden');
+                }
+            }
+            
+            // 더보기 버튼 클릭 시 추가 아이템 로드
+            loadMoreItems() {
+                const startIndex = this.currentPage * this.itemsPerPage;
+                const endIndex = Math.min(startIndex + this.itemsPerPage, this.allItems.length);
+                const newItems = this.allItems.slice(startIndex, endIndex);
+                
+                if (newItems.length > 0) {
+                    // 새 아이템들을 표시된 아이템들에 추가
+                    this.displayedItems = [...this.displayedItems, ...newItems];
+                    this.currentPage++;
+                    
+                    // 새 아이템들 렌더링
+                    this.renderItems(newItems, true);
+                    this.updateStats();
+                    
+                    // 모든 아이템이 표시되었으면 더보기 버튼 숨기기
+                    if (this.displayedItems.length >= this.allItems.length) {
+                        this.loadMoreBtn.classList.add('hidden');
+                    }
+                }
+            }
+            
+            // 아이템들을 화면에 렌더링
+            renderItems(items, isAppend = false) {
+                if (!isAppend) {
+                    this.listContainer.innerHTML = '';
+                }
+                
+                items.forEach((item, index) => {
+                    const itemElement = this.createItemElement(item, index);
+                    this.listContainer.appendChild(itemElement);
+                });
+            }
+            
+            // 개별 아이템 요소 생성
+            createItemElement(item, index) {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'list-item';
+                itemDiv.style.animationDelay = `${index * 0.1}s`;
+                
+                itemDiv.innerHTML = `
+                    <div class="item-title">${item.title}</div>
+                    <div class="item-description">${item.description}</div>
+                `;
+                
+                return itemDiv;
+            }
+            
+            // 통계 정보 업데이트
+            updateStats() {
+                this.displayedCountEl.textContent = this.displayedItems.length;
+            }
+            
+            // 로딩 표시
+            showLoading() {
+                this.loadingIndicator.classList.remove('hidden');
+            }
+            
+            // 로딩 숨기기
+            hideLoading() {
+                this.loadingIndicator.classList.add('hidden');
+            }
+            
+            // 에러 표시
+            showError() {
+                this.listContainer.innerHTML = `
+                    <div style="text-align: center; color: #dc3545; padding: 20px;">
+                        ❌ 데이터를 불러오는데 실패했습니다.
+                    </div>
+                `;
+            }
+        }
+        
+        // 페이지 로드 시 초기화
+        document.addEventListener('DOMContentLoaded', () => {
+            new ListPagination();
+        });
+    </script>
+</body>
+</html>
