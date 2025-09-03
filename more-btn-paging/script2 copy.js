@@ -26,27 +26,56 @@
         { title: "23 번째 아이템", description: "마지막 아이템으로, 모든 기능을 종합한 완성형 제품입니다." },
     ];
 
-    const initEvent = () => {
-        document.querySelector('#moreBtn').addEventListener('click', () => {
-            renderNextPage();
-        });
-    }
-
     const createItem = (item) => {
-        const template = `
-            <div class="item-each">
+        const itemDiv = `
+            <div>
                 <div class="item-title">${item.title}</div>
                 <div class="item-description">${item.description}</div>
             </div>
         `;
-        return template;
+        return itemDiv;
+    }
+
+    const initEvent = () => {
+        document.querySelector('#moreBtn').addEventListener('click', () => {
+            renderMore();
+        });
     }
 
     let page = 0;
     let pageSize = 5;
-    let displayCount = 0;
+    let displayList = [];
 
-    const renderNextPage = () => {
+    const renderList = (pageList) => {
+
+        displayList = [...displayList, ...pageList];
+
+        let content = '';
+        for (let item of displayList) {
+            content += createItem(item);
+        }
+
+        const listContainer = document.getElementById('listContainer');
+        listContainer.innerHTML = content;
+
+        if (displayList.length >= list.length) {
+            document.querySelector('#moreBtn').style.display = 'none';
+        }
+    }
+
+    const renderFirst = () => {
+        console.log('renderFirst');
+
+        page = 1;
+        const sidx = (page - 1) * pageSize;
+        const eidx = page * pageSize;
+        const pageList = list.slice(sidx, eidx);
+        renderList(pageList);
+    }
+
+    const renderMore = () => {
+        console.log('renderMore');
+
         page++;
         const sidx = (page - 1) * pageSize;
         const eidx = page * pageSize;
@@ -54,24 +83,13 @@
         renderList(pageList);
     }
 
-    const renderList = (pageList) => {
-        let content = '';
-        for (let item of pageList) {
-            content += createItem(item);
-        }
-
-        const listContainer = document.getElementById('listContainer');
-        listContainer.insertAdjacentHTML('beforeend', content);
-
-        displayCount += pageList.length;
-        if (displayCount >= list.length) {
-            document.querySelector('#moreBtn').style.display = 'none';
-        }
+    const init = () => {
+        renderFirst();
     }
 
     document.addEventListener('DOMContentLoaded', () => {
         initEvent();
-        renderNextPage();
+        init();
     });
 
 })(this);
