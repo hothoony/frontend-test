@@ -6,8 +6,6 @@
         });
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        initEvent();
-    });
+    initEvent();
 
 })(this);

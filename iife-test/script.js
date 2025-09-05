@@ -1,13 +1,11 @@
-(function(w){
+(function() {
+    console.log('standard IIFE');
+})();
 
-    const initEvent = () => {
-        document.querySelector('#moreBtn').addEventListener('click', () => {
-            console.log('click');
-        });
-    }
+(() => {
+    console.log('arrow function variant');
+})();
 
-    document.addEventListener('DOMContentLoaded', () => {
-        initEvent();
-    });
-
-})(this);
+(async () => {
+    console.log('async IIFE');
+})();
