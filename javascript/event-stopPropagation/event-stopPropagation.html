@@ -25,14 +25,10 @@
         </label>
     </div>
 
-    <div>
-        <div>
-            <a href="https://www.google.com" id="link1" target="_blank">Click this link (no preventDefault)</a>
-        </div>
-        <div>
-            <a href="https://www.google.com" id="link2" target="_blank">Click this link (preventDefault)</a>
-        </div>
-    </div>
+    <pre>
+        event.stopPropagation() 은 상위 엘리먼트로 이벤트 전파를 중지한다
+        해당 엘리먼트에 등록된 핸들러는 모두 실행된다
+    </pre>
 
     <div class="log-container">
         <h2>Event Log</h2>

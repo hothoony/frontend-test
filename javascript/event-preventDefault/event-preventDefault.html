@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Propagation and Prevention</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Event Propagation and Prevention Test</h1>
+
+    <div>
+        <div>
+            <a href="https://www.google.com" id="link1" target="_blank">Click this link (no preventDefault)</a>
+        </div>
+        <div>
+            <a href="https://www.google.com" id="link2" target="_blank">Click this link (preventDefault)</a>
+        </div>
+    </div>
+
+    <div class="log-container">
+        <h2>Event Log</h2>
+        <pre id="log"></pre>
+        <button id="clear-log">Clear Log</button>
+    </div>
+
+
+    <script src="event-preventDefault.js"></script>
+</body>
+</html>

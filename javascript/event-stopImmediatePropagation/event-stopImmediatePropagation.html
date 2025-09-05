@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Event Propagation and Prevention Test</h1>
+    <h1>event.stopImmediatePropagation Test</h1>
     <div id="outer" class="box">
         Outer Div
         <div id="middle" class="box">
@@ -20,19 +20,15 @@
 
     <div class="controls">
         <label>
-            <input type="checkbox" id="stop-propagation-checkbox">
-            Use event.stopPropagation()
+            <input type="checkbox" id="stop-immediate-propagation-checkbox">
+            Use event.stopImmediatePropagation()
         </label>
     </div>
 
-    <div>
-        <div>
-            <a href="https://www.google.com" id="link1" target="_blank">Click this link (no preventDefault)</a>
-        </div>
-        <div>
-            <a href="https://www.google.com" id="link2" target="_blank">Click this link (preventDefault)</a>
-        </div>
-    </div>
+    <pre>
+        하나의 엘리먼트에 여러 개의 이벤트 핸들러가 등록되어 있어도 
+        event.stopImmediatePropagation() 사용시 다른 핸들러 실행이 모두 중지된다
+    </pre>
 
     <div class="log-container">
         <h2>Event Log</h2>

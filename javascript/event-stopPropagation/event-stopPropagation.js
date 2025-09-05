@@ -2,9 +2,6 @@ const outer = document.getElementById('outer');
 const middle = document.getElementById('middle');
 const inner = document.getElementById('inner');
 
-const link1 = document.getElementById('link1');
-const link2 = document.getElementById('link2');
-
 const stopPropagationCheckbox = document.getElementById('stop-propagation-checkbox');
 const logElement = document.getElementById('log');
 const clearLogButton = document.getElementById('clear-log');
@@ -48,7 +45,7 @@ middle.addEventListener('click', (event) => {
 });
 
 inner.addEventListener('click', (event) => {
-    log('Inner div clicked!');
+    log('Inner div clicked! 1');
     if (stopPropagationCheckbox.checked) {
         event.stopPropagation();
         log('--- Event propagation stopped ---');
@@ -56,16 +53,11 @@ inner.addEventListener('click', (event) => {
     }
 });
 
-// --- Default Action Demo (preventDefault) ---
-
-link1.addEventListener('click', (event) => {
-    log('Link1 clicked!');
-    log('--- Link1 default action NOT prevented ---');
-    log('');
-});
-link2.addEventListener('click', (event) => {
-    log('Link2 clicked!');
-    event.preventDefault();
-    log('--- Link2 default action prevented ---');
-    log('');
+inner.addEventListener('click', (event) => {
+    log('Inner div clicked! 2');
+    if (stopPropagationCheckbox.checked) {
+        event.stopPropagation();
+        log('--- Event propagation stopped ---');
+        log('');
+    }
 });
