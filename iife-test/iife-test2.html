@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리스트 페이지네이션</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>📋 아이템 리스트</h1>
+        
+        <div class="stats">
+            <span id="displayedCount">0</span> / <span id="totalCount">0</span> 개의 아이템
+        </div>
+        
+        <div id="listContainer" class="list-container">
+            <!-- 동적으로 생성되는 리스트 아이템들 -->
+        </div>
+        
+        <div id="loadingIndicator" class="loading-indicator hidden">
+            데이터를 불러오는 중...
+        </div>
+        
+        <button id="moreBtn" class="load-more-btn">
+            더보기 ⬇️
+        </button>
+    </div>
+
+    <script src="script2.js"></script>
+
+</body>
+</html>
