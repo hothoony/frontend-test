@@ -28,7 +28,7 @@
 
     const initEvent = () => {
         document.querySelector('#moreBtn').addEventListener('click', () => {
-            renderNextPage();
+            renderPage(Paging.nextPage());
         });
     }
 
@@ -42,19 +42,34 @@
         return template;
     }
 
-    let page = 0;
-    let pageSize = 5;
-    let displayCount = 0;
+    const Paging = {
 
-    const renderNextPage = () => {
-        page++;
-        const sidx = (page - 1) * pageSize;
-        const eidx = page * pageSize;
-        const pageList = list.slice(sidx, eidx);
-        renderList(pageList);
-    }
+        pageSize: 5,
+        page: 0,
+        totalPage: 0,
+        displayCount: 0,
+        dataList: [],
 
-    const renderList = (pageList) => {
+        setDataList(data) {
+            this.dataList = data;
+            this.page = 0;
+            this.totalPage = Math.ceil(this.dataList.length / this.pageSize);
+        },
+
+        nextPage() {
+            this.page++;
+            const sidx = (this.page - 1) * this.pageSize;
+            const eidx = this.page * this.pageSize;
+            return this.dataList.slice(sidx, eidx);
+        },
+
+        hasMorePage() {
+            return this.page < this.totalPage;
+        },
+
+    };
+
+    const renderPage = (pageList) => {
         let content = '';
         for (let item of pageList) {
             content += createItem(item);
@@ -63,15 +78,17 @@
         const listContainer = document.getElementById('listContainer');
         listContainer.insertAdjacentHTML('beforeend', content);
 
-        displayCount += pageList.length;
-        if (displayCount >= list.length) {
+        if (Paging.hasMorePage()) {
+            document.querySelector('#moreBtn').style.display = 'block';
+        } else {
             document.querySelector('#moreBtn').style.display = 'none';
         }
-    }
+    };
 
     document.addEventListener('DOMContentLoaded', () => {
         initEvent();
-        renderNextPage();
+        Paging.setDataList(list);
+        renderPage(Paging.nextPage());
     });
 
 })(this);
