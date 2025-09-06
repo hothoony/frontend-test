@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>라디오 버튼 테스트</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>가장 좋아하는 과일을 선택하세요</h1>
+        <form id="fruit-form">
+            <div class="radio-group">
+                <input type="radio" id="apple" name="fruit" value="사과">
+                <label for="apple">사과</label>
+            </div>
+            <div class="radio-group">
+                <input type="radio" id="banana" name="fruit" value="바나나">
+                <label for="banana">바나나</label>
+            </div>
+            <div class="radio-group">
+                <input type="radio" id="orange" name="fruit" value="오렌지">
+                <label for="orange">오렌지</label>
+            </div>
+
+            <div data-id="btn-group">
+                <button type="button" id="btn1">선택한 값 확인</button>
+                <button type="button" id="btn2">바나나 선택하기</button>
+                <button type="button" id="btn3">오렌지 비활성화 하기</button>
+                <button type="button" id="btn4">모두 초기화 하기</button>
+            </div>
+
+        </form>
+        <p id="result"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
