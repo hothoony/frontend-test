@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>라디오 버튼 테스트</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>좋아하는 과일을 선택하세요 (복수 선택 가능)</h1>
+        <form id="fruit-form">
+            <div class="radio-group">
+                <input type="checkbox" id="apple" name="fruit" value="사과">
+                <label for="apple">사과</label>
+            </div>
+            <div class="radio-group">
+                <input type="checkbox" id="banana" name="fruit" value="바나나">
+                <label for="banana">바나나</label>
+            </div>
+            <div class="radio-group">
+                <input type="checkbox" id="orange" name="fruit" value="오렌지">
+                <label for="orange">오렌지</label>
+            </div>
+
+            <hr>
+
+            <h2>좋아하는 색상을 선택하세요 (복수 선택 가능)</h2>
+            <div class="radio-group">
+                <input type="checkbox" id="red" name="color" value="빨강">
+                <label for="red">빨강</label>
+            </div>
+            <div class="radio-group">
+                <input type="checkbox" id="green" name="color" value="초록">
+                <label for="green">초록</label>
+            </div>
+            <div class="radio-group">
+                <input type="checkbox" id="blue" name="color" value="파랑">
+                <label for="blue">파랑</label>
+            </div>
+
+            <div data-id="btn-group-all">
+                <div data-id="btn-group group1">
+                    <button type="button" id="btn11">선택한 과일 확인</button>
+                    <button type="button" id="btn12">바나나 토글하기</button>
+                    <button type="button" id="btn13">오렌지 비활성화 하기</button>
+                </div>
+                <div data-id="btn-group group2">
+                    <button type="button" id="btn21">선택한 색상 확인</button>
+                    <button type="button" id="btn22">초록 토글하기</button>
+                    <button type="button" id="btn23">파랑 비활성화 하기</button>
+                </div>
+                <button type="button" id="btn4">모두 초기화 하기</button>
+            </div>
+
+        </form>
+        <p id="result"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
