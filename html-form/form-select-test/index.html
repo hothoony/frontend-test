@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>라디오 버튼 테스트</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>좋아하는 과일을 선택하세요</h1>
+        <form id="fruit-form">
+            <div class="select-group">
+                <label for="fruit-select">과일 선택:</label>
+                <select id="fruit-select" name="fruit" multiple>
+                    <option value="사과">사과</option>
+                    <option value="바나나">바나나</option>
+                    <option value="오렌지">오렌지</option>
+                </select>
+            </div>
+
+            <hr>
+
+            <h2>좋아하는 색상을 선택하세요</h2>
+            <div class="select-group">
+                <label for="color-select">색상 선택:</label>
+                <select id="color-select" name="color" multiple>
+                    <option value="빨강">빨강</option>
+                    <option value="초록">초록</option>
+                    <option value="파랑">파랑</option>
+                </select>
+            </div>
+
+            <div data-id="btn-group-all">
+                <div data-id="btn-group group1">
+                    <button type="button" id="btn11">선택한 과일 확인</button>
+                    <button type="button" id="btn12">바나나 토글하기</button>
+                    <button type="button" id="btn13">오렌지 비활성화 하기</button>
+                </div>
+                <div data-id="btn-group group2">
+                    <button type="button" id="btn21">선택한 색상 확인</button>
+                    <button type="button" id="btn22">초록 토글하기</button>
+                    <button type="button" id="btn23">파랑 비활성화 하기</button>
+                </div>
+                <button type="button" id="btn4">모두 초기화 하기</button>
+            </div>
+
+        </form>
+        <p id="result"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
