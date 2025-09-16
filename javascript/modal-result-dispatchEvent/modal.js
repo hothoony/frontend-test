@@ -1,29 +1,12 @@
-export class Modal {
-    constructor(modalElement, fieldNames) {
-        if (!modalElement) {
-            throw new Error('Modal element not found!');
-        }
-        this.modalElement = modalElement;
-        this.fieldNames = fieldNames; // Array of field name strings
-        this.resolvePromise = null;
-
-        this._addEventListeners();
+export function createModal(modalElement, fieldNames) {
+    if (!modalElement) {
+        throw new Error('Modal element not found!');
     }
 
-    _addEventListeners() {
-        this.modalElement.querySelector('.modal__button--confirm').addEventListener('click', () => this._handleConfirm());
-        this.modalElement.querySelector('.modal__button--cancel').addEventListener('click', () => this._handleCancel());
-        this.modalElement.addEventListener('click', (event) => {
-            if (event.target === this.modalElement) {
-                this._handleCancel();
-            }
-        });
-    }
-
-    _handleConfirm() {
+    const _handleConfirm = () => {
         const results = {};
-        this.fieldNames.forEach(name => {
-            const elements = this.modalElement.querySelectorAll(`[name=${name}]`);
+        fieldNames.forEach(name => {
+            const elements = modalElement.querySelectorAll(`[name=${name}]`);
             if (!elements.length) return;
 
             const firstElement = elements[0];
@@ -35,40 +18,50 @@ export class Modal {
                     results[name] = firstElement.value;
                     break;
                 case 'radio':
-                    const checkedRadio = this.modalElement.querySelector(`[name=${name}]:checked`);
+                    const checkedRadio = modalElement.querySelector(`[name=${name}]:checked`);
                     results[name] = checkedRadio ? checkedRadio.value : null;
                     break;
                 case 'checkbox':
-                    results[name] = Array.from(this.modalElement.querySelectorAll(`[name=${name}]:checked`)).map(cb => cb.value);
+                    results[name] = Array.from(modalElement.querySelectorAll(`[name=${name}]:checked`)).map(cb => cb.value);
                     break;
             }
         });
 
-        if (this.resolvePromise) {
-            this.resolvePromise(results);
-        }
-        this.hide();
-    }
+        const event = new CustomEvent('modal-confirm', { detail: results });
+        modalElement.dispatchEvent(event);
+        hide();
+    };
 
-    _handleCancel() {
-        if (this.resolvePromise) {
-            this.resolvePromise(null);
-        }
-        this.hide();
-    }
+    const _handleCancel = () => {
+        const event = new CustomEvent('modal-cancel');
+        modalElement.dispatchEvent(event);
+        hide();
+    };
 
-    show() {
-        this.modalElement.classList.add('modal--visible');
-        const firstInput = this.modalElement.querySelector('input, select');
+    const show = () => {
+        modalElement.classList.add('modal--visible');
+        const firstInput = modalElement.querySelector('input, select');
         if (firstInput) firstInput.focus();
+    };
 
-        return new Promise((resolve) => {
-            this.resolvePromise = resolve;
+    const hide = () => {
+        modalElement.classList.remove('modal--visible');
+    };
+
+    const _addEventListeners = () => {
+        modalElement.querySelector('.modal__button--confirm').addEventListener('click', _handleConfirm);
+        modalElement.querySelector('.modal__button--cancel').addEventListener('click', _handleCancel);
+        modalElement.addEventListener('click', (event) => {
+            if (event.target === modalElement) {
+                _handleCancel();
+            }
         });
-    }
+    };
 
-    hide() {
-        this.modalElement.classList.remove('modal--visible');
-        this.resolvePromise = null;
-    }
+    _addEventListeners();
+
+    return {
+        show,
+        hide
+    };
 }
