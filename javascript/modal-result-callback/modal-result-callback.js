@@ -1,11 +1,10 @@
-import { initModal, showModal } from './modal.js';
+import { showModal, hideModal } from './modal.js';
 
 const openModalBtn = document.getElementById('open-modal-btn');
 const resultSpan = document.getElementById('result');
 
 const modalElement = document.getElementById('user-settings-modal');
 
-// Add event listener to open the modal
 openModalBtn.addEventListener('click', () => {
     showModal(modalElement, {
         onConfirm: (result) => {

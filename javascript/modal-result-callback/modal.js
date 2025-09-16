@@ -28,7 +28,7 @@ function _getFormValues(modalElement, fieldNames) {
     return results;
 }
 
-export function initModal(modalElement) {
+function initModal(modalElement) {
     if (!modalElement) {
         throw new Error('Modal element not found!');
     }
