@@ -3,6 +3,9 @@ export function createModal(modalElement, fieldNames) {
         throw new Error('Modal element not found!');
     }
 
+    let onConfirmCallback = null;
+    let onCancelCallback = null;
+
     const _handleConfirm = () => {
         const results = {};
         fieldNames.forEach(name => {
@@ -27,18 +30,23 @@ export function createModal(modalElement, fieldNames) {
             }
         });
 
-        const event = new CustomEvent('modal-confirm', { detail: results });
-        modalElement.dispatchEvent(event);
+        if (onConfirmCallback) {
+            onConfirmCallback(results);
+        }
         hide();
     };
 
     const _handleCancel = () => {
-        const event = new CustomEvent('modal-cancel');
-        modalElement.dispatchEvent(event);
+        if (onCancelCallback) {
+            onCancelCallback();
+        }
         hide();
     };
 
-    const show = () => {
+    const show = (callbacks = {}) => {
+        onConfirmCallback = callbacks.onConfirm;
+        onCancelCallback = callbacks.onCancel;
+
         modalElement.classList.add('modal--visible');
         const firstInput = modalElement.querySelector('input, select');
         if (firstInput) firstInput.focus();
@@ -46,6 +54,8 @@ export function createModal(modalElement, fieldNames) {
 
     const hide = () => {
         modalElement.classList.remove('modal--visible');
+        onConfirmCallback = null;
+        onCancelCallback = null;
     };
 
     const _addEventListeners = () => {
