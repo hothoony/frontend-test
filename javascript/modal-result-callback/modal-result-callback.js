@@ -1,15 +1,13 @@
-import { createModal } from './modal.js';
+import { initModal, showModal } from './modal.js';
 
 const openModalBtn = document.getElementById('open-modal-btn');
 const resultSpan = document.getElementById('result');
 
 const modalElement = document.getElementById('user-settings-modal');
-const fieldNames = ['username', 'features', 'plan', 'country'];
-const modal = createModal(modalElement, fieldNames);
 
-// 4. Add event listener to open the modal
+// Add event listener to open the modal
 openModalBtn.addEventListener('click', () => {
-    modal.show({
+    showModal(modalElement, {
         onConfirm: (result) => {
             console.log('Modal confirmed with values:', result);
             // Format the result object for display
