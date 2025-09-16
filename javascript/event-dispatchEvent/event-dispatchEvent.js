@@ -1,63 +1,56 @@
-const outer = document.getElementById('outer');
-const middle = document.getElementById('middle');
-const inner = document.getElementById('inner');
+const openModalBtn = document.getElementById('open-modal-btn');
+const modal = document.getElementById('modal');
+const confirmBtn = document.getElementById('confirm-btn');
+const cancelBtn = document.getElementById('cancel-btn');
+const modalInput = document.getElementById('modal-input');
+const resultSpan = document.getElementById('result');
 
-const stopPropagationCheckbox = document.getElementById('stop-propagation-checkbox');
-const logElement = document.getElementById('log');
-const clearLogButton = document.getElementById('clear-log');
+// --- Modal Logic ---
 
-function log(message) {
-    logElement.textContent += message + '\n';
-    logElement.scrollTop = logElement.scrollHeight;
+function openModal() {
+    modal.classList.add('visible');
+    modalInput.value = ''; // Clear previous input
+    modalInput.focus();
 }
 
-function clearLog() {
-    logElement.textContent = '';
+function closeModal() {
+    modal.classList.remove('visible');
 }
 
-clearLogButton.addEventListener('click', clearLog);
+function handleConfirm() {
+    const inputValue = modalInput.value.trim();
+    if (inputValue) {
+        // Create a custom event with the input value
+        const submitEvent = new CustomEvent('modal-submit', {
+            detail: { value: inputValue }
+        });
 
-// --- Event Bubbling Demo (stopPropagation) ---
+        // Dispatch the event on the document
+        document.dispatchEvent(submitEvent);
 
-// document.addEventListener('click', () => {
-//     log('document clicked!');
-//     log('');
-// });
-
-outer.addEventListener('click', (event) => {
-    log('Outer div clicked!');
-    if (stopPropagationCheckbox.checked) {
-        event.stopPropagation();
-        log('--- Event propagation stopped ---');
-        log('');
+        closeModal();
     } else {
-        log('');
+        alert('Please enter a value.');
     }
+}
+
+// --- Event Listeners ---
+
+openModalBtn.addEventListener('click', openModal);
+
+cancelBtn.addEventListener('click', closeModal);
+
+confirmBtn.addEventListener('click', handleConfirm);
+
+// Listen for the custom event on the document
+document.addEventListener('modal-submit', (event) => {
+    console.log('Custom event received:', event);
+    resultSpan.textContent = event.detail.value;
 });
 
-middle.addEventListener('click', (event) => {
-    log('Middle div clicked!');
-    if (stopPropagationCheckbox.checked) {
-        event.stopPropagation();
-        log('--- Event propagation stopped ---');
-        log('');
-    }
-});
-
-inner.addEventListener('click', (event) => {
-    log('Inner div clicked! 1');
-    if (stopPropagationCheckbox.checked) {
-        event.stopPropagation();
-        log('--- Event propagation stopped ---');
-        log('');
-    }
-});
-
-inner.addEventListener('click', (event) => {
-    log('Inner div clicked! 2');
-    if (stopPropagationCheckbox.checked) {
-        event.stopPropagation();
-        log('--- Event propagation stopped ---');
-        log('');
+// Close modal if user clicks outside the content
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        closeModal();
     }
 });
