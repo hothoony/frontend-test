@@ -1,56 +1,35 @@
+import { Modal } from './modal.js';
+
 const openModalBtn = document.getElementById('open-modal-btn');
-const modal = document.getElementById('modal');
-const confirmBtn = document.getElementById('confirm-btn');
-const cancelBtn = document.getElementById('cancel-btn');
-const modalInput = document.getElementById('modal-input');
 const resultSpan = document.getElementById('result');
 
-// --- Modal Logic ---
+// 1. Get the modal element from the DOM
+const modalElement = document.getElementById('user-settings-modal');
 
-function openModal() {
-    modal.classList.add('visible');
-    modalInput.value = ''; // Clear previous input
-    modalInput.focus();
-}
+// 2. Define the names of the fields to be collected
+const fieldNames = ['username', 'features', 'plan', 'country'];
 
-function closeModal() {
-    modal.classList.remove('visible');
-}
+// 3. Create a modal instance by passing the element and field names
+const complexModal = new Modal(modalElement, fieldNames);
 
-function handleConfirm() {
-    const inputValue = modalInput.value.trim();
-    if (inputValue) {
-        // Create a custom event with the input value
-        const submitEvent = new CustomEvent('modal-submit', {
-            detail: { value: inputValue }
-        });
+// 4. Add event listener to open the modal and process the results
+openModalBtn.addEventListener('click', async () => {
+    const result = await complexModal.show();
 
-        // Dispatch the event on the document
-        document.dispatchEvent(submitEvent);
-
-        closeModal();
+    if (result) {
+        console.log('Modal confirmed with values:', result);
+        // Format the result object for display
+        let resultHTML = '<ul>';
+        for (const [key, value] of Object.entries(result)) {
+            const displayValue = Array.isArray(value) && value.length === 0 ? 'none' : 
+                                 Array.isArray(value) ? value.join(', ') : 
+                                 value;
+            resultHTML += `<li><strong>${key}:</strong> ${displayValue}</li>`;
+        }
+        resultHTML += '</ul>';
+        resultSpan.innerHTML = resultHTML;
     } else {
-        alert('Please enter a value.');
-    }
-}
-
-// --- Event Listeners ---
-
-openModalBtn.addEventListener('click', openModal);
-
-cancelBtn.addEventListener('click', closeModal);
-
-confirmBtn.addEventListener('click', handleConfirm);
-
-// Listen for the custom event on the document
-document.addEventListener('modal-submit', (event) => {
-    console.log('Custom event received:', event);
-    resultSpan.textContent = event.detail.value;
-});
-
-// Close modal if user clicks outside the content
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        closeModal();
+        resultSpan.textContent = 'Modal was canceled.';
+        console.log('Modal was canceled or closed.');
     }
 });
