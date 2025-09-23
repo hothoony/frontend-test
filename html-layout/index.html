@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타임라인 레이아웃 진화사</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>🕰️ 타임라인 레이아웃의 진화</h1>
+
+    <div class="section">
+        <h2>목차</h2>
+        <ul>
+            <li><a href="section1_table.html">1️⃣ 옛날 테이블 방식 (1990년대~2000년대)</a></li>
+            <li><a href="section2_float.html">2️⃣ Float 방식 (2000년대~2010년대)</a></li>
+            <li><a href="section3_flexbox.html">3️⃣ Flexbox 방식 (2010년대 중반~)</a></li>
+            <li><a href="section4_grid.html">4️⃣ CSS Grid 방식 (2017년~)</a></li>
+            <li><a href="section5_modern_grid.html">5️⃣ 모던 CSS Grid with Spanning (현재 권장)</a></li>
+        </ul>
+    </div>
+
+    <div class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <h2 style="color: white; border-color: rgba(255,255,255,0.3);">🏆 결론</h2>
+        <p><strong>현재 권장사항:</strong></p>
+        <ol>
+            <li><strong>데이터 테이블이라면:</strong> 여전히 HTML &lt;table&gt; 사용 (의미적으로 올바름)</li>
+            <li><strong>레이아웃 목적이라면:</strong> CSS Grid (grid-row: span 사용)</li>
+            <li><strong>구형 브라우저 지원 필요시:</strong> Flexbox</li>
+            <li><strong>매우 간단하다면:</strong> 테이블도 나쁘지 않음</li>
+        </ol>
+    </div>
+</body>
+</html>

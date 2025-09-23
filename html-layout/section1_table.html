@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1️⃣ 옛날 테이블 방식</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>🕰️ 타임라인 레이아웃의 진화 - 1️⃣ 옛날 테이블 방식</h1>
+
+    <div class="section">
+        <h2>1️⃣ 옛날 테이블 방식 (1990년대~2000년대)</h2>
+        
+        <table class="old-table">
+            <tr>
+                <td class="image-cell" rowspan="4">이미지</td>
+                <td class="year-cell" rowspan="2">2025</td>
+                <td class="month-cell">12월</td>
+                <td class="content-cell">2025년 12월의 중요한 내용입니다</td>
+            </tr>
+            <tr>
+                <td class="month-cell">11월</td>
+                <td class="content-cell">2025년 11월의 중요한 내용입니다</td>
+            </tr>
+            <tr>
+                <td class="year-cell" rowspan="2">2024</td>
+                <td class="month-cell">09월</td>
+                <td class="content-cell">2024년 9월의 중요한 내용입니다</td>
+            </tr>
+            <tr>
+                <td class="month-cell">08월</td>
+                <td class="content-cell">2024년 8월의 중요한 내용입니다</td>
+            </tr>
+        </table>
+
+        <div class="code-example">
+            <pre>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td rowspan="4"&gt;이미지&lt;/td&gt;
+    &lt;td rowspan="2"&gt;2025&lt;/td&gt;
+    &lt;td&gt;12월&lt;/td&gt;
+    &lt;td&gt;내용&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;11월&lt;/td&gt;
+    &lt;td&gt;내용&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+        </div>
+
+        <div class="pros-cons">
+            <div class="pros">
+                <h4>✅ 장점</h4>
+                <ul>
+                    <li>간단하고 직관적</li>
+                    <li>모든 브라우저 지원</li>
+                    <li>rowspan으로 셀 병합 쉬움</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4>❌ 단점</h4>
+                <ul>
+                    <li>의미적으로 잘못된 사용</li>
+                    <li>접근성 문제</li>
+                    <li>반응형 어려움</li>
+                    <li>스타일링 제한적</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

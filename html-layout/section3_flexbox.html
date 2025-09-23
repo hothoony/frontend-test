@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3️⃣ Flexbox 방식</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>🕰️ 타임라인 레이아웃의 진화 - 3️⃣ Flexbox 방식</h1>
+
+    <div class="section">
+        <h2>3️⃣ Flexbox 방식 (2010년대 중반~)</h2>
+        
+        <div class="flex-timeline">
+            <div class="flex-row">
+                <div class="flex-image">이미지</div>
+                <div class="flex-year">2025</div>
+                <div class="flex-month">12월</div>
+                <div class="flex-content">2025년 12월의 중요한 내용입니다</div>
+            </div>
+            <div class="flex-row">
+                <div class="flex-image"></div>
+                <div class="flex-year"></div>
+                <div class="flex-month">11월</div>
+                <div class="flex-content">2025년 11월의 중요한 내용입니다</div>
+            </div>
+            <div class="flex-row">
+                <div class="flex-image"></div>
+                <div class="flex-year">2024</div>
+                <div class="flex-month">09월</div>
+                <div class="flex-content">2024년 9월의 중요한 내용입니다</div>
+            </div>
+            <div class="flex-row">
+                <div class="flex-image"></div>
+                <div class="flex-year"></div>
+                <div class="flex-month">08월</div>
+                <div class="flex-content">2024년 8월의 중요한 내용입니다</div>
+            </div>
+        </div>
+
+        <div class="code-example">
+            <pre>.flex-row {
+  display: flex;
+}
+.flex-content {
+  flex: 1; /* 남은 공간 모두 차지 */
+}
+.flex-year {
+  align-items: center;
+  justify-content: center;
+}</pre>
+        </div>
+
+        <div class="pros-cons">
+            <div class="pros">
+                <h4>✅ 장점</h4>
+                <ul>
+                    <li>직관적인 정렬</li>
+                    <li>높이 자동 맞춤</li>
+                    <li>반응형 쉬움</li>
+                    <li>브라우저 지원 좋음</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4>❌ 단점</h4>
+                <ul>
+                    <li>IE 구버전 이슈</li>
+                    <li>복잡한 그리드엔 제한적</li>
+                    <li>셀 병합 어려움</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5️⃣ 모던 CSS Grid with Spanning</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>🕰️ 타임라인 레이아웃의 진화 - 5️⃣ 모던 CSS Grid with Spanning</h1>
+
+    <div class="section">
+        <h2>5️⃣ 모던 CSS Grid with Spanning (현재 권장)</h2>
+        
+        <div style="display: grid; grid-template-columns: 100px 80px 80px 1fr; gap: 1px; background: #ddd; border-radius: 6px; overflow: hidden;">
+            <div style="grid-row: span 4; background: #f0f0f0; padding: 12px 15px; display: flex; align-items: center; justify-content: center; font-weight: bold;">이미지</div>
+            <div style="grid-row: span 2; background: #e8f4f8; padding: 12px 15px; display: flex; align-items: center; justify-content: center; font-weight: bold;">2025</div>
+            <div style="background: #f8f8f8; padding: 12px 15px; display: flex; align-items: center; justify-content: center;">12월</div>
+            <div style="background: white; padding: 12px 15px; display: flex; align-items: center;">2025년 12월의 중요한 내용입니다</div>
+            
+            <div style="background: #f8f8f8; padding: 12px 15px; display: flex; align-items: center; justify-content: center;">11월</div>
+            <div style="background: white; padding: 12px 15px; display: flex; align-items: center;">2025년 11월의 중요한 내용입니다</div>
+            
+            <div style="grid-row: span 2; background: #e8f4f8; padding: 12px 15px; display: flex; align-items: center; justify-content: center; font-weight: bold;">2024</div>
+            <div style="background: #f8f8f8; padding: 12px 15px; display: flex; align-items: center; justify-content: center;">09월</div>
+            <div style="background: white; padding: 12px 15px; display: flex; align-items: center;">2024년 9월의 중요한 내용입니다</div>
+            
+            <div style="background: #f8f8f8; padding: 12px 15px; display: flex; align-items: center; justify-content: center;">08월</div>
+            <div style="background: white; padding: 12px 15px; display: flex; align-items: center;">2024년 8월의 중요한 내용입니다</div>
+        </div>
+
+        <div class="code-example">
+            <pre>.timeline {
+  display: grid;
+  grid-template-columns: 100px 80px 80px 1fr;
+}
+.image-cell { grid-row: span 4; }
+.year-2025 { grid-row: span 2; }
+.year-2024 { grid-row: span 2; }</pre>
+        </div>
+
+        <div class="pros-cons">
+            <div class="pros">
+                <h4>✅ 장점</h4>
+                <ul>
+                    <li>완벽한 셀 병합</li>
+                    <li>테이블과 같은 결과</li>
+                    <li>의미적으로 올바름</li>
+                    <li>완전한 반응형</li>
+                    <li>접근성 우수</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4>❌ 단점</h4>
+                <ul>
+                    <li>IE 미지원 (IE11 부분지원)</li>
+                    <li>복잡한 구조에선 학습 필요</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

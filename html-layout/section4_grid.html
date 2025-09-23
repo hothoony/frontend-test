@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4️⃣ CSS Grid 방식</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>🕰️ 타임라인 레이아웃의 진화 - 4️⃣ CSS Grid 방식</h1>
+
+    <div class="section">
+        <h2>4️⃣ CSS Grid 방식 (2017년~)</h2>
+        
+        <div class="grid-timeline">
+            <div class="grid-cell">이미지</div>
+            <div class="grid-cell">2025</div>
+            <div class="grid-cell">12월</div>
+            <div class="grid-cell">2025년 12월의 중요한 내용입니다</div>
+            
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell">11월</div>
+            <div class="grid-cell">2025년 11월의 중요한 내용입니다</div>
+            
+            <div class="grid-cell"></div>
+            <div class="grid-cell">2024</div>
+            <div class="grid-cell">09월</div>
+            <div class="grid-cell">2024년 9월의 중요한 내용입니다</div>
+            
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell">08월</div>
+            <div class="grid-cell">2024년 8월의 중요한 내용입니다</div>
+        </div>
+
+        <div class="code-example">
+            <pre>.grid-timeline {
+  display: grid;
+  grid-template-columns: 100px 80px 80px 1fr;
+  gap: 1px;
+}
+.grid-cell {
+  padding: 12px 15px;
+}</pre>
+        </div>
+
+        <div class="pros-cons">
+            <div class="pros">
+                <h4>✅ 장점</h4>
+                <ul>
+                    <li>2차원 레이아웃 강력</li>
+                    <li>간결한 코드</li>
+                    <li>완벽한 정렬</li>
+                    <li>반응형 우수</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4>❌ 단점</h4>
+                <ul>
+                    <li>구형 브라우저 미지원</li>
+                    <li>학습 곡선</li>
+                    <li>동적 셀 병합 복잡</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
