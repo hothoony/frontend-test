@@ -1,0 +1,36 @@
+/* 1. 옛날 테이블 방식 */
+.old-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.old-table td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    vertical-align: top;
+}
+
+.old-table .image-cell {
+    width: 100px;
+    background: #f0f0f0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.old-table .year-cell {
+    width: 80px;
+    background: #e8f4f8;
+    text-align: center;
+    font-weight: bold;
+}
+
+.old-table .month-cell {
+    width: 80px;
+    background: #f8f8f8;
+    text-align: center;
+}
+
+.old-table .content-cell {
+    background: white;
+}

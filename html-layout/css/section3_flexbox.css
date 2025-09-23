@@ -1,0 +1,52 @@
+/* 3. Flexbox 방식 */
+.flex-timeline {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.flex-row {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+
+.flex-row:last-child {
+    border-bottom: none;
+}
+
+.flex-image {
+    width: 100px;
+    padding: 12px 15px;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.flex-year {
+    width: 80px;
+    padding: 12px 15px;
+    background: #e8f4f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.flex-month {
+    width: 80px;
+    padding: 12px 15px;
+    background: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-content {
+    flex: 1;
+    padding: 12px 15px;
+    background: white;
+    display: flex;
+    align-items: center;
+}

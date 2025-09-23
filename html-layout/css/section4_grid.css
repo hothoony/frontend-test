@@ -1,0 +1,42 @@
+/* 4. CSS Grid 방식 */
+.grid-timeline {
+    display: grid;
+    grid-template-columns: 100px 80px 80px 1fr;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.grid-cell {
+    padding: 12px 15px;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+}
+
+.grid-cell:last-child {
+    border-right: none;
+}
+
+.grid-timeline .grid-cell:nth-child(4n+1) {
+    background: #f0f0f0;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.grid-timeline .grid-cell:nth-child(4n+2) {
+    background: #e8f4f8;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.grid-timeline .grid-cell:nth-child(4n+3) {
+    background: #f8f8f8;
+    justify-content: center;
+}
+
+.grid-timeline .grid-cell:nth-child(4n) {
+    background: white;
+    border-right: none;
+}
