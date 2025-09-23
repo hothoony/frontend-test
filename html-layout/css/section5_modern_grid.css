@@ -1,52 +1,57 @@
 @import url('section_common.css');
 
 /* 5. 모던 CSS Grid with Areas */
-.modern-grid {
+.modern-grid-timeline {
     display: grid;
     grid-template-columns: 100px 80px 80px 1fr;
-    grid-template-areas: 
-        "img1 year1 month1 content1"
-        "img2 year2 month2 content2"
-        "img3 year3 month3 content3"
-        "img4 year4 month4 content4";
     gap: 1px;
     background: #ddd;
     border-radius: 6px;
     overflow: hidden;
 }
 
-.modern-cell {
+.modern-image {
+    grid-row: span 4;
+    background: #f0f0f0;
     padding: 12px 15px;
     display: flex;
     align-items: center;
-    background: white;
+    justify-content: center;
+    font-weight: bold;
 }
 
-.modern-image {
-    background: #f0f0f0;
-    justify-content: center;
-    font-weight: bold;
-}
 .modern-year {
+    grid-row: span 2;
     background: #e8f4f8;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
     justify-content: center;
     font-weight: bold;
 }
+
 .modern-month {
     background: #f8f8f8;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
+
 .modern-content {
     background: white;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
 }
 
 /* 반응형 */
 @media (max-width: 768px) {
-    .modern-grid {
+    .modern-grid-timeline {
         display: block;
     }
     
-    .modern-cell {
+    .modern-image, .modern-year-2025, .modern-year-2024, .modern-month, .modern-content {
         display: block;
         width: 100%;
     }
