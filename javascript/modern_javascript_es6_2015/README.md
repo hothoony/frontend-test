@@ -57,3 +57,14 @@ const merged = {...base, ...extra};
 const name = 'Sam';
 console.log(`Hello, ${name}`);
 ```
+
+### Array filter
+```javascript
+const users = [
+    { name: "Tom", age: 17 },
+    { name: "Alice", age: 21 },
+    { name: "Bob", age: 19 },
+    { name: "Paul", age: 20 },
+    { name: "John", age: 23 },
+];
+```
