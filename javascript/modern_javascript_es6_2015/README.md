@@ -67,4 +67,16 @@ const users = [
     { name: "Paul", age: 20 },
     { name: "John", age: 23 },
 ];
+
+// filter
+const result = users.filter(u => u.age >= 20);
+result.forEach(user => console.log(user));
+
+// sort
+const result = users.sort((u1, u2) => u1.age - u2.age); // asc
+result.forEach(user => console.log(user));
+
+// sort
+const result = users.sort((u1, u2) => u2.age - u1.age); // desc
+result.forEach(user => console.log(user));
 ```
